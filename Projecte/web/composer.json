@@ -1,0 +1,44 @@
+{
+    "name": "2daw/g04",
+    "description": "Projecte web",
+    "type": "project",
+    "license": "Secret comercial",
+    "minimum-stability": "dev",
+    "require": {
+	"php": "^7.3",
+	"alrik11es/cowsayphp":"^1.2",
+        "monolog/monolog": "2.x-dev",
+        "phpunit/phpunit": "9.5.x-dev"
+	},
+    "authors":[{
+	"name": "David Rivera Artero",
+	"email": "dariar@fp.insjoaquimmir.cat"
+	},{
+	"name": "Paula Sala Repullo",
+	"email": "pasare@fp.insjoaquimmir.cat"
+	},{
+	"name": "Joel Rocha Carrasquilla",
+	"email": "joroca@fp.insjoaquimmir.cat"
+	}
+     ],
+    "autoload":{
+	"psr-4":{
+	   "My\\":"library"
+	}
+     },
+
+    "scripts": {
+	"hello":[
+	    "php ./scripts/hello.php"
+	],
+	"deps":[
+	    "ls ./library",
+	    "ls ./vendor"
+	],
+	"tests":[
+	    "./vendor/bin/phpunit tests"
+	]
+
+	}
+
+}
