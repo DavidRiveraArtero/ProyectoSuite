@@ -9,12 +9,12 @@
 
         <!--DIV QUE CUANDO LE DEMOS AL BOTON TE MANDARA A OTRA PAGINa-->
         <a href='user/PaginaInicio.html'>
-            <div id='contenedor_Home_Gestor'>
-                <h1>Gestor Incidencias</h1>
+            <div class='contenedor_Home_Gestor'>
+                <h2>Gestor Incidencias</h2>
             </div>
         <a>
-        <div id='contenedor_Home_Mensajeria'>
-            <h1>Mensajeria</h1>
+        <div class='contenedor_Home_Mensajeria'>
+            <h2>Mensajeria</h2>
         </div>        
     </body>
 </html>
