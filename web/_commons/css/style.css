@@ -1,0 +1,108 @@
+/* <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous" /> */
+/* ~~~~~ PRINCIPAL ~~~~~ */
+
+*{
+    box-sizing: border-box;
+    margin-top: 0%;
+    font-family: Righteous;
+    margin: auto;
+}
+/* ~~~~~ HEADER ~~~~~ */
+/* div.header{
+    float: left;
+    background-color: #a1efef;
+    width: 100%;
+    height: 10%;
+} */
+
+
+/* ~~~~~ BOTÓN PERFIL ~~~~~ */
+img.perfil{
+    width: 55px;
+    height: 55px;
+    float: right;
+    margin-top: 0.5%;
+    margin-right: 5%;
+}
+
+/* ~~~~~ LOGO ~~~~~ */
+img.logo{
+    width: 200px;
+    height: 60px;
+}
+
+/* ~~~~~ LADO MENSAJERÍA ~~~~~ */
+.mensajeria{
+    background-image: url("../img/xat.jpeg");
+    float: right;
+    background-color: rgb(48, 48, 131);
+    color: #a1efef;
+    font-size: 3vw;
+    text-align: center;
+
+}
+/* ~~~~~ LADO INCIDENCIAS ~~~~~ */
+.incidencias{
+    background-image: url("../img/xat.jpeg");
+    float: left;
+    color: #a1efef;
+    background-color: rgb(48, 48, 131);
+    font-size: 3vw;
+    text-align: center;
+}
+
+/* ~~~~~ TITULOS, TEXTOS y ENLACES ~~~~~ */
+.titulo{
+    text-align: center;
+    color: #00aa66;
+    font-size: 2vw;
+    text-align: center;
+}
+
+.texto{
+    /* float: left; */
+    color: #7e7e7e;
+    font-size: 2vw;
+}
+
+.texto--negrita{
+    color: black;
+    font-weight: bold;
+    font-size: 2vw;
+
+}
+
+a.texto--enlace{
+    color: #00aa66;
+    font-size: 2vw;
+}
+
+a.texto--enlace:hover{
+    color:#44dd94;
+}
+
+/* ~~~~~ BOTONES EN GENERAL ~~~~~ */
+button.boton{
+    background-color: #6fbcbd;
+    color: black;
+    font-size: 1.5vw;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px black solid;
+    padding: 0.5%;
+    width: 15%;
+    height: 5%;
+}
+
+button.boton--primary{
+    border-radius: 5px;
+    border: 0px black solid;
+}
+
+button.boton--icon{
+    border-radius: 150px;
+    padding: 0.5%;
+    width: 5%;
+    height: 5%;
+    border: 0px black solid;
+}

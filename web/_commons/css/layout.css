@@ -54,7 +54,7 @@ ul {
 
 /*Pagina Login*/
 
-.header_Home{
+.header{
     width: 100%;
     height: 60px;
     background-color: #A8EFEB;
@@ -63,33 +63,45 @@ ul {
     margin-block-end: 0em;
     
 }
-.header_Home_Titulo{
+.header__Titulo{ 
+
     margin-block-start: 0%;
     margin-block-end: 0%;
 }
-.header_Home_img{
+.header__user{
     width: 3%;
     float: right;
+    margin-right: 6%;
 }
-.contenedor_Home_Gestor{
+
+.header__logo{
+    width: 3%;
+    float: left;
+}
+
+.button--gestor{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: 944px;
+    height: 544px;
+    border:1px solid black;
     float: left;
+    margin-top: 1%;
     background-image: url(../img/Gestor.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
-.contenedor_Home_Mensajeria{
+.button--mensajeria{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1%;
+    border:1px solid black;
     width: 50%;
-    height: 944px;
+    height: 544px;
     background-image: url(../img/mensajeria.jpg);
     background-size: cover;
     background-repeat: no-repeat;

@@ -8,13 +8,16 @@
         <?= My\Helpers::render("/_commons/header.php"); ?>
 
         <!--DIV QUE CUANDO LE DEMOS AL BOTON TE MANDARA A OTRA PAGINa-->
-        <a href='user/PaginaInicio.html'>
-            <div class='contenedor_Home_Gestor'>
-                <h2>Gestor Incidencias</h2>
+        <a href='user/PaginaInicio.php'>
+            <div class='button--gestor'>
+                <h2 class='incidencias'>Gestor Incidencias</h2>
             </div>
         <a>
-        <div class='contenedor_Home_Mensajeria'>
-            <h2>Mensajeria</h2>
-        </div>        
+        <a href='user/PaginaInicio.php'>
+            <div class='button--mensajeria'>
+                <h2 class='mensajeria'>Mensajeria</h2>
+            </div>
+        </a>        
+
     </body>
 </html>
