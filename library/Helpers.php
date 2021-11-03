@@ -56,5 +56,20 @@ class Helpers {
        }
    }
 
+   public static function flash(string $msg = ""): array
+   {
+        session_start();
+        $list = $_SESSION["flash"] ?? [];
+        if(empty($msg))
+        {
+            unset($_SESSION['flash']);
+        }else
+        {
+            $list[] = $msg;
+            $_SESSION["flash"] = $list;
+        }
+        return $list;
+   }
+
  
 }

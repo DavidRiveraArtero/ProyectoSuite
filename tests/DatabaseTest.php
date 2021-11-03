@@ -33,12 +33,9 @@ final class DatabaseTest extends TestCase
         $this->assertEquals($cont , 1);
 
         $db->close();
+        $this->expectException(Exception::class);
         $stmt = $db->prepare('SELECT email,role_id FROM users WHERE username = ?');
-
-        $cont = 0;
         $stmt->execute(["admin"]);
-
-        $this->expectException(InvalidArgumentException::class);
-        
     }
+   
 }
