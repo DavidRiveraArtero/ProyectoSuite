@@ -33,7 +33,6 @@ img.logo{
 
 /* ~~~~~ LADO MENSAJERÍA ~~~~~ */
 .mensajeria{
-    background-image: url("../img/xat.jpeg");
     float: right;
     background-color: rgb(48, 48, 131);
     color: #a1efef;
@@ -43,7 +42,6 @@ img.logo{
 }
 /* ~~~~~ LADO INCIDENCIAS ~~~~~ */
 .incidencias{
-    background-image: url("../img/xat.jpeg");
     float: left;
     color: #a1efef;
     background-color: rgb(48, 48, 131);
@@ -105,4 +103,7 @@ button.boton--icon{
     width: 5%;
     height: 5%;
     border: 0px black solid;
+}
+.register{
+    background-color: lightgray;
 }

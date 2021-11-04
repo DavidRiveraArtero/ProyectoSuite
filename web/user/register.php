@@ -1,11 +1,20 @@
-<?php require_once __DIR__ . "/../vendor/autoload.php"; ?>
+<!-- Autoload del composer -->
+<?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="es">
-    <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Sign up"]); ?>
-    <body>
-        <?= My\Helpers::render("/_commons/header.php"); ?>
-        <h2>Sign in</h2>
-        <p>Welcom back!</p>
-        <?= My\Helpers::render("/_commons/footer.php"); ?>
+    <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Pagina Inicial"]); ?>
+    <body class='register'>
+        <!--PHP QUE LLAMA AL HEADER YA QUE ESTE SE REPETIRA--> 
+        <div class='cajaLogin'>
+            <div class='cajaLogin_img'>
+                <p>hola</p>
+            </div>
+
+            <div class='cajaLogin_Formulario'>
+                <label for="">Nombre</label><input type="text"></br>
+                <label for="">Nombre</label><input type="text">
+            </div>
+        </div>
+
     </body>
 </html>
