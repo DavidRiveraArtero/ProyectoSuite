@@ -7,6 +7,12 @@
         <!--PHP QUE LLAMA AL HEADER YA QUE ESTE SE REPETIRA-->
         <?= My\Helpers::render("/_commons/header.php"); ?>
 
+        <?php
+            My\Helpers::log()->info("Entro a la pàgina d'inici"); 
+            My\Helpers::log()->debug("Entro a una pàgina", ["page" => basename(__FILE__)]); 
+        ?>
+        
+
         <!--DIV QUE CUANDO LE DEMOS AL BOTON TE MANDARA A OTRA PAGINa-->
         <a href='PaginaInicio.php'>
             <div class='button--gestor'>

@@ -21,10 +21,20 @@ final class HelpersTest extends TestCase {
         $this->assertStringEndsWith('web/user/login.php',$https);
     }
 
-    public function testRender():void{
+    public function testRender():void
+    {
         $path = "/_commons/head.php";
         $array = ["subtitle" => "Sign in"];
         $prue = Helpers::render($path,$array);
         //$this->assertEquals('hola',$prue);
     }
+
+    public function testLog():void
+    {
+        $logger = Helpers::log();
+        $this->assertIsObject($logger);
+        $logger->info("PHPUnit test");
+        Helpers::log()->debug("PHPUnit test");
+    }
+
 }
