@@ -58,3 +58,19 @@ html, body {
     text-align: center;
     border: 1px solid black;
 }
+.formulario_nombre{
+   margin-left: 115px;
+   
+}
+.formulario_email{
+    margin-left: 139px;
+}
+.formulario_password{
+    margin-left: 80px;
+}
+.formulario_repPassword{
+    margin-left: 9px;
+}
+.formulario_boton{
+    margin-left: 110px;
+}

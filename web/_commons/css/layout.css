@@ -114,7 +114,7 @@ ul {
     justify-content: center;
     width: 60%;
     height: 70%;
-    background-color: brown;
+    background-color: #a1efef;
     
 
 }
@@ -123,7 +123,9 @@ ul {
     margin: 0%;
     width: 60%;
     height: 100%;
-    background-color: beige;
+    background-image: url(../img/register.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body{
