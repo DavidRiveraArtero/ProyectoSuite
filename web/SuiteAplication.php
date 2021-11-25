@@ -13,19 +13,20 @@
         ?>
         
 
-        <!--DIV QUE CUANDO LE DEMOS AL BOTON TE MANDARA A OTRA PAGINa-->
-        <a href='PaginaInicio.php'>
-            <div class='button--gestor'>
-                <h2 class='incidencias'>Gestor Incidencias</h2>
+        <!--DIV QUE CUANDO LE DEMOS AL BOTON TE MANDARA A OTRA PAGINA-->
+        <div class='contenedor'>
+            <div class='button button--gestor'>
+                <a href='PaginaInicio.php'>
+                    <h2 id="incidencias" class='titulo titulo--color'>Gestor Incidencias</h2>
+                </a>
             </div>
-        <a>
-        <a href='PaginaInicio.php'>
-            <div class='button--mensajeria'>
-                <h2 class='mensajeria'>Mensajeria</h2>
-            </div>
-        </a>        
-        
-        
+            <div class='button button--mensajeria'>
+                <a href='PaginaInicio.php'>
+                    <h2 id="mensajeria" class='titulo titulo--color'>Mensajeria</h2>
+                </a>
+            </div>  
+        </div>
+             
 
     </body>
 </html>

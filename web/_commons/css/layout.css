@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+ }
+ 
+
 /*Pagina pre login*/
 .parallax{
     display: flex;
@@ -21,12 +26,11 @@
     /*Se centra el valor*/
     align-items: center;
     justify-content: center;
-    
     padding-top: 20%;
     display: flex;
 }
 
-div:nth-child(3){
+.color3{
    background-color: aquamarine;
 }
 #piePagina{
@@ -34,8 +38,6 @@ div:nth-child(3){
     background-image: url(../../_commons/img/div1.jpg);
     background-size: cover;
 }
-
-
 
 /*NAV LOGIN*/
 /*
@@ -54,7 +56,8 @@ ul {
 /*Pagina Login*/
 
 .header{
-    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
     height: 60px;
     background-color: #A8EFEB;
     text-align: center;
@@ -63,53 +66,48 @@ ul {
     
 }
 .header__Titulo{ 
-
     margin-block-start: 0%;
     margin-block-end: 0%;
 }
 .header__user{
-    width: 3%;
+    width: 10%;
     float: right;
     margin-right: 6%;
 }
 
 .header__logo{
-    width: 3%;
+    width: 10%;
     float: left;
+    margin-right: 6%;
 }
 
-.button--gestor{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 544px;
-    border:1px solid black;
-    float: left;
-    margin-top: 1%;
-    background-image: url(../img/Gestor.jpg);
+.contenedor{
+    
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.button {
+    height: 547px;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border:1px solid black;
+}
+
+.button--gestor{  
+    background-image: url(../img/Gestor.jpg);
 }
 
 .button--mensajeria{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1%;
-    border:1px solid black;
-    width: 50%;
-    height: 544px;
     background-image: url(../img/mensajeria.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    cursor: pointer;
 }
 
 .cajaLogin{
-    margin-top: 7%;
-    display: flex;
     align-items: center;
     justify-content: center;
     width: 60%;
@@ -119,8 +117,6 @@ ul {
 
 }
 .cajaLogin_img{
-    display: flex;
-    margin: 0%;
     width: 60%;
     height: 100%;
     background-image: url(../img/register.jpg);
@@ -130,5 +126,4 @@ ul {
 
 body{
     margin: 0%;
-
 }

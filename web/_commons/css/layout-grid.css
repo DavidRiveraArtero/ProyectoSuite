@@ -1,0 +1,36 @@
+
+@media screen and (max-width: 450px) {
+    .header{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        height: 50px;
+        background-color: #A8EFEB;
+        text-align: center;
+    }
+    .header__Titulo{
+        margin-block-start: 0%;
+        margin-block-end: 0%;
+    }
+
+    .header__user{
+        width: 32%;
+        float: right;
+        margin-right: 2%;
+    }
+
+    .header__logo{
+        width: 32%;
+        float: left;
+        margin-right: 2%;
+    }
+    
+    .contenedor{
+        display: grid;
+        grid-template-columns: auto;
+       
+    }
+    .button{
+        height: 350px;
+    }
+    
+  }

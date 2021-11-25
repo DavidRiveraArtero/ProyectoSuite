@@ -35,8 +35,8 @@ class Mail{
 
          // Set subject and body (HTML or not)
          $this->_mailer->isHTML(true);
-         $this->_mailer->Subject = "Subject";
-         $this->_mailer->Body = "Hola, esto es un body HTML :)";
+         $this->_mailer->Subject = $subject;
+         $this->_mailer->Body = $body;
          $this->_mailer->AltBody = "Hola esto es un body no HTML :(";
      }
 

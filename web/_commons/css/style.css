@@ -31,30 +31,20 @@ img.logo{
     height: 60px;
 }
 
-/* ~~~~~ LADO MENSAJERÍA ~~~~~ */
-.mensajeria{
-    float: right;
-    background-color: rgb(48, 48, 131);
-    color: #a1efef;
-    font-size: 3vw;
-    text-align: center;
-
-}
-/* ~~~~~ LADO INCIDENCIAS ~~~~~ */
-.incidencias{
-    float: left;
-    color: #a1efef;
-    background-color: rgb(48, 48, 131);
-    font-size: 3vw;
-    text-align: center;
-}
-
 /* ~~~~~ TITULOS, TEXTOS y ENLACES ~~~~~ */
 .titulo{
     text-align: center;
     color: #00aa66;
     font-size: 2vw;
-    text-align: center;
+}
+/* ~~~~~ LADO MENSAJERÍA ~~~~~ */
+    /*float: right;*/
+/* ~~~~~ LADO INCIDENCIAS ~~~~~ */
+.titulo--color{
+    /*float: left;*/
+    color: #a1efef;
+    background-color: rgb(48, 48, 131);
+    font-size: 3vw;
 }
 
 .texto{
@@ -106,4 +96,11 @@ button.boton--icon{
 }
 .register{
     background-color: lightgray;
+}
+
+@media screen and (max-width: 450px) {
+    .titulo{
+        font-size: 6vw;
+    }
+
 }
