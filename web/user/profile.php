@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="es">
-    <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Sign in"]); ?>
+    <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Sign in"]); ?>
     <body class='register'>
         <form action="" method="post" class="form">
             <h3 class="titulo">Configuración del perfil</h3>    

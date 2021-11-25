@@ -1,0 +1,44 @@
+@media screen and (max-width: 414px){    
+    .left {
+        float: left;
+        clear: both;
+        width: 100%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .button--gestor {
+        width: 100%;
+    }
+
+    .button--mensajeria {
+        width: 100%;
+    }
+
+    .titulo {
+        font-size: 8vw;
+    }
+
+    .header__logo{
+        width: 13%;
+        float: left;
+    }
+
+    .header__user{
+        width: 13%;
+        float: right;
+    }
+
+
+    .incidencias {
+        font-size: 6vw;
+    }
+
+    .mensajeria {
+        font-size: 6vw;
+    }
+
+    .header {
+        width: 104%;
+    }
+}

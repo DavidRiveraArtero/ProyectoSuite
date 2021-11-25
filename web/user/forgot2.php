@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="es">
-    <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Sign in"]); ?>    
+    <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Sign in"]); ?>
     <body>
 
         <?php/** MOSTRAR ALERTAS */?>
@@ -19,9 +19,9 @@
         <!-- PÁGINA FORMULARIO-->
         <div class="parallax">
             <form action="forgot1_action.php" method="POST" class="form">
-                <h1 class="titulo">¿Has olvidado la contraseña?</h1><br>
-                <label for="email" class="form__label">E-mail: </label><br><input type="text" name="email" id="email" class="form__inputext"><br>
-                <br><input type="file" name="avatar"/><br>
+                <h1 class="titulo">Introduce tu nueva contraseña</h1><br>
+                <label for="passwd" class="form__label">Nueva contraseña: </label><br><input type="password" name="passwd" id="passwd" class="form__inputext"><br>
+                <br><label for="passwd2">Repite nueva contraseña: </label><input type="password" name="passwd2" id="passwd2"/><br>
                 <br><button class="boton">SEND</button>
             </form>
         </div>
