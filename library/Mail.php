@@ -34,7 +34,7 @@ class Mail{
          $this->_mailer->AddReplyTo($cnf["reply"]["mail"],$cnf["reply"]["name"]);
 
          // Set subject and body (HTML or not)
-         $this->_mailer->isHTML(true);
+         $this->_mailer->isHTML($isHTML);
          $this->_mailer->Subject = $subject;
          $this->_mailer->Body = $body;
          $this->_mailer->AltBody = "Hola esto es un body no HTML :(";

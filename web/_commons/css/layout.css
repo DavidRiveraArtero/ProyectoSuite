@@ -108,6 +108,8 @@ ul {
 }
 
 .cajaLogin{
+    margin-top: 7%;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 60%;
@@ -122,6 +124,13 @@ ul {
     background-image: url(../img/register.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    float: left;
+}
+.cajaLogin_Formulario{
+    
+    width: 40%;
+    height: 100%;
+    float: left;
 }
 
 body{
