@@ -2,8 +2,9 @@
 <header class='header'>
     <nav>
         <img class='header__logo' src='_commons/img/icon.png'/>
+        <!-- SE A MOVIDO EL TITULO PARA HACER EL FLEX -->
+        <label class='header__Titulo titulo'>Projecte J-Suite</label>
         <img class='header__user' src='_commons/img/icon.png'/>
-        <h2 class='header__Titulo titulo'>Projecte J-Suite</h2>
     </nav>
     <?php $flash = My\Helpers::flash(); ?>
     <?php if(!empty($flash)): ?>
@@ -24,6 +25,6 @@
     <div>
         <h2 class='header__Titulo'>Projecte J-Suite</h2>
     </div>
--->
+    -->
     
 </header>

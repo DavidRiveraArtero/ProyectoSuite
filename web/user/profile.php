@@ -1,14 +1,52 @@
 <?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="es">
-    <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Sign in"]); ?>
-    <body class='register'>
-        <form action="" method="post" class="form">
+    <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Sign in"]); ?> 
+    <body>
+
+        <form action="./profile_action.php" method="post" class="form">
+            <!-- ------ Configurarión ------ -->
+            
             <h3 class="titulo">Configuración del perfil</h3>    
-            <p class="texto--negrita">Nom: <br><input type="text" id="nom" class="form__inputext" placeholder="Nom"></p>
-            <p class="texto--negrita">Correu electronic: <br><input type="text" id="nom" class="form__inputext" placeholder="Correu electronic"></p>
-            <p class="texto--negrita">Contraseña: <br> <input type="text" id="nom" class="form__inputext" placeholder="Contraseña"></p>
-            <button class="boton">Fet</button>
+            <input type="text" name="id" id="id" class="form__inputext" value="id" hidden>
+
+            <p class="texto--negrita">Nom:</p>
+            <input type="text" name="nom" id="nom" class="form__inputext" value="Paula" readonly>
+
+            <p class="texto--negrita">Correu electronic:</p>
+            <input type="text" name="correu" id="correu" class="form__inputext" value="Correu electronic">
+
+            <!-- ------ Mensaje de ERROR ------ -->
+            <?php $flash = My\Helpers::flash(); ?>
+            <?php if(!empty($flash)): ?>
+
+            <div class='flash'>
+                <ul>
+                    <?php foreach($flash as $msg): ?>
+                    <li class="flash__message"><?= $msg ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php endif; ?>
+
+
+            <p class="texto--negrita">Contraseña:</p>
+            <input type="password" name="contrasena" id="contrasena" class="form__inputext" value="Contraseña">
+            
+            <p class="texto--negrita">Repite la contraseña:</p>
+            <input type="password" name="confirm_contrasena" id="confirm_contrasena" class="form__inputext" value="">
+            
+            <p class="texto--negrita">Avatar:<input type="file" name="avatar" /></p>
+
+            <br>
+            <!-- ------ Botones ------ -->
+            <input type="submit" class="boton" name="enviar" value="Fet">
+            <a href="./logout_action.php"><input type="button" class="boton" name="cerrar" value="Cerrar sesión" Onclick="./logout_action.php"></a>
+            <a href="../SuiteAplication.php"><input type="button" class="boton" name="cancelar" value="Cancelar" ></a>
+
+
+
         </form>
+
     </body>
-</html>
+</html> 
