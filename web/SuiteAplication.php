@@ -4,6 +4,17 @@
 <html lang="es">
     <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Pagina Inicial"]); ?>
     <body>
+    <?php $flash = My\Helpers::flash(); ?>
+                <?php if(!empty($flash)): ?>
+
+                <div class='flash'>
+                    <ul>
+                        <?php foreach($flash as $msg): ?>
+                        <li class="flash__message"><?= $msg ?></li><br>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
         <!--PHP QUE LLAMA AL HEADER YA QUE ESTE SE REPETIRA-->
         <?= My\Helpers::render("/_commons/header.php"); ?>
 

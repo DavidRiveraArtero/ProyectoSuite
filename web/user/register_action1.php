@@ -70,22 +70,29 @@
             $bytes = random_bytes(20);
             $token = bin2hex($bytes);
             
+            //AÑADIR EL TOKEN A LA TABLA
             $ultimoId = $connect->lastInsertId();
             My\Helpers::log()->debug("Ultim ID de usuario {$ultimoId}");
             $actualDate = date("Y-m-d H:i:s");
             $userToken = "insert into `2daw.equip04`.user_tokens VALUES('{$ultimoId}','{$token}', 'A', '{$actualDate}')";
-            $token = $connect->prepare($userToken);
-            $token->execute();
+            $tokenDb = $connect->prepare($userToken);
+            $tokenDb->execute();
             
-            $url=My\Helpers::url("user/register.php?token={$token}");
+            //ENVIAR CORREO
+            $url=My\Helpers::url("user/register_action2.php?token={$token}&id={$ultimoId}");
             $link = "<a href='{$url}'>Link</a>";
             $subject = "Token User";
             $body = "<li>{$link}</li>";
             $isHtml = true;
             $to = ["2daw.equip04@fp.insjoaquimmir.cat"];
             $SendMail = new Mail($subject, $body, $isHtml);
-            $SendMail->send($to);
-    
+            $send = $SendMail->send($to);
+
+            My\Helpers::flash("Tot OK");
+            My\Helpers::flash($send ? "Correu enviat" : "Error de correu");
+            $url = My\Helpers::url("/SuiteAplication.php");
+            My\Helpers::redirect($url);
+            
     }
 }
 
