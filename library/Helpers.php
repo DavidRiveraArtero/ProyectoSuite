@@ -35,7 +35,7 @@ class Helpers {
     public static function url(string $path, bool $ssl = false): string 
     {
         $protocol = $ssl ? "https" : "http";
-        return "{$protocol}://localhost/tarda/Projecte/{$path}";
+        return "{$protocol}://localhost/tarda/Projecte/web/{$path}";
     }
 
     public static function render(string $path, array $__params = []):string
@@ -50,7 +50,7 @@ class Helpers {
 
     public static function redirect(string $url) : string 
     {
-        ob_flush(); // use ob_clean() instead to discard previous output       
+        ob_clean(); //ob_flush(); // use ob_clean() instead to discard previous output       
         header("Location: {$url}");
         exit();
     }

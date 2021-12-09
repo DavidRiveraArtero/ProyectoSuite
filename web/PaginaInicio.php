@@ -29,7 +29,7 @@
         <div class="parallax">
             <h2>Quienes Somos</h2>
         </div>
-        <div class="parallax">
+        <div class="parallax color3">
             <h2>Servicios</h2>
         </div>
         <footer id='piePagina'>

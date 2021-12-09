@@ -31,14 +31,11 @@ img.logo{
     height: 60px;
 }
 
-
-
 /* ~~~~~ TITULOS, TEXTOS y ENLACES ~~~~~ */
 .titulo{
     text-align: center;
     color: #00aa66;
     font-size: 2vw;
-    text-align: center;
 }
 
 /* ~~~~~ ~~~~~ */
@@ -47,9 +44,6 @@ img.logo{
     width: 50%;
     height: 100%;
     color: #a1efef;
-    font-size: 2vw;
-    text-align: center;
-
 }
 
 .texto{
@@ -97,8 +91,18 @@ a.texto--enlace:hover{
     border: 0px black solid;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
     .titulo{
         font-size: 7vw;
     }
+}
+.register{
+    background-color: lightgray;
+} */
+
+@media screen and (max-width: 450px) {
+    .titulo{
+        font-size: 6vw;
+    }
+
 }
