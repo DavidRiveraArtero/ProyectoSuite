@@ -78,65 +78,64 @@ else{
 
     if ($resultado)
     {
-        print_r("Bien");
+        My\Helpers::flash("Todo bien");
     }
     else
     {
-        print_r("Mal");
+        My\Helpers::flash("Mal");
     }
-    My\Helpers::flash("Todo bien");
 }
 
-foreach ($stmt as $row) 
-{   
-    if($row['username']!=$nom && $row['email']==$correu)
-    {
-        // ------ Mensaje de ERROR ------
-        My\Helpers::flash("Ya existe el correo en otra cuenta");
-        break;
-    }
-    else if ($row['username'] == $nom )
-    {
-        $id = $row['id'];                       
-        if($row['email']!=$correu)
-        {
+// foreach ($stmt as $row) 
+// {   
+//     if($row['username']!=$nom && $row['email']==$correu)
+//     {
+//         // ------ Mensaje de ERROR ------
+//         My\Helpers::flash("Ya existe el correo en otra cuenta");
+//         break;
+//     }
+//     else if ($row['username'] == $nom )
+//     {
+//         $id = $row['id'];                       
+//         if($row['email']!=$correu)
+//         {
 
-            // ------ Actualizar cambio de contraseña, correo y status ------
-            $actualizar = $con->prepare ("update `2daw.equip04`.users set password = '{$HashContrasena}', email = '{$correu}', status = 0 where id = {$id} ;");           
-            $actualizar->execute();
-            // ------ Enviar Email de cambio de correo ------
-            $u = My\Helpers::url("/PaginaInicio.php");
-            $link = "<a href='{$u}'>Link</a>";
+//             // ------ Actualizar cambio de contraseña, correo y status ------
+//             $actualizar = $con->prepare ("update `2daw.equip04`.users set password = '{$HashContrasena}', email = '{$correu}', status = 0 where id = {$id} ;");           
+//             $actualizar->execute();
+//             // ------ Enviar Email de cambio de correo ------
+//             $u = My\Helpers::url("/PaginaInicio.php");
+//             $link = "<a href='{$u}'>Link</a>";
 
-            $subject = "Cambiar contraseña";
-            $body = "<h1>{$link}</h1>";
-            $isHTML = true;
-            $email = new Mail($subject, $body, $isHTML);
+//             $subject = "Cambiar contraseña";
+//             $body = "<h1>{$link}</h1>";
+//             $isHTML = true;
+//             $email = new Mail($subject, $body, $isHTML);
             
-            $to = ["2daw.equip04@fp.insjoaquimmir.cat"];
-            $resultado = $email->send($to);
+//             $to = ["2daw.equip04@fp.insjoaquimmir.cat"];
+//             $resultado = $email->send($to);
 
-            if ($resultado)
-            {
-                print_r("Bien");
-            }
-            else
-            {
-                print_r("Mal");
-            }
-            My\Helpers::flash("Todo bien");
-        }
+//             if ($resultado)
+//             {
+//                 print_r("Bien");
+//             }
+//             else
+//             {
+//                 print_r("Mal");
+//             }
+//             My\Helpers::flash("Todo bien");
+//         }
 
-        else{
-            // ------ Actualizar cambio de información ------
-            $actualizar = $con->prepare ("update `2daw.equip04`.users set password = '{$HashContrasena}', email = '{$correu}' where id = {$id};");
-            $actualizar->execute();
-        }
+//         else{
+//             // ------ Actualizar cambio de información ------
+//             $actualizar = $con->prepare ("update `2daw.equip04`.users set password = '{$HashContrasena}', email = '{$correu}' where id = {$id};");
+//             $actualizar->execute();
+//         }
 
-        // ------ Redirigir  ------
-        $url = My\Helpers::url("PaginaInicio.php");
-        My\Helpers::redirect($url);
+//         // ------ Redirigir  ------
+//         $url = My\Helpers::url("PaginaInicio.php");
+//         My\Helpers::redirect($url);
 
-    }
-}
+//     }
+// }
 $con->close();
