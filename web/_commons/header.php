@@ -10,6 +10,7 @@
         </div>
         <div class='hola'>
             <img class='header__user' src='_commons/img/icon.png'/>
+            <a href="user/logout_action.php"><input type="button" class="boton" name="cerrar" value="Cerrar sesión"></a>
         </div>
     
     <?php $flash = My\Helpers::flash(); ?>

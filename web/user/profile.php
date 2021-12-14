@@ -9,7 +9,7 @@ $row = $stmt->fetch();
     <?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Sign in"]); ?> 
     <body>
 
-        <form action="./profile_action.php" method="post" class="form">
+        <form action="./profile_action.php" method="post" class="form" enctype="multipart/form-data">
             <!-- ------ Configurarión ------ -->
             
             <h3 class="titulo">Configuración del perfil</h3>    
@@ -46,7 +46,7 @@ $row = $stmt->fetch();
             <br>
             <!-- ------ Botones ------ -->
             <input type="submit" class="boton" name="enviar" value="Fet">
-            <a href="./logout_action.php"><input type="button" class="boton" name="cerrar" value="Cerrar sesión" Onclick="./logout_action.php"></a>
+            <!-- <a href="./logout_action.php"><input type="button" class="boton" name="cerrar" value="Cerrar sesión" Onclick="./logout_action.php"></a> -->
             <a href="../SuiteAplication.php"><input type="button" class="boton" name="cancelar" value="Cancelar" ></a>
 
 

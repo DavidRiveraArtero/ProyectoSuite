@@ -9,4 +9,5 @@
     <link rel='stylesheet' href="<?= My\Helpers::url("_commons/css/style.css") ?>">
     <link rel='stylesheet' href="<?= My\Helpers::url("_commons/css/components.css")?>">
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>   
+    
 </head>
