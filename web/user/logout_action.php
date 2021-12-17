@@ -1,38 +1,40 @@
 <?php
-// if(isset($_POST["nom"]))
-// {
-    // include __DIR__ . './profile.php';
+require_once __DIR__ . "/../../vendor/autoload.php";
 
-    // $nombre = $_POST["nom"];
-    // echo $nombre;
-    // setcookie("cookie", $nombre, time() + 30);
-    // ------ Comprovar si existe la cookie ------
-    // setcookie("session_token", "hola", time() + 30);
-    if(isset( $_COOKIE['session_token']) )
-    {
-        // print_r("La cookie ha sido creada");
-        // ------ Destruir cookie ------
-        setcookie("session_token", "", time() - 3600);
-    }
+session_start();
 
-    // session_start();
-    // $_SESSION['uid'] = 2;
+// Simulacro de login anterior
+// setcookie("session_token", "17779d8966e348b6e18118c2a39169a98c4b1cbd", time() + 300);
+// $_SESSION['uid'] = 3;
 
+// ------ Comprovar si existe la cookie ------
+if(isset( $_COOKIE['session_token']) )
+{
+    $token = $_COOKIE['session_token'];
+    // ------ Destruir cookie ------
+    setcookie("session_token", "", time() - 3600);
+
+    $uid = $_SESSION["uid"];
     // ------ Destruir session ------
-    // $_SESSION["uid"]=$value;
-    // unset($_SESSION["uid"]);
-
+    unset($_SESSION["uid"]);
+    // My\Helpers::log()->debug("");
+    
     // ------ Eliminamos el token de session (“S”)  ------
     // ------ Conectarse en la base de datos ------
     $con = new My\Database();
-    $stmt = $con->prepare ("select type from `2daw.equip04`.user_tokens WHERE user_id='2' ");
+    $stmt = $con->prepare ("delete from user_tokens WHERE user_id={$uid} AND token='{$token}' ");
     $stmt->execute();
-    // $row = $stmt->fetch();
-    print_r($stmt);
-    // My\Helpers::log()->debug($row);
+
+    My\Helpers::flash("Se ha cerrado la sesión");
 
     // ------ Redirigir  ------
     $url = My\Helpers::url("PaginaInicio.php");
     My\Helpers::redirect($url);
-// }
-?>
+} 
+
+else {
+    My\Helpers::flash("No has podido cerrar sesión si no te has logeado");
+    // ------ Redirigir  ------
+    $url = My\Helpers::url("SuiteAplication.php");
+    My\Helpers::redirect($url);
+}

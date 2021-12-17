@@ -52,7 +52,7 @@ $HashContrasena = hash("sha256",  $contrasena);
 
 // ------ Conectarse en la base de datos ------
 $con = new My\Database();
-$stmt = $con->prepare ("select count(*) from `2daw.equip04`.users WHERE email='$correu' and username<>'$nom'");
+$stmt = $con->prepare ("select count(*) from users WHERE email='$correu' and username<>'$nom'");
 $stmt->execute();
 $row = $stmt->fetch();
 // ------ Consultar si existe con el mismo mail ------
@@ -62,7 +62,7 @@ if ($row[0] > 0)
 }
 else{
     // ------ Actualizar cambio de contraseña, correo y status ------
-    $actualizar = $con->prepare ("update `2daw.equip04`.users set password = '{$HashContrasena}', email = '{$correu}', status = 0 where id = {$id} ;");           
+    $actualizar = $con->prepare ("update users set password = '{$HashContrasena}', email = '{$correu}', status = 0 where id = {$id}");           
     $actualizar->execute();
     // ------ Enviar Email de cambio de correo ------
     $u = My\Helpers::url("/PaginaInicio.php");
