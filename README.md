@@ -2,5 +2,5 @@
 <<<<<<< HEAD
 B1.0
 =======
-branca 1.1 equip
+branca 1.1 Paula
 >>>>>>> b1.0
