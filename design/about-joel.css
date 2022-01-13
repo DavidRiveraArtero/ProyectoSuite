@@ -1,0 +1,33 @@
+html, body {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 50%;
+    height: auto;
+    margin-left: 15%;
+}
+
+h1 {
+    margin-left: 40%;
+    text-align: center;
+    color: dodgerblue;
+}
+
+.divimg {
+    margin-left: 45%;
+    width: 52%;
+    height: 400px;
+    background-image: url("seria.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.divimg:hover {
+    /* transition: background 10s; */
+    -webkit-transition: background 10s;
+    -moz-transition: background 10s;
+    background-image: url("ahorro_de_felicidad.png");
+}
