@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['file','firephp','errorlog'],
             'ignore_exceptions' => false,
         ],
 
@@ -113,6 +113,19 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'file'=> [
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL','debug'),
+        ],
+        'firephp' => [
+            'driver' => 'monolog',
+            'handler' => Monolog\Handler\FirePHPHandler::class
+        ],
+        'errorlog' => [
+            'driver' => 'errorlog',
+            'level' => env('LOG_LEVEL', 'debug'),
+        ]
     ],
 
 ];
