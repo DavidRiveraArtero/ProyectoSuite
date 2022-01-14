@@ -50,66 +50,31 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
+<<<<<<< HEAD
             'channels' => ['file','firephp','errorlog'],
+=======
+            'channels' => ['file','firephp', 'errorlog'],
+>>>>>>> 191dc8f55391f64227c1135b8a169b9bf0d81457
             'ignore_exceptions' => false,
         ],
 
-        'single' => [
+        'file' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
-        'daily' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 14,
-        ],
-
-        'slack' => [
-            'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => 'Laravel Log',
-            'emoji' => ':boom:',
-            'level' => env('LOG_LEVEL', 'critical'),
-        ],
-
-        'papertrail' => [
+        'firephp' => [
             'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => SyslogUdpHandler::class,
-            'handler_with' => [
-                'host' => env('PAPERTRAIL_URL'),
-                'port' => env('PAPERTRAIL_PORT'),
-            ],
-        ],
-
-        'stderr' => [
-            'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => StreamHandler::class,
-            'formatter' => env('LOG_STDERR_FORMATTER'),
-            'with' => [
-                'stream' => 'php://stderr',
-            ],
-        ],
-
-        'syslog' => [
-            'driver' => 'syslog',
-            'level' => env('LOG_LEVEL', 'debug'),
+            'hander' => ''
         ],
 
         'errorlog' => [
-            'driver' => 'errorlog',
-            'level' => env('LOG_LEVEL', 'debug'),
+            'driver' => 'slack',
+            'level' => env('LOG_LEVEL', 'critical'),
         ],
 
-        'null' => [
-            'driver' => 'monolog',
-            'handler' => NullHandler::class,
-        ],
-
+<<<<<<< HEAD
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
@@ -126,6 +91,7 @@ return [
             'driver' => 'errorlog',
             'level' => env('LOG_LEVEL', 'debug'),
         ]
+=======
+>>>>>>> 191dc8f55391f64227c1135b8a169b9bf0d81457
     ],
-
 ];

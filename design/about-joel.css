@@ -20,7 +20,7 @@ h1 {
     margin-left: 45%;
     width: 52%;
     height: 400px;
-    background-image: url("seria.jpeg");
+    background-image: url("./_commons/img/seria.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -29,5 +29,5 @@ h1 {
     /* transition: background 10s; */
     -webkit-transition: background 10s;
     -moz-transition: background 10s;
-    background-image: url("ahorro_de_felicidad.png");
+    background-image: url("./_commons/img/ahorro_de_felicidad.png");
 }

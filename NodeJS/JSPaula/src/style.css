@@ -1,0 +1,45 @@
+table, th, td, h3
+{
+    margin: auto;
+    border: rgb(195, 253, 234) 2px solid;
+    border-collapse: collapse;
+    background-color: rgb(235, 253, 247);
+}
+caption, .inf
+{
+    font-weight: bolder;
+}
+
+div #botones{
+    background-color: rgb(210, 245, 245);
+    padding: 1%;
+    text-align: center;
+}
+
+div #afegir{
+    background-color: rgba(224, 208, 236, 0.753);
+    text-align: center;
+    width: 35%;
+    margin: auto;
+    padding: 1%;
+}
+
+legend, .txt{
+    font-size: 1.8vh;
+    float: left;
+}
+
+
+textarea{
+    float: left;
+    margin-right: 3%;
+}
+
+fieldset{
+    float: left;
+}
+
+caption{
+    color: black;
+    font-size: 2vw;
+}

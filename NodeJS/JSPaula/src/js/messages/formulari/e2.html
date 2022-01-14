@@ -1,0 +1,54 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pràctica 7 - Exercici 3</title>
+    <script defer type="text/javascript" src="e3.js"></script>
+    <style>
+        table
+        {
+            float: left;
+        }
+        table, th, td 
+        {
+    
+            border: gray 2px solid;
+            border-collapse: collapse;
+    
+        }
+        td 
+        {
+            width: 100px;
+            height: 25px;
+        }
+        #boton{
+            margin-left: 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- <a href="configuracio.html"><input type="button" value="Configuració" id="conf"></a> -->
+    <br>
+    <br>
+
+    <form action="">
+        <!-- <p>Id: </p><input type="number" name="id" id="id"> -->
+        <!-- <p>Author_d: </p><input type="number" name="author_id" id="author_id"> -->
+        <p>Message: </p><input type="text" name="message" id="message" required>
+        <br>        
+        <fieldset>
+            <legend>Donde quieres enviar el mensage:</legend>
+            <label><input type="radio" name="opciones" id="privado" required checked> Privado</label>
+            <label><input type="radio" name="opciones" id="publico"> Publico</label>
+        </fieldset>
+        <br>
+        <input type="submit" id="guardar" value="Guardar y aplicar">
+        <!-- <input type="button" id="Generar" value="Generar"> -->
+
+
+    </form>
+
+</body>
+</html>
