@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    Log::info('Loading welcome page');
     return view('welcome');
+    //dd(env('DB_SOCKET'))
 });
+
+Route::get('sendemail','SendEmailController@index')->name('sendemail');
