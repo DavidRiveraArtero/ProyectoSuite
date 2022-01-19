@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use Illuminate\Support\Facades\Log;
+ 
 Route::get('/', function () {
-    return view('welcome');
+   Log::info('Loading welcome page');
+   return view('welcome');
 });
