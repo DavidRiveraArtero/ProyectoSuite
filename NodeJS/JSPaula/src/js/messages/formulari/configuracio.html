@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pràctica 7 - Exercici 3</title>
+    <script defer type="text/javascript" src="e3.js"></script>
+    <style>
+        table
+        {
+            float: left;
+        }
+        table, th, td 
+        {
+    
+            border: gray 2px solid;
+            border-collapse: collapse;
+    
+        }
+        td 
+        {
+            width: 100px;
+            height: 25px;
+        }
+        #boton{
+            margin-left: 5%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Fondo:</p><input type="text" id="color" placeholder="Escribe el color que quieres como FONDO" size="50" value="">
+    <p>Color del borde de la imagen:</p><input type="text" id="color_borde" placeholder="Escribe el color que quieres como BORDE de la img" size="50" value="">
+    <p>Tamaño del borde de la imagen en px:</p><input type="text" id="tam_borde" placeholder="Ej: 5px, thin, thick, etc.. " size="50" value="">
+
+    <!-- <input type="button" id="cambiar" value="Cambiar"> -->
+    <br>
+    <input type="button" id="guardar" value="Guardar y aplicar">
+    <a href="e2.html"><input type="button" value="Volver" id="conf"></a>
+
+</body>
+</html>
