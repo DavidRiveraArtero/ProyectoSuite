@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    Log::info('Loading welcome page');
     return view('welcome');
 });
 
+
 Route::get('sendemail','SenEmailController@index')->name('sendemail');
+
+Route::get('mail/test', [MailController::class, 'test']);
