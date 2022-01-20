@@ -105,7 +105,6 @@ export function creaHTMLFormulariAfegir() {
     var activarLista = true;
     var activarFiltro = true;
 
-
     var cambios;
     var missatge="^[A-Z a-z 0-9]+";
 
@@ -137,6 +136,11 @@ export function creaHTMLFormulariAfegir() {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
+<<<<<<< HEAD
+=======
+
+        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
+>>>>>>> b1.1_Paula
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -152,6 +156,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
         if (event.target.id == "listar")
         {
             var verLista=document.getElementById("info");
@@ -167,6 +172,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
         if (event.target.id == "filtrar")
         {
             var verFiltro=document.getElementById("filtro");
@@ -182,6 +188,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+<<<<<<< HEAD
         if (event.target.id == "buscar")
         {
             var palabra = document.getElementById("palabra").value;
@@ -204,6 +211,33 @@ export function creaHTMLFormulariAfegir() {
                 }
             }
         }
+=======
+        // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
+        if (event.target.id == "buscar")
+        {
+            var buscar=document.getElementById("palabra").value;
+            var tabla=document.getElementById("info");
+
+            if (buscar == "")
+            {
+                tabla.removeAttribute("hidden");
+            }
+
+            else{
+
+                var respuesta = listamensaje.filtrar(buscar);            
+                console.log(respuesta);
+
+                if (respuesta[0] == )
+                respuesta.setAttribute("hidden", true);
+            }
+            
+
+            
+        }
+
+
+>>>>>>> b1.1_Paula
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA

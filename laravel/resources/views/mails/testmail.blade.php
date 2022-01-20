@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 component('mail::message')
 # Hello {{$content['name']}},
 
@@ -5,6 +6,15 @@ component('mail::message')
 
 @component('mail::button', ['url' => $content['url']])
 Click Here
+=======
+@component('mail::message')
+# Introduction
+
+The body of your message.
+
+@component('mail::button', ['url' => ''])
+Button Text
+>>>>>>> b1.1_Paula
 @endcomponent
 
 Thanks,<br>

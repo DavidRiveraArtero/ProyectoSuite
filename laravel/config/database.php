@@ -58,10 +58,17 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+<<<<<<< HEAD
             'options' => extension_loaded('pdo_mysql') ? ([
                 PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY', '/var/lib/mysql/client-key.pem'),
                 PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
             ]) : [],
+=======
+            'options' => extension_loaded('pdo_mysql') ? [
+                PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY', '/var/lib/mysql/client-key.pem'),
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
+            ] : [],
+>>>>>>> b1.1_Paula
         ],
 
         'pgsql' => [
