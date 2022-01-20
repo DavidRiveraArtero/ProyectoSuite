@@ -50,11 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-<<<<<<< HEAD
             'channels' => ['file','firephp','errorlog'],
-=======
-            'channels' => ['file','firephp', 'errorlog'],
->>>>>>> 191dc8f55391f64227c1135b8a169b9bf0d81457
             'ignore_exceptions' => false,
         ],
 
@@ -70,16 +66,10 @@ return [
         ],
 
         'errorlog' => [
-<<<<<<< HEAD
             'driver' => 'errorlog',
             'level' => env('LOG_LEVEL', 'debug'),
-        ]
-=======
-            'driver' => 'slack',
-            'level' => env('LOG_LEVEL', 'critical'),
         ],
 
-<<<<<<< HEAD
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
@@ -96,8 +86,5 @@ return [
             'driver' => 'errorlog',
             'level' => env('LOG_LEVEL', 'debug'),
         ]
-=======
->>>>>>> 191dc8f55391f64227c1135b8a169b9bf0d81457
->>>>>>> 02491615fc0b721ab6affa301283d014e9edf687
     ],
 ];

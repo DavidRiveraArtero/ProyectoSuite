@@ -63,7 +63,14 @@ export class MessagesList{
                 break;
             }
         }
+    }
 
-
+    filtrar(buscar)
+    {
+        let torna= this.messages.filter((element) => {
+            if (element.message.match(new RegExp(buscar,"i"))
+            || element.message.match(new RegExp(buscar,"i"))) return true;
+        })
+        return torna;
     }
 }

@@ -16,7 +16,7 @@ export function creaHTMLFormulariAfegir() {
             <input class="btn btn-outline-danger" type="button" id="filtrar" value="Filtrar">
             <br>
             <label id="filtro" hidden>
-                <input type="text" name="buscar" required>
+                <input type="text" name="buscar" id="palabra" required>
                 <input class="btn btn-primary" type="button" id="buscar" value="Buscar">
             </label>
         </div>
@@ -105,7 +105,6 @@ export function creaHTMLFormulariAfegir() {
     var activarLista = true;
     var activarFiltro = true;
 
-
     var cambios;
     var missatge="^[A-Z a-z 0-9]+";
 
@@ -137,6 +136,8 @@ export function creaHTMLFormulariAfegir() {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
+
+        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -152,6 +153,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
         if (event.target.id == "listar")
         {
             var verLista=document.getElementById("info");
@@ -167,6 +169,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
         if (event.target.id == "filtrar")
         {
             var verFiltro=document.getElementById("filtro");
@@ -182,22 +185,31 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
-        if (event.target.id == "filtrar")
+        // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
+        if (event.target.id == "buscar")
         {
-            var verFiltro=document.getElementById("filtro");
-            if (activarFiltro)
+            var buscar=document.getElementById("palabra").value;
+            var tabla=document.getElementById("info");
+
+            if (buscar == "")
             {
-                verFiltro.removeAttribute("hidden");
-                activarFiltro = false;
+                tabla.removeAttribute("hidden");
             }
 
             else{
-                verFiltro.setAttribute("hidden", true);
-                activarFiltro = true;
+
+                var respuesta = listamensaje.filtrar(buscar);            
+                console.log(respuesta);
+
+                if (respuesta[0] == )
+                respuesta.setAttribute("hidden", true);
             }
+            
+
+            
         }
 
-        
+
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
