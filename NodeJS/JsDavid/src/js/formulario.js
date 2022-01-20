@@ -27,7 +27,7 @@ export function CrearFormularioHTML()
             <button class='btn btn-primary' id='guardar'>Guardar</button>
         </div>
         <div hidden class="prueba" id='apartado_filtrar'>
-            <input placeholder='Titulo' class="buscador" type="text" >
+            <input placeholder='Titulo' class="buscador" id="inputBuscador" type="text" >
             <button class="btn btn-primary filtrar" id='filtrarBuscador'>Filtrar</button>
         </div>
         <h1 hidden class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
@@ -90,6 +90,7 @@ export function CrearFormularioHTML()
     var apartado_filtrar = document.getElementById('apartado_filtrar')
     var bool_filtrar = false
     var filtrarBuscador = document.getElementById('filtrarBuscador');
+    var inputBuscador = document.getElementById('inputBuscador');
 
     //OTRAS COSAS
     var edit = true;
@@ -170,7 +171,26 @@ export function CrearFormularioHTML()
         }
     })
 
-    filtrarBuscador.addEventListener
+    // ====================NUEVA TABLA=================
+    filtrarBuscador.addEventListener('click',event=>{
+        var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
+        if(inputBuscador.value == "")
+        {
+            console.log("Input vacio")
+            tabla_lista.removeAttribute("hidden")
+        }else
+        {
+            console.log(algo);
+            tabla_lista.setAttribute("hidden",true)
+            algo.forEach((v,i,array)=>{
+    
+                console.log("hola",v.author_id)
+                
+            })
+            div.innerHTML=html;
+
+        }
+    })
 
     for(var x=0;x<borrar.length;x++){
         borrar[x].addEventListener('click', event =>{
