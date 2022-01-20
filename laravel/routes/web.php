@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -15,12 +16,15 @@ use App\Http\Controllers\MailController;
 |
 */
 
-Route::get('/', function () {
-    Log::info('Loading welcome page');
+Route::get('/', function (Request $request) {
+    $message = 'Loading welcome page';
+    Log::info($message);
+    $request->session()->flash('info', $message);
     return view('welcome');
 });
+ 
 
 
 Route::get('sendemail','SenEmailController@index')->name('sendemail');
 
-Route::get('mail/test', [MailController::class, 'test']);
+Route::get('mail/test', [MailController::class, 'test'])->name('enviarcorreo');
