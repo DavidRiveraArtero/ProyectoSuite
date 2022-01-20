@@ -27,7 +27,11 @@ export function CrearFormularioHTML()
             <button class='btn btn-primary' id='guardar'>Guardar</button>
         </div>
         <div hidden class="prueba" id='apartado_filtrar'>
-            <input placeholder='Titulo' class="buscador" type="text" >
+<<<<<<< HEAD
+            <input placeholder='Titulo' id="buscador" type="text" >
+=======
+            <input placeholder='Titulo' class="buscador" id="inputBuscador" type="text" >
+>>>>>>> b1.1_David
             <button class="btn btn-primary filtrar" id='filtrarBuscador'>Filtrar</button>
         </div>
         <h1 hidden class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
@@ -54,7 +58,7 @@ export function CrearFormularioHTML()
     
         html += `<tr>
                     <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
-                    <th><input class="ocultar_input" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
+                    <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
                     <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
                     
                     <th>${v.created}</th>
@@ -90,6 +94,14 @@ export function CrearFormularioHTML()
     var apartado_filtrar = document.getElementById('apartado_filtrar')
     var bool_filtrar = false
     var filtrarBuscador = document.getElementById('filtrarBuscador');
+<<<<<<< HEAD
+    var inputBuscador = document.getElementById("buscador")
+
+    //INPUTS A FILTRAR
+    var tituloFilt = document.getElementsByClassName('filtrarTitulo');
+=======
+    var inputBuscador = document.getElementById('inputBuscador');
+>>>>>>> b1.1_David
 
     //OTRAS COSAS
     var edit = true;
@@ -170,7 +182,40 @@ export function CrearFormularioHTML()
         }
     })
 
-    filtrarBuscador.addEventListener
+<<<<<<< HEAD
+    // FILTRADO BUSCADOR
+    filtrarBuscador.addEventListener("click",event=>{
+        for(var x = 0;x<tituloFilt.length;x++){
+          
+            if(tituloFilt[x].filter(inputBuscador.value)){
+                console.log("si")
+            }
+            
+            
+        }
+    });
+=======
+    // ====================NUEVA TABLA=================
+    filtrarBuscador.addEventListener('click',event=>{
+        var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
+        if(inputBuscador.value == "")
+        {
+            console.log("Input vacio")
+            tabla_lista.removeAttribute("hidden")
+        }else
+        {
+            console.log(algo);
+            tabla_lista.setAttribute("hidden",true)
+            algo.forEach((v,i,array)=>{
+    
+                console.log("hola",v.author_id)
+                
+            })
+            div.innerHTML=html;
+
+        }
+    })
+>>>>>>> b1.1_David
 
     for(var x=0;x<borrar.length;x++){
         borrar[x].addEventListener('click', event =>{
@@ -235,4 +280,5 @@ export function CrearFormularioHTML()
             
         })
     }
+    
 }

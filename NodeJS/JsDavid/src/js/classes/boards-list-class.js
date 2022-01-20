@@ -117,6 +117,14 @@ export class ListaBoards{
         this.board[id].title = updates[0]
         this.setLocalStorage();
     }
-
+    filtraAutorsPerText(text)
+    {
+    let torna= this.board.filter((element) => {
+        console.log(element.title)
+        if (element.title.match(new RegExp(text,"i"))
+        || element.description.match(new RegExp(text,"i"))) return true;
+        })
+        return torna;
+    }
 
 }

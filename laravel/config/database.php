@@ -59,9 +59,15 @@ return [
             'strict' => true,
             'engine' => null,
 <<<<<<< HEAD
+<<<<<<< HEAD
             'options' => extension_loaded('pdo_mysql') ? ([
                 PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY', '/var/lib/mysql/client-key.pem'),
                 PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
+=======
+            'options' => extension_loaded('pdo_mysql') ? ([
+                PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY','/var/lib/mysql/client-key.pem'),
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false 
+>>>>>>> 5f5e2e22b5adaa2f0d0849aa77ccf7779c78c1aa
             ]) : [],
 =======
             'options' => extension_loaded('pdo_mysql') ? [
@@ -70,6 +76,8 @@ return [
             ] : [],
 >>>>>>> b1.1_Paula
         ],
+
+        
 
         'pgsql' => [
             'driver' => 'pgsql',
