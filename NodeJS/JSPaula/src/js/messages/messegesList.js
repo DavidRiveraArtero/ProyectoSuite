@@ -52,10 +52,10 @@ export class MessagesList{
     update(idmensaje,cambios){
         let configuracio =  localStorage.getItem("messages");
         let conf = JSON.parse(configuracio);
-
         for (var i in conf)
-        {
+        {   
             var id =  conf[i].id;
+
             if (id == idmensaje)
             {
                 this.messages[idmensaje].message = cambios;
@@ -69,7 +69,7 @@ export class MessagesList{
     {
         let torna= this.messages.filter((element) => {
             if (element.message.match(new RegExp(buscar,"i"))
-            || element.message.match(new RegExp(buscar,"i"))) return true;
+            || element.author_id.toString().match(new RegExp(buscar,"i"))) return true;
         })
         return torna;
     }

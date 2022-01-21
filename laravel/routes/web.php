@@ -21,6 +21,7 @@ Route::get('/', function (Request $request) {
     Log::info($message);
     $request->session()->flash('info', $message);
     return view('welcome');
+    //dd(env('DB_SOCKET'))
 });
  
 

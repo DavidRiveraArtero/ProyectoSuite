@@ -67,14 +67,17 @@ export function creaHTMLFormulariAfegir() {
     var div = document.createElement("div");
     document.body.appendChild(div);
 
+    var div2 = document.createElement("div");
+    document.body.appendChild(div2);
+
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
     listamensaje.messages.forEach((v, i, array) => {
         html+= `
             <tr id="a">
                 <td>${v.id}</td>
-                <td>${v.author_id}</td>
+                <td class="search" >${v.author_id}</td>
                 <td>
-                    <textarea rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
                 </td>
                 <td>
                     <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
@@ -88,7 +91,6 @@ export function creaHTMLFormulariAfegir() {
             </tr>
         `
     });
-
     div.innerHTML=html;
 
     // VARIABLES
@@ -136,8 +138,6 @@ export function creaHTMLFormulariAfegir() {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
-
-        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -190,26 +190,58 @@ export function creaHTMLFormulariAfegir() {
         {
             var buscar=document.getElementById("palabra").value;
             var tabla=document.getElementById("info");
+            var tabla2=document.getElementById("tabla2");
 
             if (buscar == "")
             {
                 tabla.removeAttribute("hidden");
+                tabla2.setAttribute("hidden", true);
+
             }
 
             else{
 
                 var respuesta = listamensaje.filtrar(buscar);            
-                console.log(respuesta);
+                console.log("Respuesta: " , respuesta);
+                tabla.setAttribute("hidden", true);
 
-                if (respuesta[0] == )
-                respuesta.setAttribute("hidden", true);
-            }
-            
 
+                var html2 = `
+                <table class="default" width="50%" id="tabla2">
+                <caption>Información sobre cada mensaje</caption>
+                <tr class="inf">
+                    <td>Id</td>
+                    <td>Author</td>
+                    <td>Mensaje</td>
+                    <td>Opciones</td>
+                    <td class="ver" hidden >Fecha</td>
+                    <td class="ver" hidden >Privado(true) o Publico(false)</td>
+                    <td class="ver" hidden >Destino</td>
+                </tr>
+                `
+                respuesta.forEach((v) => {
+                    html2 += `
+                        <tr id="a">
+                            <td>${v.id}</td>
+                            <td class="search" >${v.author_id}</td>
+                            <td>
+                                <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                            </td>
+                            <td>
+                                <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                                <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                                <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                            </td>
+                            <td class="ver" hidden>${v.created}</td=>
+                            <td class="ver" hidden>${v.privpub}</td>
+                            <td class="ver" hidden>${v.desti}</td>
+                        </tr>
+                    `
+                });
+                div2.innerHTML=html2;
             
+            }            
         }
-
-
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
@@ -227,7 +259,7 @@ export function creaHTMLFormulariAfegir() {
 
         if (event.target.id == "editar")
         {
-            var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
+            var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
             if (activarEd)
             {   
                 fila.removeAttribute("readonly");
