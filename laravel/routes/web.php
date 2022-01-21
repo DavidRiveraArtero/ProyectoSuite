@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,16 +15,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function (Request $request) {
-    $message = 'Loading welcome page';
-    Log::info($message);
-    $request->session()->flash('info', $message);
+Route::get('/', function () {
     return view('welcome');
-    //dd(env('DB_SOCKET'))
 });
- 
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('sendemail','SenEmailController@index')->name('sendemail');
+Route::get('sendmail','SenEmailController@index')->name('sendemail');
 
-Route::get('mail/test', [MailController::class, 'test'])->name('enviarcorreo');
+Route::get('mail/test',MailController::class,'test')->name('enviarcorreo');
+
+require __DIR__.'/auth.php';
