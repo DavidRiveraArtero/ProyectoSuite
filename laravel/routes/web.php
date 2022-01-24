@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +15,16 @@
 |
 */
 
-use Illuminate\Support\Facades\Log;
- 
-Route::get('/', function () {
-   Log::info('Loading welcome page');
-   return view('welcome');
+Route::get('/', function (Request $request) {
+    $message = 'Loading welcome page';
+    Log::info($message);
+    $request->session()->flash('info', $message);
+    return view('welcome');
+    //dd(env('DB_SOCKET'))
 });
+ 
+
+
+Route::get('sendemail','SenEmailController@index')->name('sendemail');
+
+Route::get('mail/test', [MailController::class, 'test'])->name('enviarcorreo');

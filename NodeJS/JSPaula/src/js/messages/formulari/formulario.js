@@ -16,7 +16,7 @@ export function creaHTMLFormulariAfegir() {
             <input class="btn btn-outline-danger" type="button" id="filtrar" value="Filtrar">
             <br>
             <label id="filtro" hidden>
-                <input type="text" name="buscar" required>
+                <input type="text" name="buscar" id="palabra" required>
                 <input class="btn btn-primary" type="button" id="buscar" value="Buscar">
             </label>
         </div>
@@ -72,9 +72,9 @@ export function creaHTMLFormulariAfegir() {
         html+= `
             <tr id="a">
                 <td>${v.id}</td>
-                <td>${v.author_id}</td>
+                <td class="search" >${v.author_id}</td>
                 <td>
-                    <textarea rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
                 </td>
                 <td>
                     <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
@@ -104,7 +104,6 @@ export function creaHTMLFormulariAfegir() {
     var activarAfegir = true;
     var activarLista = true;
     var activarFiltro = true;
-
 
     var cambios;
     var missatge="^[A-Z a-z 0-9]+";
@@ -137,7 +136,12 @@ export function creaHTMLFormulariAfegir() {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
-        if (event.target.id == "anadir"
+<<<<<<< HEAD
+=======
+
+        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
+>>>>>>> b1.1_Paula
+        if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
             if (activarAfegir)
@@ -152,6 +156,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
         if (event.target.id == "listar")
         {
             var verLista=document.getElementById("info");
@@ -167,6 +172,7 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
+        // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
         if (event.target.id == "filtrar")
         {
             var verFiltro=document.getElementById("filtro");
@@ -181,6 +187,57 @@ export function creaHTMLFormulariAfegir() {
                 activarFiltro = true;
             }
         }
+
+<<<<<<< HEAD
+        if (event.target.id == "buscar")
+        {
+            var palabra = document.getElementById("palabra").value;
+
+            var search = document.querySelectorAll(".search");
+
+            for (var i=0; i< search.length; i++)
+            {
+                var revisar = search[i].innerHTML;
+
+                console.log("La palabra es: ",palabra);// me cambia la palabra ERROR
+                console.log("Resultado: ", revisar);
+
+                for (palabra in revisar)
+                {
+
+                    console.log("Bien");
+
+                    document.querySelectorAll(".search")[i].style.backgroundColor = "#9ED5FD";
+                }
+            }
+        }
+=======
+        // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
+        if (event.target.id == "buscar")
+        {
+            var buscar=document.getElementById("palabra").value;
+            var tabla=document.getElementById("info");
+
+            if (buscar == "")
+            {
+                tabla.removeAttribute("hidden");
+            }
+
+            else{
+
+                var respuesta = listamensaje.filtrar(buscar);            
+                console.log(respuesta);
+
+                if (respuesta[0] == )
+                respuesta.setAttribute("hidden", true);
+            }
+            
+
+            
+        }
+
+
+>>>>>>> b1.1_Paula
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
@@ -198,7 +255,7 @@ export function creaHTMLFormulariAfegir() {
 
         if (event.target.id == "editar")
         {
-            var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
+            var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
             if (activarEd)
             {   
                 fila.removeAttribute("readonly");

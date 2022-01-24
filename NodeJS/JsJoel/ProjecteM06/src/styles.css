@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    background-color: darkblue;
+}
+
+html{
+    margin: 2% ;
+}
+
+table {
+    border:1px dashed black;
+    margin-left:3%;
+    width: 90%;
+}
+
+h1, h2, h3, h4, h5, label {
+    color: aqua;
+}
+
+.titolmostrarticket{
+    text-align: center;
+}
+
+tr, td {
+    text-align: center;
+    color: beige;
+}
+
+#botonsPrincipals {
+    margin: 5%;
+    text-align: center;
+}
+
+.filtrar {
+    text-align: center;
+}
