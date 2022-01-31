@@ -3,10 +3,11 @@ import {Board} from "./classes/boards-class";
 import {ListaBoards} from "./classes/boards-list-class"
 
 let anyadir = new ListaBoards()
-let listaboards = new ListaBoards()
-
-export function CrearFormularioHTML()
+//let listaboards = new ListaBoards()
+//
+export function CrearFormularioHTML( )
 {
+    
     var html = `
         
         <div class="prueba">
@@ -33,18 +34,7 @@ export function CrearFormularioHTML()
         </div>
         <h1 hidden class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
         
-        <table hidden id="tabla" class="tareas">
         
-        
-    <tr>
-        <td>id</td>
-        <td>title</td>
-        <td>description</td>
-        <td>created</td>
-        <td>Opcion</td>
-        <td class="ocultoT" hidden>author_id</td>
-        <td class="ocultoT" hidden>ticket_id</td>
-    <tr>
     `
    
     
@@ -52,24 +42,9 @@ export function CrearFormularioHTML()
     var div = document.createElement("div");
     var div2 = document.createElement("div");
     document.body.appendChild(div);
-    listaboards.board.forEach((v,i,array)=>{
+   
     
-        html += `<tr>
-                    <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
-                    <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
-                    <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
-                    
-                    <th>${v.created}</th>
-                    <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
-                    <th hidden class="ocultos">${v.author_id}</th>
-                    <th hidden class="ocultos">${v.ticket_id}</th>
-                </tr>`
-    })
-    html += `<footer>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            </footer>`
- 
-    div.innerHTML=html;
+    div.innerHTML= anyadir.crearTabla(html,listaboards);
 
     var enviar = document.getElementById('guardar')
     var cont = 1;
@@ -121,13 +96,15 @@ export function CrearFormularioHTML()
         {
         
             var newIndex = parseInt(listaboards.lastIndex()) + 1
-
+           
             console.log(newIndex)
 
             var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
+            anyadir.setBoard(boards,newIndex).then
+            tabla_lista.remove();
+            div.innerHTML= anyadir.crearTabla(html,listaboards);
+            //var alog = anyadir.postBlog(boards);
             
-            var alog = anyadir.postBlog(boards);
-            location.reload();
         
         }
     })
@@ -191,6 +168,7 @@ export function CrearFormularioHTML()
                 <td class="ocultoT" hidden>ticket_id</td>
             <tr>`
         var tabla2 = document.getElementById('tabla2');
+        
         if(inputBuscador.value == "")
         {
             console.log("Input vacio")

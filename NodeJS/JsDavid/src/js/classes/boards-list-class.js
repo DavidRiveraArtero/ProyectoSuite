@@ -1,12 +1,15 @@
 export class ListaBoards{
 
-     board
+
     
 
-    constructor(){
-        this.board = [];
+    board
+    
 
-        this.getLocalStorage();
+    constructor(boa){
+        this.board = boa;
+
+        //this.getLocalStorage();
         
     }
 
@@ -30,6 +33,7 @@ export class ListaBoards{
         this.board = (localStorage.getItem('board'))
         ? JSON.parse(localStorage.getItem('board'))
         :[];
+       
         return this.board
     }
 
@@ -124,7 +128,70 @@ export class ListaBoards{
         if (element.title.match(new RegExp(text,"i"))
         || element.description.match(new RegExp(text,"i"))) return true;
         })
+        
         return torna;
     }
 
+    async setBoard(board,id)
+    {
+        try{
+            const res=fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/board/'+id+'.json',
+            {
+                method:'PUT',
+                headers:{
+                    'Content-Type': 'application/json'
+                    
+                },
+                body:JSON.stringify(board),
+                
+                
+            })
+
+            
+        }catch(error){
+            body.console.log("error")
+        }
+    }
+
+    async delBoard(id) {
+        try{
+            const res= await fetch()
+        }catch(error){
+
+        }
+    }
+
+    crearTabla(html,listaboards){
+
+        html += `<table hidden id="tabla" class="tareas">
+        
+        
+        <tr>
+            <td>id</td>
+            <td>title</td>
+            <td>description</td>
+            <td>created</td>
+            <td>Opcion</td>
+            <td class="ocultoT" hidden>author_id</td>
+            <td class="ocultoT" hidden>ticket_id</td>
+        <tr>`
+        listaboards.board.forEach((v,i,array)=>{
+        
+            html += `<tr>
+                        <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
+                        <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
+                        <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
+                        
+                        <th>${v.created}</th>
+                        <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
+                        <th hidden class="ocultos">${v.author_id}</th>
+                        <th hidden class="ocultos">${v.ticket_id}</th>
+                    </tr>`
+        })
+        html += `<footer>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                </footer>`
+
+        return html
+    }
 }
