@@ -1,11 +1,11 @@
 import {MessagesList} from "../messegesList";
 import {Messages} from "../messages";
 
-let listamensaje = new MessagesList();
+//let listamensaje = new MessagesList();
 let anadir = new MessagesList();
 
 
-export function creaHTMLFormulariAfegir() {
+export function creaHTMLFormulariAfegir(listamensaje) {
    
     let html=`
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,50 +48,17 @@ export function creaHTMLFormulariAfegir() {
         </div>
 
         <br>
-
-
-        <table class="default" id="info" hidden>
-            <caption>Información sobre cada mensaje</caption>
-            <tr class="inf">
-                <td>Id</td>
-                <td>Author</td>
-                <td>Mensaje</td>
-                <td>Opciones</td>
-                <td class="ver" hidden >Fecha</td>
-                <td class="ver" hidden >Privado(true) o Publico(false)</td>
-                <td class="ver" hidden >Destino</td>
-            </tr>
-
     </html>
     `
-    var div = document.createElement("div");
-    document.body.appendChild(div);
+    var divTabla = document.createElement("div");
+    document.body.appendChild(divTabla);
 
     var div2 = document.createElement("div");
     document.body.appendChild(div2);
 
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
-    listamensaje.messages.forEach((v, i, array) => {
-        html+= `
-            <tr id="a">
-                <td>${v.id}</td>
-                <td class="search" >${v.author_id}</td>
-                <td>
-                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
-                </td>
-                <td>
-                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                </td>
-                <td class="ver" hidden>${v.created}</td=>
-                <td class="ver" hidden>${v.privpub}</td>
-                <td class="ver" hidden>${v.desti}</td>
+    divTabla.innerHTML=anadir.crearTabla(html, listamensaje);
 
-            </tr>
-        `
-    });
-    div.innerHTML=html;
 
     // VARIABLES
     var fecha = new Date();  
@@ -129,9 +96,12 @@ export function creaHTMLFormulariAfegir() {
             Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
 
             var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
-
-            anadir.nouMessages(tabla);
-            location.reload(); // Recargar página
+            console.log(tabla);
+            //anadir.nouMessages(tabla);
+            anadir.setMessage(tabla,Antid).then; // Añadir mensaje
+            var TablaInfo = document.getElementById("info");
+            TablaInfo.remove();
+            divTabla.innerHTML=anadir.crearTabla(html, listamensaje);
         }
     });
 
@@ -205,7 +175,7 @@ export function creaHTMLFormulariAfegir() {
                 console.log("Respuesta: " , respuesta);
                 tabla.setAttribute("hidden", true);
 
-
+                // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
                 var html2 = `
                 <table class="default" width="50%" id="tabla2">
                 <caption>Información sobre cada mensaje</caption>
@@ -253,8 +223,8 @@ export function creaHTMLFormulariAfegir() {
         {
             event.target.parentNode.parentNode.parentNode.remove();
             console.log("ID" + id)
-            listamensaje.delete(id);
-
+            //listamensaje.delete(id);
+            listamensaje.delMenssage(id);
         }
 
         if (event.target.id == "editar")

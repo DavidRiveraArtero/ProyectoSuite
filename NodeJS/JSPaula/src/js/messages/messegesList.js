@@ -2,9 +2,10 @@ export class MessagesList{
 
     messages;
 
-    constructor ()
+    constructor (men)
     {
-        this.carregarLocalStorage();           
+        //this.carregarLocalStorage();           
+        this.messages = men;
     }
 
     nouMessages(message) {
@@ -27,6 +28,46 @@ export class MessagesList{
         if (ultid == 0) return -1
         return this.messages[ultid-1].id;
     }
+
+    crearTabla(html,listamensaje)
+    {
+        html+= `
+        <table class="default" id="info" hidden>
+        <caption>Información sobre cada mensaje</caption>
+        <tr class="inf">
+            <td>Id</td>
+            <td>Author</td>
+            <td>Mensaje</td>
+            <td>Opciones</td>
+            <td class="ver" hidden >Fecha</td>
+            <td class="ver" hidden >Privado(true) o Publico(false)</td>
+            <td class="ver" hidden >Destino</td>
+        </tr>
+        `
+        listamensaje.messages.forEach((v) => {
+            html+= `
+                <tr id="a">
+                    <td>${v.id}</td>
+                    <td class="search" >${v.author_id}</td>
+                    <td>
+                        <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                    </td>
+                    <td>
+                        <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                        <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                        <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                    </td>
+                    <td class="ver" hidden>${v.created}</td=>
+                    <td class="ver" hidden>${v.privpub}</td>
+                    <td class="ver" hidden>${v.desti}</td>
+
+                </tr>
+            `
+        });
+        return html;
+        }
+    
+
 
     delete(idmensaje){
         let configuracio =  localStorage.getItem("messages"); // RECOGEMOS EL LOCALSTORAGE
@@ -52,6 +93,7 @@ export class MessagesList{
     update(idmensaje,cambios){
         let configuracio =  localStorage.getItem("messages");
         let conf = JSON.parse(configuracio);
+        console.log(configuracio);
         for (var i in conf)
         {   
             var id =  conf[i].id;
@@ -72,5 +114,44 @@ export class MessagesList{
             || element.author_id.toString().match(new RegExp(buscar,"i"))) return true;
         })
         return torna;
+    }
+
+    // Añadir mensajes
+    async setMessage(mensaje,id)
+    {
+        try {
+            const res = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+id+'.json',
+            {
+                method: 'PUT',
+                headers: 
+                {
+                    'Content-Type': 'application/json'
+                },
+                
+                body: JSON.stringify(mensaje)
+            })
+            
+        }
+            
+        catch (error) 
+        {
+            body.console.log("Ha sucedido un ERROR.");
+        }        
+    }
+
+    // Borrar mensajes
+    async delMenssage(id)
+    {
+        try {
+            const myArrClean = data[0].filter(Boolean)
+            const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
+            {    
+                method: 'DELETE',
+            })
+        }
+        
+        catch (error) {
+            body.console.log("Ha sucedido un ERROR.");
+        }
     }
 }

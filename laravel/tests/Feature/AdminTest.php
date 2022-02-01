@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 use Illuminate\Support\Facades\DB;
 >>>>>>> b1.1_Paula
@@ -21,7 +20,6 @@ class AdminTest extends TestCase
      *
      * @return void
      */
-<<<<<<< HEAD
 <<<<<<< HEAD
     public function test_example()
     {
