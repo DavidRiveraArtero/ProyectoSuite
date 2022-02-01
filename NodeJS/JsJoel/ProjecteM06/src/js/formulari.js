@@ -2,6 +2,8 @@
 import {Tickets} from "./classes/tickets.js"
 import {llistadetickets} from "../index"
 import {llistadeassets} from "../index"
+import {setTicket} from "./classes/ticketsList";
+import {delTicket} from "./classes/ticketsList";
 
 // CREEM FORMULARI
 export function crearFormulariHtml()
@@ -44,20 +46,8 @@ export function crearFormulariHtml()
             <h1 class="titolmostrarticket">MOSTRAR TICKETS</h1>
             <!-- <h3>BUSCADOR:</h3>
             <input /><br><br> -->
-            <div class="agenda">
-                <table id="taula">
-                    <tr class="fila" id="fila">
-                        <th colspan="1">ID</th>
-                        <th colspan="1">TITLE</th>
-                        <th colspan="1">DESCRIPTION</th>
-                        <th colspan="1">ASSET</th>
-                        <th colspan="1">CREATION DATE</th>
-                        <th colspan="1">OPTIONS</th>
-                        <th colspan="1" class="ocultCap" hidden>ID ASSIGNED</th>
-                        <th colspan="1" class="ocultCap" hidden>UPDATED</th>
-                    </tr>
-            </div>
-        </div>
+            
+        
     `;
 
     // CREEM DIVS DINS DE BODY
@@ -66,28 +56,11 @@ export function crearFormulariHtml()
     document.body.appendChild(div);  
     document.body.appendChild(div2);
 
-    // MOSTRAR TOTS ELS TICKETS CREATS
-    llistadetickets.tickets.forEach( (v) => {
-        html += `
-            <tr>
-                <td>${v.id}</td>
-                <td><input type="text" value="${v.title}" readonly /></td>
-                <td><input type="text" value="${v.desc}" readonly /></td>
-                <td>${llistadeassets.cercaTicketAsset_id(v.asset_id)}</td>
-                <td>${v.created}</td>
-                <td>
-                    <button id="aldetall"><i class="aldetall fa fa-eye" style="font-size:28px"></i></button>
-                    <button class="editar" id="editar"><i class="editar material-icons">settings</i></button>
-                    <button class="brosa" id="brosa"><i style="font-size:28px" class="fa">&#xf1f8;</i></button>
-                </td>
-                <td class="ocult" hidden>${v.assigned_id}</td>
-                <td class="ocult" hidden>${llistadetickets.cercaTicketUpdated(v.id)}</td>
-            </tr>
-        `
-    }); 
+    // CREEM TAULA DE TICKETS
+    html = llistadetickets.crearTaula(html,llistadetickets, llistadeassets);
 
     // INTRODUIM AL DIV L'HTML
-    div.innerHTML=html
+    div.innerHTML=html;
 
     // SI FEM CLICK AL BOTÓ ENVIAR
     var enviar = document.getElementById("enviar");
@@ -111,11 +84,18 @@ export function crearFormulariHtml()
         
         const ticket = new Tickets(id,title,desc,author_id,assigned_id,asset_id,created,updated);
     
-        // INTRODUIM NOU TICKET
+        // INTRODUIM NOU TICKET A LOCALSTORAGE
         llistadetickets.nouTicket(ticket);
 
-        // RECARREGUEM PÀGINA
-        location.reload();
+        // AFEGIM NOU TICKET CREAT A FIREBASE
+        setTicket(ticket,id);
+
+        // BORRAR TAULA ANTIGA
+        taula.remove();
+
+        // AFEGIR TAULA NOVA
+        var html3 = llistadetickets.crearTaulaSenseHTML(llistadetickets,llistadeassets);
+        agenda.innerHTML = html3;
     });
 
     // SI FEM CLICK AL BOTÓ FILTRAR
@@ -180,19 +160,25 @@ export function crearFormulariHtml()
     });
     
     // SI FEM CLICK A CONTINGUTS DE LA TAULA
+    var agenda = document.getElementById("agenda");
     var taula = document.getElementById("taula");
     var edit = true;
     var edits = [];
     var ulls = document.getElementsByClassName("aldetall");
     var mostrar = true;
-    taula.addEventListener("click", event=>{
+    agenda.addEventListener("click", event=>{
         event.preventDefault();
 
         // SI FEM CLICK A LA ICONA BROSA
         if(event.target.className=="fa"){
             event.target.parentNode.parentNode.parentNode.remove();
             var idticket = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
+
+            // BORRAR EN LOCALSTORAGE
             llistadetickets.delete(idticket);
+
+            // BORRAR EN FIREBASE
+            delTicket(idticket);
         }
         
         // SI FEM CLICK A LA ICONA EDITAR
@@ -205,7 +191,6 @@ export function crearFormulariHtml()
                 for(var i=0; i<inputs.length;i++){
                     inputs[i].removeAttribute("readonly");
                 }
-                edit=false;
             }
             // SI VOL DESAR CANVIS
             else{
@@ -215,8 +200,8 @@ export function crearFormulariHtml()
                 }
                 llistadetickets.edit(idticket,edits)
                 edits = [];
-                edit=true;
             }
+            edit = !edit;
         }
 
         // SI FEM CLICK A LA ICONA ULL
@@ -227,7 +212,7 @@ export function crearFormulariHtml()
 
                 // SI HA SIGUT CLICAT L'ULL D'AQUESTA POSICIÓ
                 ulls[x].addEventListener("click",event=>{
-                    var claseocult = event.target.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("ocult");
+                    var claseocult = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ocult");
                     var claseocultcap = event.target.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("ocultCap");
 
                     // SI ESTÀ OCULT

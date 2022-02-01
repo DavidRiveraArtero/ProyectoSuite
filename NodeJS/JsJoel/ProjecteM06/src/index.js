@@ -24,4 +24,8 @@ document.body.append(div);
 export let llistadetickets = new TicketsList();
 export let llistadeassets= new AssetsList();
 
-crearFormulariHtml();
+var dadestickets = fetch("https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/tickets.json").then(data => data.json()).then(tot => {
+    console.log(tot);
+    llistadetickets = new TicketsList(tot);
+    crearFormulariHtml(tot);
+})
