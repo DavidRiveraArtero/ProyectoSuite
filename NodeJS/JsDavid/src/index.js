@@ -13,6 +13,3 @@ var todosx = fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebase
     listaBoards = new ListaBoards(todo);
     CrearFormularioHTML(listaBoards)
 })
-
-
-

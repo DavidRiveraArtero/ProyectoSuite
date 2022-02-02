@@ -155,15 +155,18 @@ export class ListaBoards{
 
     async delBoard(id) {
         try{
-            const res= await fetch()
+            const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/board/'+id+'.json',
+            {
+                method:'DELETE',
+            })
         }catch(error){
 
         }
     }
 
-    crearTabla(html,listaboards){
+    crearTabla(html3,listaboards){
 
-        html += `<table hidden id="tabla" class="tareas">
+        html3 += `<table hidden id="tabla" class="tareas">
         
         
         <tr>
@@ -177,7 +180,7 @@ export class ListaBoards{
         <tr>`
         listaboards.board.forEach((v,i,array)=>{
         
-            html += `<tr>
+            html3 += `<tr>
                         <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
                         <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
                         <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
@@ -188,10 +191,10 @@ export class ListaBoards{
                         <th hidden class="ocultos">${v.ticket_id}</th>
                     </tr>`
         })
-        html += `<footer>
+        html3 += `<footer>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                 </footer>`
 
-        return html
+        return html3
     }
 }

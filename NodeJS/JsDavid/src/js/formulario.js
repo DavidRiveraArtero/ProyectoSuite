@@ -5,7 +5,7 @@ import {ListaBoards} from "./classes/boards-list-class"
 let anyadir = new ListaBoards()
 //let listaboards = new ListaBoards()
 //
-export function CrearFormularioHTML( )
+export function CrearFormularioHTML(listaboards)
 {
     
     var html = `
@@ -42,7 +42,8 @@ export function CrearFormularioHTML( )
     var div = document.createElement("div");
     var div2 = document.createElement("div");
     document.body.appendChild(div);
-   
+    var html3 = ``
+    document.body.appendChild(div);
     
     div.innerHTML= anyadir.crearTabla(html,listaboards);
 
@@ -102,7 +103,10 @@ export function CrearFormularioHTML( )
             var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
             anyadir.setBoard(boards,newIndex).then
             tabla_lista.remove();
-            div.innerHTML= anyadir.crearTabla(html,listaboards);
+            tabla_lista.innerHTML= anyadir.crearTabla(html,listaboards);
+            
+            //div.innerHTML = anyadir.crearTabla(html,listaboards);
+            
             //var alog = anyadir.postBlog(boards);
             
         
@@ -135,6 +139,7 @@ export function CrearFormularioHTML( )
             titulo_listar.setAttribute('hidden',true)
             bool_listar=false
         }
+        //console.log("dentro");
     })
 
     // ==================FILTRAR===============
@@ -207,7 +212,8 @@ export function CrearFormularioHTML( )
             const id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
             console.log(id);
             const table = event.target.parentNode.parentNode.parentNode
-            listaboards.delete(id,table)
+            anyadir.delBoard(id);
+            //listaboards.delete(id,table)
             
         })
     }
