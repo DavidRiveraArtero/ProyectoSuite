@@ -101,7 +101,10 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             anadir.setMessage(tabla,Antid).then; // Añadir mensaje
             var TablaInfo = document.getElementById("info");
             TablaInfo.remove();
-            divTabla.innerHTML=anadir.crearTabla(html, listamensaje);
+
+            var divid2 = document.getElementById('2')
+            console.log(divid2)
+            divid2.innerHTML=anadir.crearTabla(html, listamensaje);
         }
     });
 

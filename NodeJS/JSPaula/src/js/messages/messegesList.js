@@ -32,17 +32,18 @@ export class MessagesList{
     crearTabla(html,listamensaje)
     {
         html+= `
-        <table class="default" id="info" hidden>
-        <caption>Información sobre cada mensaje</caption>
-        <tr class="inf">
-            <td>Id</td>
-            <td>Author</td>
-            <td>Mensaje</td>
-            <td>Opciones</td>
-            <td class="ver" hidden >Fecha</td>
-            <td class="ver" hidden >Privado(true) o Publico(false)</td>
-            <td class="ver" hidden >Destino</td>
-        </tr>
+            <div id="2">
+                <table class="default" id="info" hidden>
+                <caption>Información sobre cada mensaje</caption>
+                <tr class="inf">
+                    <td>Id</td>
+                    <td>Author</td>
+                    <td>Mensaje</td>
+                    <td>Opciones</td>
+                    <td class="ver" hidden >Fecha</td>
+                    <td class="ver" hidden >Privado(true) o Publico(false)</td>
+                    <td class="ver" hidden >Destino</td>
+                </tr>
         `
         listamensaje.messages.forEach((v) => {
             html+= `
@@ -60,15 +61,14 @@ export class MessagesList{
                     <td class="ver" hidden>${v.created}</td=>
                     <td class="ver" hidden>${v.privpub}</td>
                     <td class="ver" hidden>${v.desti}</td>
-
                 </tr>
+
+            </div>
             `
         });
         return html;
         }
     
-
-
     delete(idmensaje){
         let configuracio =  localStorage.getItem("messages"); // RECOGEMOS EL LOCALSTORAGE
         let conf = JSON.parse(configuracio); // LA PASAMOS A LISTA
@@ -90,6 +90,7 @@ export class MessagesList{
             }
         }
     }
+
     update(idmensaje,cambios){
         let configuracio =  localStorage.getItem("messages");
         let conf = JSON.parse(configuracio);
@@ -143,7 +144,6 @@ export class MessagesList{
     async delMenssage(id)
     {
         try {
-            const myArrClean = data[0].filter(Boolean)
             const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
             {    
                 method: 'DELETE',
@@ -154,4 +154,19 @@ export class MessagesList{
             body.console.log("Ha sucedido un ERROR.");
         }
     }
+
+    // Actualizar mensajes
+    // async delMenssage(id)
+    // {
+    //     try {
+    //         const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
+    //         {    
+    //             method: 'DELETE',
+    //         })
+    //     }
+        
+    //     catch (error) {
+    //         body.console.log("Ha sucedido un ERROR.");
+    //     }
+    // }
 }
