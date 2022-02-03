@@ -102,10 +102,16 @@ export function CrearFormularioHTML(listaboards)
 
             var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
             anyadir.setBoard(boards,newIndex).then
+            // ELIMINAR LA NUEVA
+            console.log("asasaasasa")
             tabla_lista.remove();
-            tabla_lista.innerHTML= anyadir.crearTabla(html,listaboards);
+
+            var html3 = anyadir.crearTablaSinHTML(listaboards);
+            console.log(html3)
+            var div3 = document.getElementById('prueba')
             
-            //div.innerHTML = anyadir.crearTabla(html,listaboards);
+            div3.innerHTML=html3
+            
             
             //var alog = anyadir.postBlog(boards);
             

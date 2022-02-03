@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -10,6 +10,7 @@ var todosx = fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebase
 .then(data => data.json())  
 .then (todo => {
     console.log(todo)
-    listaBoards = new ListaBoards(todo);
+    const myArrClean = todo.filter(Boolean)
+    listaBoards = new ListaBoards(myArrClean);
     CrearFormularioHTML(listaBoards)
 })
