@@ -3,10 +3,11 @@ import {Board} from "./classes/boards-class";
 import {ListaBoards} from "./classes/boards-list-class"
 
 let anyadir = new ListaBoards()
-let listaboards = new ListaBoards()
-
-export function CrearFormularioHTML()
+//let listaboards = new ListaBoards()
+//
+export function CrearFormularioHTML(listaboards)
 {
+    
     var html = `
         
         <div class="prueba">
@@ -28,34 +29,31 @@ export function CrearFormularioHTML()
         </div>
         <div hidden class="prueba" id='apartado_filtrar'>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <input placeholder='Titulo' id="buscador" type="text" >
 =======
             <input placeholder='Titulo' class="buscador" id="inputBuscador" type="text" >
 >>>>>>> b1.1_David
+=======
+            <input placeholder='Titulo' id="buscador" type="text" >
+            
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
             <button class="btn btn-primary filtrar" id='filtrarBuscador'>Filtrar</button>
         </div>
         <h1 hidden class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
         
-        <table hidden id="tabla" class="tareas">
         
-        
-    <tr>
-        <td>id</td>
-        <td>title</td>
-        <td>description</td>
-        <td>created</td>
-        <td>Opcion</td>
-        <td class="ocultoT" hidden>author_id</td>
-        <td class="ocultoT" hidden>ticket_id</td>
-    <tr>
     `
    
     
     // dom
     var div = document.createElement("div");
+    var div2 = document.createElement("div");
     document.body.appendChild(div);
-    listaboards.board.forEach((v,i,array)=>{
+    var html3 = ``
+    document.body.appendChild(div);
     
+<<<<<<< HEAD
         html += `<tr>
                     <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
                     <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
@@ -72,6 +70,9 @@ export function CrearFormularioHTML()
             </footer>`
  
     div.innerHTML=html;
+=======
+    div.innerHTML= anyadir.crearTabla(html,listaboards);
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
     var enviar = document.getElementById('guardar')
     var cont = 1;
@@ -95,6 +96,7 @@ export function CrearFormularioHTML()
     var bool_filtrar = false
     var filtrarBuscador = document.getElementById('filtrarBuscador');
 <<<<<<< HEAD
+<<<<<<< HEAD
     var inputBuscador = document.getElementById("buscador")
 
     //INPUTS A FILTRAR
@@ -102,6 +104,13 @@ export function CrearFormularioHTML()
 =======
     var inputBuscador = document.getElementById('inputBuscador');
 >>>>>>> b1.1_David
+=======
+    var inputBuscador = document.getElementById("buscador")
+    
+
+    //INPUTS A FILTRAR
+    var tituloFilt = document.getElementsByClassName('filtrarTitulo');
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
     //OTRAS COSAS
     var edit = true;
@@ -126,13 +135,24 @@ export function CrearFormularioHTML()
         {
         
             var newIndex = parseInt(listaboards.lastIndex()) + 1
-
+           
             console.log(newIndex)
 
             var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
+            anyadir.setBoard(boards,newIndex).then
+            // ELIMINAR LA NUEVA
+            console.log("asasaasasa")
+            tabla_lista.remove();
+
+            var html3 = anyadir.crearTablaSinHTML(listaboards);
+            console.log(html3)
+            var div3 = document.getElementById('prueba')
             
-            var alog = anyadir.postBlog(boards);
-            location.reload();
+            div3.innerHTML=html3
+            
+            
+            //var alog = anyadir.postBlog(boards);
+            
         
         }
     })
@@ -163,6 +183,7 @@ export function CrearFormularioHTML()
             titulo_listar.setAttribute('hidden',true)
             bool_listar=false
         }
+        //console.log("dentro");
     })
 
     // ==================FILTRAR===============
@@ -183,6 +204,7 @@ export function CrearFormularioHTML()
     })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // FILTRADO BUSCADOR
     filtrarBuscador.addEventListener("click",event=>{
         for(var x = 0;x<tituloFilt.length;x++){
@@ -198,10 +220,28 @@ export function CrearFormularioHTML()
     // ====================NUEVA TABLA=================
     filtrarBuscador.addEventListener('click',event=>{
         var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
+=======
+    // ====================NUEVA TABLA=================
+    filtrarBuscador.addEventListener('click',event=>{
+        var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
+        var html2 = `<table id="tabla2" class="tareas">
+            <tr>
+                <td>id</td>
+                <td>title</td>
+                <td>description</td>
+                <td>created</td>
+                <td>Opcion</td>
+                <td class="ocultoT" hidden>author_id</td>
+                <td class="ocultoT" hidden>ticket_id</td>
+            <tr>`
+        var tabla2 = document.getElementById('tabla2');
+        
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         if(inputBuscador.value == "")
         {
             console.log("Input vacio")
             tabla_lista.removeAttribute("hidden")
+<<<<<<< HEAD
         }else
         {
             console.log(algo);
@@ -216,13 +256,44 @@ export function CrearFormularioHTML()
         }
     })
 >>>>>>> b1.1_David
+=======
+            tabla2.setAttribute("hidden",true)
+        }else
+        {
+            document.body.appendChild(div2);
+            tabla_lista.setAttribute("hidden",true)
+            //apartado_filtrar.removeAttribute('hidden')
+            
+            
+            nuevaLista.forEach((v,i,array)=>{
+               
+               html2 += `<tr>
+               <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
+               <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
+               <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
+               
+               <th>${v.created}</th>
+               <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
+               <th hidden class="ocultos">${v.author_id}</th>
+               <th hidden class="ocultos">${v.ticket_id}</th>
+           </tr>`
+                
+            div2.innerHTML=html2;
+            })
+            
+           
+            console.log(tabla_lista)
+        }
+    })
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
     for(var x=0;x<borrar.length;x++){
         borrar[x].addEventListener('click', event =>{
             const id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
             console.log(id);
             const table = event.target.parentNode.parentNode.parentNode
-            listaboards.delete(id,table)
+            anyadir.delBoard(id);
+            //listaboards.delete(id,table)
             
         })
     }

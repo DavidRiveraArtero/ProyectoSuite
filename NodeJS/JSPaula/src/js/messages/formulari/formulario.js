@@ -57,7 +57,30 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     document.body.appendChild(div2);
 
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
+<<<<<<< HEAD
     divTabla.innerHTML=anadir.crearTabla(html, listamensaje);
+=======
+    listamensaje.messages.forEach((v, i, array) => {
+        html+= `
+            <tr id="a">
+                <td>${v.id}</td>
+                <td class="search" >${v.author_id}</td>
+                <td>
+                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                </td>
+                <td>
+                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                </td>
+                <td class="ver" hidden>${v.created}</td=>
+                <td class="ver" hidden>${v.privpub}</td>
+                <td class="ver" hidden>${v.desti}</td>
+
+            </tr>
+        `
+    });
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
 
     // VARIABLES
@@ -111,6 +134,14 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
+>>>>>>> b1.1_Paula
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -158,6 +189,30 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             }
         }
 
+<<<<<<< HEAD
+        if (event.target.id == "buscar")
+        {
+            var palabra = document.getElementById("palabra").value;
+
+            var search = document.querySelectorAll(".search");
+
+            for (var i=0; i< search.length; i++)
+            {
+                var revisar = search[i].innerHTML;
+
+                console.log("La palabra es: ",palabra);// me cambia la palabra ERROR
+                console.log("Resultado: ", revisar);
+
+                for (palabra in revisar)
+                {
+
+                    console.log("Bien");
+
+                    document.querySelectorAll(".search")[i].style.backgroundColor = "#9ED5FD";
+                }
+            }
+        }
+=======
         // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
         if (event.target.id == "buscar")
         {
@@ -215,6 +270,12 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             
             }            
         }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b1.1_Paula
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA

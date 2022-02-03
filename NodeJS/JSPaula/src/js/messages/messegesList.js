@@ -94,7 +94,10 @@ export class MessagesList{
     update(idmensaje,cambios){
         let configuracio =  localStorage.getItem("messages");
         let conf = JSON.parse(configuracio);
+<<<<<<< HEAD
         console.log(configuracio);
+=======
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         for (var i in conf)
         {   
             var id =  conf[i].id;

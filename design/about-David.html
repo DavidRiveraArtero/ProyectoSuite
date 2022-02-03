@@ -123,9 +123,35 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD
               <video width="320" height="240" controls autoplay muted>
                 <source src="./_commons/mp4/Cristiano Ronaldo Siii.mp4" type="video/mp4">
               </video>
+=======
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                            <video id="video1" width="100%" controls autoplay muted>
+                                <source src="./_commons/mp4/Cristiano Ronaldo Siii.mp4" type="video/mp4">
+                            </video>
+                      </div>
+                      <div class="carousel-item">
+                            <video id="video2" width="100%" controls>
+                                <source src="./_commons/mp4/Cristiano Ronaldo Siii.mp4" type="video/mp4">
+                            </video>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" id='prev' type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" id='next' type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+              
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -139,6 +165,18 @@
         // AUDIO
         var image = document.getElementById("foto");
         var audio = document.getElementsByTagName("audio")[0];
+<<<<<<< HEAD
+=======
+        // VARIABLES PARA EL SISTEMA DE PAUSE/PLAY
+        // PREV
+        var btn_prev = document.getElementById('prev');
+        var video1 = document.getElementById('video1');
+        var video2 = document.getElementById('video2');
+        var boolB1 = true;
+        var boolB2 = true;
+        // NEXT
+        var btn_next = document.getElementById('next');
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         image.addEventListener("mouseover",event=>{
             audio.play();
         })
@@ -147,11 +185,44 @@
         
         })
         // MODAL
+<<<<<<< HEAD
         var myModal = document.getElementById('myModal')
         var myInput = document.getElementById('myInput')
 
         myModal.addEventListener('shown.bs.modal', function () {
         myInput.focus()
+=======
+        
+        btn_prev.addEventListener('click',event=>{
+            if(boolB1 == true)
+            {
+                video2.play()
+                video1.pause();
+                boolB1 = false;
+                boolB2 = false; 
+                
+            }else{
+                video1.play();
+                video2.pause();
+                boolB1 = true;
+                boolB2 = true;
+            }  
+        })
+        btn_next.addEventListener('click',event=>{
+            if(boolB2 == true)
+            {
+                video2.play()
+                video1.pause();
+                boolB2 = false;
+                boolB1 = false;
+                
+            }else{
+                video1.play();
+                video2.pause();
+                boolB2 = true;
+                boolB1 = true;
+            }
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         })
 
     </script>

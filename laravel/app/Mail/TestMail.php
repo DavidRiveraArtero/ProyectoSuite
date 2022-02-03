@@ -17,6 +17,10 @@ class TestMail extends Mailable
      * @return void
      */
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
     public function __construct(array $content)
     {
         $this->content = $content;
@@ -28,4 +32,8 @@ class TestMail extends Mailable
         return $this->markdown('mails.testmail')
             ->with('content', $this->content);
     }
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 }
