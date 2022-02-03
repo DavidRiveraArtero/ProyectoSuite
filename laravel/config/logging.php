@@ -62,12 +62,12 @@ return [
 
         'firephp' => [
             'driver' => 'monolog',
-            'hander' => ''
+            'hander' => Monolog\Hander\FirePHPHander::class,
         ],
 
         'errorlog' => [
-            'driver' => 'slack',
-            'level' => env('LOG_LEVEL', 'critical'),
+            'driver' => 'errorlog',
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
 
         'emergency' => [
