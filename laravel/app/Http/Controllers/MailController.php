@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\TestMail;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
 class MailController extends Controller
 {
-    public function test(Request $request)
+    public function __invoke(Request $request)
     {
-<<<<<<< HEAD
         try {
             $mail = new TestMail([
                 'name' => 'Anonymous',
@@ -22,21 +25,5 @@ class MailController extends Controller
             echo '<pre>Error - ' . $e .'</pre>';
         }
     }
- 
-=======
-        try
-        {
-            $mail = new TestMail([
-                'name' => 'Anonymous',
-                'body' => 'Testing mail',
-                'url' => '/'
-            ]);
-            \Mail::to('example@example.com')->send($mail);
-            echo '<h1>Mail send successfully</h1>';
-        }catch(\Expection $e)
-        {
-            echo '<pre>Error - ' .$e . '</pre>';
-        }
-    }
->>>>>>> 5f5e2e22b5adaa2f0d0849aa77ccf7779c78c1aa
+
 }
