@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,14 @@ Route::get('/', function (Request $request) {
     Log::info($message);
     $request->session()->flash('info', $message);
     return view('welcome');
-    //dd(env('DB_SOCKET'))
 });
- 
 
 
-Route::get('sendemail','SenEmailController@index')->name('sendemail');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('mail/test', [MailController::class, 'test'])->name('enviarcorreo');
+
+Route::get('mail/test',MailController::class,'test')->name('enviarcorreo')->middleware(['auth']);
+
+require __DIR__.'/auth.php';

@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+ }
+ 
+
+/*Pagina pre login*/
+.parallax{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*El VALOR DEL PARALLAX ES FIJO*/
+#header_PagP{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../_commons/img/div1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+#NombreEmpresa{
+    /*Se centra el valor*/
+    align-items: center;
+    justify-content: center;
+    padding-top: 20%;
+    display: flex;
+}
+
+.color3{
+   background-color: aquamarine;
+}
+#piePagina{
+    height: 600px;
+    background-image: url(../../_commons/img/div1.jpg);
+    background-size: cover;
+}
+
+/*NAV LOGIN*/
+/*
+a {
+    margin-top: 6%;    
+}
+li {
+    margin-right: 6%;
+}
+ul {
+    padding-right: 4%;
+    float: right;
+}
+*/
+
+/*Pagina Login*/
+
+.header{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 60px;
+    background-color: #A8EFEB;
+    text-align: center;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    
+}
+.header__Titulo{ 
+    margin-block-start: 0%;
+    margin-block-end: 0%;
+}
+.header__user{
+    width: 10%;
+    float: right;
+    margin-right: 6%;
+}
+
+.header__logo{
+    width: 10%;
+    float: left;
+    margin-right: 6%;
+}
+
+.contenedor{
+    
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.button {
+    height: 547px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border:1px solid black;
+}
+
+.button--gestor{  
+    background-image: url(../img/Gestor.jpg);
+}
+
+.button--mensajeria{
+    background-image: url(../img/mensajeria.jpg);
+}
+
+.cajaLogin{
+    margin-top: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 70%;
+    background-color: #a1efef;
+    
+
+}
+.cajaLogin_img{
+    width: 60%;
+    height: 100%;
+    background-image: url(../img/register.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: left;
+}
+.cajaLogin_Formulario{
+    
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+body{
+    margin: 0%;
+}

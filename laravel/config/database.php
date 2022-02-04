@@ -15,7 +15,6 @@ return [
     |
     */
 
-    
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
@@ -59,12 +58,13 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-
-            'options' => extension_loaded('pdo_mysql') ? ([
-                PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY','/var/lib/mysql/client-key.pem'),
-                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false 
-            ]) : [],
+            'options' => extension_loaded('pdo_mysql') ? [
+                PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY', '/var/lib/mysql/client-key.pem'),
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
+            ] : [],
         ],
+
+        
 
         'pgsql' => [
             'driver' => 'pgsql',
@@ -93,6 +93,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
     ],
 
     /*
@@ -123,10 +124,10 @@ return [
 
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
-        'options' => extension_loaded('pdo_mysql') ? [
-            PDO::MYSQL_ATTR_SSL_KEY => env('MYSQL_ATTR_SSL_KEY', '/var/lib/mysql/client-key.pem'),
-            PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
-         ] : [],
+        'options' => [
+            'cluster' => env('REDIS_CLUSTER', 'redis'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+        ],
 
         'default' => [
             'url' => env('REDIS_URL'),
@@ -143,5 +144,7 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
+
     ],
+
 ];

@@ -17,17 +17,11 @@ class TestMail extends Mailable
      * @return void
      */
 
+    
     public function __construct(array $content)
     {
         $this->content = $content;
     }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    
   
     public function build()
     {
@@ -35,4 +29,5 @@ class TestMail extends Mailable
         return $this->markdown('mails.testmail')
             ->with('content', $this->content);
     }
+     
 }
