@@ -1,6 +1,7 @@
 //import {UsuarisList} from "./classes/usuaris-list-class";
 import {Board} from "./classes/boards-class";
 import {ListaBoards} from "./classes/boards-list-class"
+import  { listaBoards as lb }  from "../index.js"
 
 let anyadir = new ListaBoards()
 //let listaboards = new ListaBoards()
@@ -96,21 +97,29 @@ export function CrearFormularioHTML(listaboards)
         else
         {
         
+            let html3;
             var newIndex = parseInt(listaboards.lastIndex()) + 1
            
             console.log(newIndex)
 
             var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
-            anyadir.setBoard(boards,newIndex).then
-            // ELIMINAR LA NUEVA
-            console.log("asasaasasa")
-            tabla_lista.remove();
-
-            var html3 = anyadir.crearTablaSinHTML(listaboards);
+            anyadir.setBoard(boards,newIndex).then((value2)=>{
+                tabla_lista.remove();
+                let listaboards2 =  anyadir.actualizarLista().then((value) => {
+                    console.log("hola "+value);
+                    lb.board = value;
+                    console.error("bbbb",lb)
+    
+                    html3 = anyadir.crearTablaSinHTML(lb);
+                    document.getElementById('prueba').innerHTML=html3
+                });
+            })
+                        // ELIMINAR LA NUEVA
+           
+    
+           
             console.log(html3)
-            var div3 = document.getElementById('prueba')
             
-            div3.innerHTML=html3
             
             
             //var alog = anyadir.postBlog(boards);
