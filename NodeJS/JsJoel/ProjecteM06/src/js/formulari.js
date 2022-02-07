@@ -181,11 +181,11 @@ export function crearFormulariHtml()
             delTicket(idticket);
         }
         
-        // SI FEM CLICK A LA ICONA EDITAR
+        // SI FEM CLICK A LA ICONA EDITAR ///////////////////MIRAR ESTO
         if(event.target.className.includes("editar")){
             var idticket = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
             var inputs = event.target.parentNode.parentNode.parentNode.getElementsByTagName("input");
-
+            var ticketedit = new Tickets(idticket,inputs[0],inputs[1],author_id,assigned_id,asset_id,created,updated);
             // SI VOL EDITAR
             if(edit){
                 for(var i=0; i<inputs.length;i++){
@@ -194,11 +194,18 @@ export function crearFormulariHtml()
             }
             // SI VOL DESAR CANVIS
             else{
+                console.log("zzzzzzzzzzzzzzzzzzzzzz")
                 for(var i=0; i<inputs.length;i++){
                     inputs[i].setAttribute("readonly","true");
                     edits.push(inputs[i].value);
                 }
+
+                // EDITEM LOCALSTORAGE AMB NOVES DADES
                 llistadetickets.edit(idticket,edits)
+
+                // EDITEM FIREBASE AMB NOVES DADES
+                console.log("xxxxxx",ticketedit)
+                setTicket(ticketedit,idticket)
                 edits = [];
             }
             edit = !edit;

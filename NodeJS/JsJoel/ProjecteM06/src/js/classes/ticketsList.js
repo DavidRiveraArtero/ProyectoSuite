@@ -89,7 +89,7 @@ export class TicketsList {
         return torna;
     }
 
-    crearTaula(html,llistadetickets, llistadeassets){
+    crearTaula(html,llistadetickets,llistadeassets){
         html+=
                 `
                     <div class="agenda" id="agenda">
@@ -180,6 +180,7 @@ export async function setTicket(ticket,id) {
         })
     }
     catch (error){
+        console.log(error)
     }
 }
 
