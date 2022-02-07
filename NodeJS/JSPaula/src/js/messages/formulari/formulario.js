@@ -1,4 +1,5 @@
 import {MessagesList} from "../messegesList";
+import {MessagesList as ml} from "../messegesList";
 import {Messages} from "../messages";
 
 //let listamensaje = new MessagesList();
@@ -50,37 +51,14 @@ export function creaHTMLFormulariAfegir(listamensaje) {
         <br>
     </html>
     `
-    var divTabla = document.createElement("div");
-    document.body.appendChild(divTabla);
+    var divGeneral = document.createElement("div");
+    document.body.appendChild(divGeneral);
 
-    var div2 = document.createElement("div");
-    document.body.appendChild(div2);
+    // var divTablaPrimera = document.createElement("div");
+    // document.body.appendChild(divTablaPrimera);
 
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
-<<<<<<< HEAD
-    divTabla.innerHTML=anadir.crearTabla(html, listamensaje);
-=======
-    listamensaje.messages.forEach((v, i, array) => {
-        html+= `
-            <tr id="a">
-                <td>${v.id}</td>
-                <td class="search" >${v.author_id}</td>
-                <td>
-                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
-                </td>
-                <td>
-                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                </td>
-                <td class="ver" hidden>${v.created}</td=>
-                <td class="ver" hidden>${v.privpub}</td>
-                <td class="ver" hidden>${v.desti}</td>
-
-            </tr>
-        `
-    });
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
+    divGeneral.innerHTML=anadir.crearTabla(html, listamensaje);
 
 
     // VARIABLES
@@ -119,29 +97,40 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
 
             var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
-            console.log(tabla);
             //anadir.nouMessages(tabla);
-            anadir.setMessage(tabla,Antid).then; // Añadir mensaje
-            var TablaInfo = document.getElementById("info");
-            TablaInfo.remove();
+            var MensajeSubido = anadir.setMessage(tabla,Antid).then((value2) => {
 
-            var divid2 = document.getElementById('2')
-            console.log(divid2)
-            divid2.innerHTML=anadir.crearTabla(html, listamensaje);
-        }
+            var TablaInfo = document.getElementById("info");
+            TablaInfo.remove(); //  Eliminar
+            
+            let html3;
+
+            // var div1 = document.getElementById("1");
+            // console.log(div1);
+                anadir.actualizarTabla(listamensaje).then((value) => {
+                    console.log("G ",value);
+                    
+                    html3 = anadir.crearTablaSinHTML(listamensaje);
+                    document.getElementById('divCabeza').innerHTML=html3;
+                });
+            
+            });
+
+            var TablaNueva = anadir.crearTablaSinHTML(listamensaje);
+
+            console.log("Tabla Nueva: ", TablaNueva);
+            // div1.innerHTML=TablaNueva;
+
+
+        }; // Añadir mensaje
+            console.log(tabla);
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
         // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
->>>>>>> b1.1_Paula
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -188,31 +177,6 @@ export function creaHTMLFormulariAfegir(listamensaje) {
                 activarFiltro = true;
             }
         }
-
-<<<<<<< HEAD
-        if (event.target.id == "buscar")
-        {
-            var palabra = document.getElementById("palabra").value;
-
-            var search = document.querySelectorAll(".search");
-
-            for (var i=0; i< search.length; i++)
-            {
-                var revisar = search[i].innerHTML;
-
-                console.log("La palabra es: ",palabra);// me cambia la palabra ERROR
-                console.log("Resultado: ", revisar);
-
-                for (palabra in revisar)
-                {
-
-                    console.log("Bien");
-
-                    document.querySelectorAll(".search")[i].style.backgroundColor = "#9ED5FD";
-                }
-            }
-        }
-=======
         // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
         if (event.target.id == "buscar")
         {
@@ -234,48 +198,43 @@ export function creaHTMLFormulariAfegir(listamensaje) {
                 tabla.setAttribute("hidden", true);
 
                 // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
-                var html2 = `
-                <table class="default" width="50%" id="tabla2">
-                <caption>Información sobre cada mensaje</caption>
-                <tr class="inf">
-                    <td>Id</td>
-                    <td>Author</td>
-                    <td>Mensaje</td>
-                    <td>Opciones</td>
-                    <td class="ver" hidden >Fecha</td>
-                    <td class="ver" hidden >Privado(true) o Publico(false)</td>
-                    <td class="ver" hidden >Destino</td>
-                </tr>
-                `
-                respuesta.forEach((v) => {
-                    html2 += `
-                        <tr id="a">
-                            <td>${v.id}</td>
-                            <td class="search" >${v.author_id}</td>
-                            <td>
-                                <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
-                            </td>
-                            <td>
-                                <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                                <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                                <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                            </td>
-                            <td class="ver" hidden>${v.created}</td=>
-                            <td class="ver" hidden>${v.privpub}</td>
-                            <td class="ver" hidden>${v.desti}</td>
-                        </tr>
-                    `
-                });
-                div2.innerHTML=html2;
-            
+                // var html = `
+                // <div>
+                // <table class="default" width="50%" id="tabla2">
+                // <caption>Información sobre cada mensaje</caption>
+                // <tr class="inf">
+                //     <td>Id</td>
+                //     <td>Author</td>
+                //     <td>Mensaje</td>
+                //     <td>Opciones</td>
+                //     <td class="ver" hidden >Fecha</td>
+                //     <td class="ver" hidden >Privado(true) o Publico(false)</td>
+                //     <td class="ver" hidden >Destino</td>
+                // </tr>
+                // `
+                // respuesta.forEach((v) => {
+                //     html += `
+                //         <tr id="a">
+                //             <td>${v.id}</td>
+                //             <td class="search" >${v.author_id}</td>
+                //             <td>
+                //                 <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                //             </td>
+                //             <td>
+                //                 <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                //                 <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                //                 <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                //             </td>
+                //             <td class="ver" hidden>${v.created}</td=>
+                //             <td class="ver" hidden>${v.privpub}</td>
+                //             <td class="ver" hidden>${v.desti}</td>
+                //         </tr>
+                //     `
+                // });
+                // divTablaPrimera.innerHTML=html;
+           
             }            
         }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b1.1_Paula
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA

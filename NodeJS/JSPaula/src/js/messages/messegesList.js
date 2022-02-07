@@ -31,8 +31,8 @@ export class MessagesList{
 
     crearTabla(html,listamensaje)
     {
-        html+= `
-            <div id="2">
+        html += `
+                <div id="divCabeza">
                 <table class="default" id="info" hidden>
                 <caption>Información sobre cada mensaje</caption>
                 <tr class="inf">
@@ -62,11 +62,62 @@ export class MessagesList{
                     <td class="ver" hidden>${v.privpub}</td>
                     <td class="ver" hidden>${v.desti}</td>
                 </tr>
-
             </div>
             `
         });
         return html;
+        }
+
+        async crearTablaSinHTML(listamensaje)
+        {
+            let html = `
+                <div id="divCabeza">
+                    <table class="default" id="2">
+                    <caption>Información sobre cada mensaje</caption>
+                    <tr class="inf">
+                        <td>Id</td>
+                        <td>Author</td>
+                        <td>Mensaje</td>
+                        <td>Opciones</td>
+                        <td class="ver" hidden >Fecha</td>
+                        <td class="ver" hidden >Privado(true) o Publico(false)</td>
+                        <td class="ver" hidden >Destino</td>
+                    </tr>
+            `
+            listamensaje.messages.forEach((v) => {
+                html+= `
+                    <tr id="a">
+                        <td>${v.id}</td>
+                        <td class="search" >${v.author_id}</td>
+                        <td>
+                            <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                        </td>
+                        <td>
+                            <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                            <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                            <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                        </td>
+                        <td class="ver" hidden>${v.created}</td=>
+                        <td class="ver" hidden>${v.privpub}</td>
+                        <td class="ver" hidden>${v.desti}</td>
+                    </tr>
+                </div>
+                `
+            });
+            return html;
+        }
+
+        async actualizarTabla(listamensaje)
+        {
+            try{
+                let Lmensajes;
+                Lmensajes = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
+                Lmensajes = await Lmensajes.json();
+                return Lmensajes;
+            }
+            catch(error){
+                console.log(error);
+            }
         }
     
     delete(idmensaje){
@@ -94,10 +145,7 @@ export class MessagesList{
     update(idmensaje,cambios){
         let configuracio =  localStorage.getItem("messages");
         let conf = JSON.parse(configuracio);
-<<<<<<< HEAD
         console.log(configuracio);
-=======
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         for (var i in conf)
         {   
             var id =  conf[i].id;
@@ -134,6 +182,7 @@ export class MessagesList{
                 
                 body: JSON.stringify(mensaje)
             })
+            return res;
             
         }
             
@@ -141,6 +190,7 @@ export class MessagesList{
         {
             body.console.log("Ha sucedido un ERROR.");
         }        
+
     }
 
     // Borrar mensajes
@@ -159,17 +209,17 @@ export class MessagesList{
     }
 
     // Actualizar mensajes
-    // async delMenssage(id)
-    // {
-    //     try {
-    //         const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
-    //         {    
-    //             method: 'DELETE',
-    //         })
-    //     }
+    async actuMenssage(id)
+    {
+        try {
+            const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
+            {    
+                method: 'DELETE',
+            })
+        }
         
-    //     catch (error) {
-    //         body.console.log("Ha sucedido un ERROR.");
-    //     }
-    // }
+        catch (error) {
+            body.console.log("Ha sucedido un ERROR.");
+        }
+    }
 }

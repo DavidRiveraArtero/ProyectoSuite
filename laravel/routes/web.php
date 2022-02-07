@@ -22,7 +22,6 @@ Route::get('/', function (Request $request) {
     Log::info($message);
     $request->session()->flash('info', $message);
     return view('welcome');
-    //dd(env('DB_SOCKET'))
 });
 
 
@@ -30,12 +29,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-<<<<<<< HEAD
-Route::get('mail/test', [MailController::class, 'test'])->name('enviarcorreo');
-=======
 
 
 Route::get('mail/test',MailController::class,'test')->name('enviarcorreo')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea

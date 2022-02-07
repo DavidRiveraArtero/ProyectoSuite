@@ -10,15 +10,16 @@ document.body.append(div);
 
 // let messages = new Messages();
 
-let listamensaje;
+export let listamensaje;
 
 fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
 .then(data => data.json())
 .then(todo => {
 
-    const myArrClean = todo.filter(Boolean);
+    console.log(todo);
+    const todoLimpio = todo.filter(Boolean);
 
-    listamensaje = new MessagesList(myArrClean);
+    listamensaje = new MessagesList(todoLimpio);
     creaHTMLFormulariAfegir(listamensaje);
 
 })
