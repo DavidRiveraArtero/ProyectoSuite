@@ -192,5 +192,6 @@ export async function delTicket(id){
         })
     }
     catch (error){
+        console.log(error)
     }
 }

@@ -194,7 +194,6 @@ export function crearFormulariHtml()
             }
             // SI VOL DESAR CANVIS
             else{
-                console.log("zzzzzzzzzzzzzzzzzzzzzz")
                 for(var i=0; i<inputs.length;i++){
                     inputs[i].setAttribute("readonly","true");
                     edits.push(inputs[i].value);
@@ -204,7 +203,6 @@ export function crearFormulariHtml()
                 llistadetickets.edit(idticket,edits)
 
                 // EDITEM FIREBASE AMB NOVES DADES
-                console.log("xxxxxx",ticketedit)
                 setTicket(ticketedit,idticket)
                 edits = [];
             }
