@@ -113,7 +113,16 @@ export class MessagesList{
             try{
                 
                 Lmensajes = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
-                Lmensajes = await Lmensajes.json();
+                Lmensajes = await Lmensajes.json().then (todo => {
+                    const todoLimpio = todo.filter(Boolean);
+                    console.log("Lmensajes: ", Lmensajes);
+                    console.log("TODO: ", todoLimpio);
+
+                    Lmensajes = Lmensajes(todoLimpio);    
+                    console.log("Lmensajes: ", Lmensajes);
+
+                });
+
             }
             catch(error){
                 console.log(error);

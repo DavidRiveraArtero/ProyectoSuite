@@ -107,8 +107,6 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             
             // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
             anadir.actualizarTabla().then((value) => {
-                    console.log("G ",value);
-                    
                     listamensaje.messages = value;
                     html3 = anadir.crearTablaSinHTML(listamensaje);
                     document.getElementById('divCabeza').innerHTML=html3;
@@ -117,8 +115,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             });
 
 
-        }; // Añadir mensaje
-            console.log(tabla);
+        }; 
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
