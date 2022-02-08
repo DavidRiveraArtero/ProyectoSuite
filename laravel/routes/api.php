@@ -29,5 +29,5 @@ Route::apiResource("user", BoardController::class);
 
 Route::apiResource("file", BoardController::class);
 
-//Route::apiResource("board", BoardController::class);
+Route::apiResource("board", BoardController::class);
 
