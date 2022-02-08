@@ -136,11 +136,8 @@ export function creaHTMLFormulariAfegir() {
     // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
-<<<<<<< HEAD
-=======
 
         // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
->>>>>>> b1.1_Paula
         if (event.target.id == "anadir")
         {
             var verAfegir=document.getElementById("afegir");
@@ -188,30 +185,6 @@ export function creaHTMLFormulariAfegir() {
             }
         }
 
-<<<<<<< HEAD
-        if (event.target.id == "buscar")
-        {
-            var palabra = document.getElementById("palabra").value;
-
-            var search = document.querySelectorAll(".search");
-
-            for (var i=0; i< search.length; i++)
-            {
-                var revisar = search[i].innerHTML;
-
-                console.log("La palabra es: ",palabra);// me cambia la palabra ERROR
-                console.log("Resultado: ", revisar);
-
-                for (palabra in revisar)
-                {
-
-                    console.log("Bien");
-
-                    document.querySelectorAll(".search")[i].style.backgroundColor = "#9ED5FD";
-                }
-            }
-        }
-=======
         // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
         if (event.target.id == "buscar")
         {
@@ -237,7 +210,6 @@ export function creaHTMLFormulariAfegir() {
         }
 
 
->>>>>>> b1.1_Paula
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
