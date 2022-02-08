@@ -123,6 +123,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD
+              <video width="320" height="240" controls autoplay muted>
+                <source src="./_commons/mp4/Cristiano Ronaldo Siii.mp4" type="video/mp4">
+              </video>
+=======
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
@@ -146,6 +151,7 @@
                     </button>
                   </div>
               
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -159,6 +165,8 @@
         // AUDIO
         var image = document.getElementById("foto");
         var audio = document.getElementsByTagName("audio")[0];
+<<<<<<< HEAD
+=======
         // VARIABLES PARA EL SISTEMA DE PAUSE/PLAY
         // PREV
         var btn_prev = document.getElementById('prev');
@@ -168,6 +176,7 @@
         var boolB2 = true;
         // NEXT
         var btn_next = document.getElementById('next');
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         image.addEventListener("mouseover",event=>{
             audio.play();
         })
@@ -176,6 +185,13 @@
         
         })
         // MODAL
+<<<<<<< HEAD
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+=======
         
         btn_prev.addEventListener('click',event=>{
             if(boolB1 == true)
@@ -206,6 +222,7 @@
                 boolB2 = true;
                 boolB1 = true;
             }
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         })
 
     </script>

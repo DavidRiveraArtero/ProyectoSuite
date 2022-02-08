@@ -17,9 +17,9 @@ class ExampleTest extends TestCase
     public function test_exists()
     {
         $count = DB::table('users')
-                ->where('username', '=', 'admin')
-                ->count();
+            ->where('username', '=', 'admin')
+            ->count();
         $this->assertEquals($count, 1);
     }
- 
+
 }

@@ -128,6 +128,10 @@ export class ListaBoards{
         if (element.title.match(new RegExp(text,"i"))
         || element.description.match(new RegExp(text,"i"))) return true;
         })
+<<<<<<< HEAD
+        return torna;
+    }
+=======
         
         return torna;
     }
@@ -160,6 +164,7 @@ export class ListaBoards{
                 method:'DELETE',
             })
         }catch(error){
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
         }
     }

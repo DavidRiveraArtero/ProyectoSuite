@@ -1,3 +1,4 @@
+import {MessagesList}  from "./js/messages/messegesList"
 import header from '../_commons/html/header.html';
 import './style.css';
 
@@ -8,4 +9,17 @@ div.innerHTML=header
 document.body.append(div);
 
 // let messages = new Messages();
-creaHTMLFormulariAfegir();
+
+export let listamensaje;
+
+fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
+.then(data => data.json())
+.then(todo => {
+
+    console.log(todo);
+    const todoLimpio = todo.filter(Boolean);
+
+    listamensaje = new MessagesList(todoLimpio);
+    creaHTMLFormulariAfegir(listamensaje);
+
+})
