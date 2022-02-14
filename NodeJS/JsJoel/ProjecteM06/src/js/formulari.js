@@ -1,19 +1,20 @@
 // IMPORTS
 import {Tickets} from "./classes/tickets.js"
-import {llistadetickets} from "../index"
+//import {llistadetickets} from "../index"
 import {llistadeassets} from "../index"
 import {setTicket} from "./classes/ticketsList";
 import {delTicket} from "./classes/ticketsList";
 
 // CREEM FORMULARI
-export function crearFormulariHtml()
+export function crearFormulariHtml(llistadetickets)
 {
+    console.warn("aaaaa",llistadetickets)
     // AGAFEM ASSETS
     let option="";
     for (let i of llistadeassets.assets){
         option += "<option value='"+i.id_asset+"'>"+i.location+" "+i.model+"</option>"
     }
-    
+
     // FEM HTML
     let html = `
         <div id="botonsPrincipals">
@@ -21,7 +22,7 @@ export function crearFormulariHtml()
             <button id="botoLlistar" type="button" class="btn btn-outline-warning">LLISTAR</button>
             <button id="botoFiltrar" type="button" class="btn btn-outline-danger">FILTRAR</button>
         </div>
-        <div class="crear" hidden>
+        <div class="crear">
             <label for="title">TITOL: </label>
             <input type="text" value="Títol a ficar" name="title" id="title" required /><br><br>
 
@@ -36,13 +37,13 @@ export function crearFormulariHtml()
             <button id="enviar">ENVIAR</button><br><br><br><br>
         </div>
 
-        <div class="filtrar" hidden>
+        <div class="filtrar">
             <label for="filtrar">FILTRAR: </label>
             <input type="text" value="Filtrar per titol" name="filtrar" id="filtrar" required/>
             <button id="btnfiltrar">FILTRAR</button><br><br><br><br>
         </div>
 
-        <div class="total mostrar" hidden>
+        <div class="total mostrar">
             <h1 class="titolmostrarticket">MOSTRAR TICKETS</h1>
             <!-- <h3>BUSCADOR:</h3>
             <input /><br><br> -->
@@ -63,39 +64,40 @@ export function crearFormulariHtml()
     div.innerHTML=html;
 
     // SI FEM CLICK AL BOTÓ ENVIAR
-    var enviar = document.getElementById("enviar");
-    enviar.addEventListener("click", event =>{    
-        event.preventDefault();
+    $('#enviar').on({
+        click: ((event)=>{
+            event.preventDefault();
 
-        // CREEM NOU TICKET
-        var id = parseInt(llistadetickets.lastIndex())+1;
-        var title = document.getElementById("title");
-        var desc = document.getElementById("desc");
-        var author_id = 1;
-        var asset_id = document.getElementById("asset_id");
-        title = title.value;
-        desc = desc.value;
-        author_id = author_id.value;
-        asset_id = asset_id.value;
-    
-        var created = new Date();
-        var assigned_id = 0;
-        var updated = null;
+            // CREEM NOU TICKET
+            var id = parseInt(llistadetickets.lastIndex())+1;
+            var title = document.getElementById("title");
+            var desc = document.getElementById("desc");
+            var author_id = 1;
+            var asset_id = document.getElementById("asset_id");
+            title = title.value;
+            desc = desc.value;
+            author_id = author_id.value;
+            asset_id = asset_id.value;
         
-        const ticket = new Tickets(id,title,desc,author_id,assigned_id,asset_id,created,updated);
-    
-        // INTRODUIM NOU TICKET A LOCALSTORAGE
-        llistadetickets.nouTicket(ticket);
+            var created = new Date();
+            var assigned_id = 0;
+            var updated = null;
+            
+            const ticket = new Tickets(id,title,desc,author_id,assigned_id,asset_id,created,updated);
+        
+            // INTRODUIM NOU TICKET A LOCALSTORAGE
+            llistadetickets.nouTicket(ticket);
 
-        // AFEGIM NOU TICKET CREAT A FIREBASE
-        setTicket(ticket,id);
+            // AFEGIM NOU TICKET CREAT A FIREBASE
+            setTicket(ticket,id);
 
-        // BORRAR TAULA ANTIGA
-        taula.remove();
+            // BORRAR TAULA ANTIGA
+            taula.remove();
 
-        // AFEGIR TAULA NOVA
-        var html3 = llistadetickets.crearTaulaSenseHTML(llistadetickets,llistadeassets);
-        agenda.innerHTML = html3;
+            // AFEGIR TAULA NOVA
+            var html3 = llistadetickets.crearTaulaSenseHTML(llistadetickets,llistadeassets);
+            agenda.innerHTML = html3;
+        })
     });
 
     // SI FEM CLICK AL BOTÓ FILTRAR
@@ -250,19 +252,25 @@ export function crearFormulariHtml()
     var estatLlistar = true;
     var estatFiltrar = true;
     // DIVS A ACTIVAR
-    var creardiv = document.querySelector(".crear");
-    var mostrardiv = document.querySelector(".total");
-    var filtrardiv = document.querySelector(".filtrar");
+    // var creardiv = document.querySelector(".crear");
+    // var mostrardiv = document.querySelector(".total");
+    // var filtrardiv = document.querySelector(".filtrar");
+    $(".crear").hide();
+    $(".total").hide();
+    $(".filtrar").hide();
+    
 
     // MOSTRAR/OCULTAR AFEGIR
-    botoAfegir.addEventListener("click",event=>{
+    $("#botoAfegir").on("click",event=>{
         // SI ESTÀ OCULT
         if(estatAfegir){
-            creardiv.removeAttribute("hidden");
+            // creardiv.removeAttribute("hidden");
+            $(".crear").show("slow");
         }
         // SI NO ESTÀ OCULT
         else{
-            creardiv.setAttribute("hidden",true);
+            // creardiv.setAttribute("hidden",true);
+            $(".crear").hide("slow");
         }
         estatAfegir = !estatAfegir;
     });
@@ -271,11 +279,13 @@ export function crearFormulariHtml()
     botoLlistar.addEventListener("click",event=>{
         // SI ESTÀ OCULT
         if(estatLlistar){
-            mostrardiv.removeAttribute("hidden");
+            // mostrardiv.removeAttribute("hidden");
+            $(".total").show("slow");
         }
         // SI NO ESTÀ OCULT
         else{
-            mostrardiv.setAttribute("hidden",true);
+            // mostrardiv.setAttribute("hidden",true);
+            $(".total").hide("slow");
         }
         estatLlistar = !estatLlistar;
     });
@@ -284,11 +294,13 @@ export function crearFormulariHtml()
     botoFiltrar.addEventListener("click",event=>{
         // SI ESTÀ OCULT
         if(estatFiltrar){
-            filtrardiv.removeAttribute("hidden");
+            // filtrardiv.removeAttribute("hidden");
+            $(".filtrar").show("fast");
         }
         // SI NO ESTÀ OCULT
         else{
-            filtrardiv.setAttribute("hidden",true);
+            // filtrardiv.setAttribute("hidden",true);
+            $(".filtrar").hide("fast");
         }
         estatFiltrar = !estatFiltrar;
     });

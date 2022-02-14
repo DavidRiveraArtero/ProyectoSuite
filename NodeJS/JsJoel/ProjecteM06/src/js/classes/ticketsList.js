@@ -2,9 +2,10 @@ export class TicketsList {
 
     tickets;
 
-    constructor()
+    constructor(v)
     {
-        this.carregarLocalStorage();
+        this.tickets = v
+        //this.carregarLocalStorage();
     }
 
     nouTicket(ticket) {

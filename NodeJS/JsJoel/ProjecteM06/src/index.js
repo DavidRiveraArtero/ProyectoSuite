@@ -15,7 +15,9 @@ import {Ticket_statusesList} from "./js/classes/ticket_statusesList.js";
 import {Usuari} from "./js/classes/usuari.js";
 import {UsuarisList} from "./js/classes/usuarisList.js";
 import "./styles.css";
+import 'jquery';
 
+console.log("cccccc");
 
 let div = document.createElement('div');
 div.innerHTML=header;
@@ -23,9 +25,14 @@ document.body.append(div);
 
 export let llistadetickets = new TicketsList();
 export let llistadeassets= new AssetsList();
-
-var dadestickets = fetch("https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/tickets.json").then(data => data.json()).then(tot => {
-    console.log(tot);
-    llistadetickets = new TicketsList(tot);
-    crearFormulariHtml(tot);
+console.log("zzzz");
+var dadestickets = fetch("https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/tickets.json")
+.then(data => data.json())  
+.then(tot => {
+    console.log("bbbbb");
+    const myArrClean = tot.filter(Boolean);
+    console.log("aaaaa",myArrClean)
+    llistadetickets = new TicketsList(myArrClean);
+    console.error(llistadetickets)
+    crearFormulariHtml(llistadetickets);
 })

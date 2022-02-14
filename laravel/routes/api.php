@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use \App\Http\Controllers\TicketsController;
+use \App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,8 @@ Route::get('/test', function (){
     return "Hola Mundi";
 });
 
-Route::apiResource("task", TaskController::class);
+//Route::apiResource("task", TaskController::class);
+
+Route::apiResource("users",UsersController::class);
+
+Route::apiResource("tickets", TicketsController::class);

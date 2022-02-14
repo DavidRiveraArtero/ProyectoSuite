@@ -21,5 +21,4 @@ class ExampleTest extends TestCase
                 ->count();
         $this->assertEquals($count, 1);
     }
- 
 }

@@ -2,8 +2,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var webpack = require('webpack');
 
 module.exports = {
+    
     mode: 'development',
 
     output: {
@@ -11,6 +13,7 @@ module.exports = {
     },
 
     module: {
+        
         rules: [
             {
                 test: /\.html$/,
@@ -53,6 +56,10 @@ module.exports = {
             patterns: [
                 {from: "src/assets", to: "./assets"}
             ]
+        }),
+        new webpack.ProvidePlugin({
+            $:'jquery',
+            JQuery:'jquery'
         })
     ]
 }
