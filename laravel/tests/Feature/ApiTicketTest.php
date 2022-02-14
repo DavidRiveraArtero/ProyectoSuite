@@ -16,7 +16,16 @@ class ApiTicketTest extends TestCase
     public function test_ApiGetTicket()
     {
         $response = $this->get('/api/tickets');
-
         $response->assertStatus(200);
+    }
+
+    public function test_ApiPostTicket()
+    {
+        //
+    }
+
+    public function test_ApiDeleteTicket()
+    {
+        //
     }
 }
