@@ -17,22 +17,17 @@ import {UsuarisList} from "./js/classes/usuarisList.js";
 import "./styles.css";
 import 'jquery';
 
-console.log("cccccc");
-
 let div = document.createElement('div');
 div.innerHTML=header;
 document.body.append(div);
 
 export let llistadetickets = new TicketsList();
 export let llistadeassets= new AssetsList();
-console.log("zzzz");
+
 var dadestickets = fetch("https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/tickets.json")
 .then(data => data.json())  
 .then(tot => {
-    console.log("bbbbb");
     const myArrClean = tot.filter(Boolean);
-    console.log("aaaaa",myArrClean)
     llistadetickets = new TicketsList(myArrClean);
-    console.error(llistadetickets)
     crearFormulariHtml(llistadetickets);
 })

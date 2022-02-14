@@ -86,7 +86,6 @@ export class TicketsList {
         let torna = this.tickets.filter((element) => {
             console.log(element.title)
         if (element.title.match(new RegExp(text,"i"))) return true;})
-        console.log(torna)
         return torna;
     }
 

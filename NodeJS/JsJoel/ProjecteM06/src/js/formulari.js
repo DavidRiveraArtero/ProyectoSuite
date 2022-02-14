@@ -92,17 +92,18 @@ export function crearFormulariHtml(llistadetickets)
             setTicket(ticket,id);
 
             // BORRAR TAULA ANTIGA
-            taula.remove();
+            $("#taula").remove();
 
             // AFEGIR TAULA NOVA
             var html3 = llistadetickets.crearTaulaSenseHTML(llistadetickets,llistadeassets);
-            agenda.innerHTML = html3;
+            // agenda.innerHTML = html3;
+            $("#agenda").html(html3);
         })
     });
 
     // SI FEM CLICK AL BOTÓ FILTRAR
-    var filtrar = document.getElementById("btnfiltrar");
-    filtrar.addEventListener("click", event =>{
+    // var filtrar = document.getElementById("btnfiltrar");
+    $("#btnfiltrar").on("click", event =>{
         event.preventDefault();
 
         // AGAFEM CONTINGUT A FILTRAR
@@ -114,9 +115,9 @@ export function crearFormulariHtml(llistadetickets)
         let hidden = "";
         var html2 = `
             <div class="total mostrar">
-                <div class="agenda">
+                <div class="agenda" ${hidden}>
                     <br><br><br><h1>ÚLTIMA BÚSQUEDA</h1>
-                    <table id='taula2' ${hidden}>
+                    <table id='taula2'>
                         <tr class="fila" id="fila">
                             <th colspan="1">ID</th>
                             <th colspan="1">TITLE</th>
@@ -132,10 +133,12 @@ export function crearFormulariHtml(llistadetickets)
         `
         // VALOR BUIT
         if(valor==""){
+            // $("#taula").hide("slow");
             taula.removeAttribute("hidden");
         }
         // VALOR AMB CONTINGUT
         else{
+            // $("#taula").show("slow");
             taula.setAttribute("hidden",true);
             hidden = "";
           
@@ -162,13 +165,13 @@ export function crearFormulariHtml(llistadetickets)
     });
     
     // SI FEM CLICK A CONTINGUTS DE LA TAULA
-    var agenda = document.getElementById("agenda");
-    var taula = document.getElementById("taula");
+    // var agenda = document.getElementById("agenda");
+    // var taula = document.getElementById("taula");
     var edit = true;
     var edits = [];
-    var ulls = document.getElementsByClassName("aldetall");
+    // var ulls = document.getElementsByClassName("aldetall");
     var mostrar = true;
-    agenda.addEventListener("click", event=>{
+    $("#agenda").on("click", event=>{
         event.preventDefault();
 
         // SI FEM CLICK A LA ICONA BROSA
@@ -215,10 +218,9 @@ export function crearFormulariHtml(llistadetickets)
         if(event.target.className.includes("aldetall")){
             
             // RECORRRER TOTS ELS ULLS
-            for(var x=0; x<ulls.length; x++){
-
+            for(var x=0; x<$(".aldetall").length; x++){
                 // SI HA SIGUT CLICAT L'ULL D'AQUESTA POSICIÓ
-                ulls[x].addEventListener("click",event=>{
+                $(".aldetall")[x].addEventListener("click",event=>{
                     var claseocult = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ocult");
                     var claseocultcap = event.target.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("ocultCap");
 
@@ -244,9 +246,9 @@ export function crearFormulariHtml(llistadetickets)
     });
 
     // TRES BOTONS INICIALS
-    var botoAfegir = document.getElementById("botoAfegir");
-    var botoLlistar = document.getElementById("botoLlistar");
-    var botoFiltrar = document.getElementById("botoFiltrar");
+    // var botoAfegir = document.getElementById("botoAfegir");
+    // var botoLlistar = document.getElementById("botoLlistar");
+    // var botoFiltrar = document.getElementById("botoFiltrar");
     // ESTATS DEL FORMULARI
     var estatAfegir = true;
     var estatLlistar = true;
@@ -276,7 +278,7 @@ export function crearFormulariHtml(llistadetickets)
     });
 
     // MOSTRAR/OCULTAR LLISTAR
-    botoLlistar.addEventListener("click",event=>{
+    $("#botoLlistar").on("click",event=>{
         // SI ESTÀ OCULT
         if(estatLlistar){
             // mostrardiv.removeAttribute("hidden");
@@ -291,7 +293,7 @@ export function crearFormulariHtml(llistadetickets)
     });
 
     // MOSTRAR/OCULTAR FILTRAR
-    botoFiltrar.addEventListener("click",event=>{
+    $("#botoFiltrar").on("click",event=>{
         // SI ESTÀ OCULT
         if(estatFiltrar){
             // filtrardiv.removeAttribute("hidden");
