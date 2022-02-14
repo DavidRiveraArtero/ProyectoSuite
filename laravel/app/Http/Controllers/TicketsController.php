@@ -29,10 +29,10 @@ class TicketsController extends Controller
         $request->validate([
             'title' => 'required',
             'desc' => 'required',
-            'asset' => 'required'
+            'asset_id' => 'required'
         ]);
 
-        $tickets = Ticket::create($request->all());
+        $tickets = Ticket::created($request->all());
         return \response($tickets);
     }
 

@@ -12,7 +12,6 @@ class Ticket extends Model
     protected $fillable = [
         'title',
         'desc',
-        'asset'
-    //    'status',
+        'asset_id'
     ];
 }
