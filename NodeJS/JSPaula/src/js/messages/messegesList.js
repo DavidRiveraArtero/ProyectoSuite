@@ -33,7 +33,7 @@ export class MessagesList{
     {
         html += `
                 <div id="divCabeza">
-                <table class="default" id="info" hidden>
+                <table class="default" id="info">
                 <caption>Información sobre cada mensaje</caption>
                 <tr class="inf">
                     <td>Id</td>
@@ -66,7 +66,7 @@ export class MessagesList{
             `
         });
         return html;
-        }
+    }
 
          crearTablaSinHTML(listamensaje)
         {
@@ -222,14 +222,23 @@ export class MessagesList{
     async actuMenssage(id)
     {
         try {
-            const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
-            {    
-                method: 'DELETE',
+            const res = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+id+'.json',
+            {
+                method: 'PUT',
+                headers: 
+                {
+                    'Content-Type': 'application/json'
+                },
+                
+                body: JSON.stringify(mensaje)
             })
+            return res;
+            
         }
-        
-        catch (error) {
+            
+        catch (error) 
+        {
             body.console.log("Ha sucedido un ERROR.");
-        }
+        }   
     }
 }

@@ -116,13 +116,9 @@
       <path value="$PROJECT_DIR$/laravel/vendor/filp/whoops" />
     </include_path>
   </component>
-<<<<<<< HEAD
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
-=======
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.3">
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
->>>>>>> b1.1_Paula
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/laravel/vendor/autoload.php" />

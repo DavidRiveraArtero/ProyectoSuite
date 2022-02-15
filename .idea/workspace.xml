@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949f388b-0f39-439d-8f1a-40d646958244" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/SendEmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/SendEmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Mail/TestMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Mail/TestMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/tests/Feature/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/tests/Feature/AdminTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/src/js/messages/formulari/formulario.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/src/js/messages/formulari/formulario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/src/js/messages/messegesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/src/js/messages/messegesList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JSPaula/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JSPaula/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/tests/Feature/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/tests/Feature/ExampleTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,11 +178,36 @@
       <workItem from="1643305667015" duration="1829000" />
       <workItem from="1643391983133" duration="875000" />
       <workItem from="1643996445217" duration="2579000" />
+      <workItem from="1644514954986" duration="2023000" />
+      <workItem from="1644601216397" duration="2907000" />
+      <workItem from="1644854538560" duration="3733000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/laravel/app/Http/Controllers/UsersController.php</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
