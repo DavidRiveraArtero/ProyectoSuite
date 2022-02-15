@@ -53,8 +53,9 @@ export function crearFormulariHtml(llistadetickets)
 
     // CREEM DIVS DINS DE BODY
     var div = document.createElement("div");
+    document.body.appendChild(div);
+
     var div2 = document.createElement("div");
-    document.body.appendChild(div);  
     document.body.appendChild(div2);
 
     // CREEM TAULA DE TICKETS
@@ -62,6 +63,12 @@ export function crearFormulariHtml(llistadetickets)
 
     // INTRODUIM AL DIV L'HTML
     div.innerHTML=html;
+
+    // ALL IN
+    // var div = $("<div></div>",{
+    //     html: html
+    // });
+    // $("body").append(div)
 
     // SI FEM CLICK AL BOTÓ ENVIAR
     $('#enviar').on({
@@ -133,13 +140,13 @@ export function crearFormulariHtml(llistadetickets)
         `
         // VALOR BUIT
         if(valor==""){
-            // $("#taula").hide("slow");
-            taula.removeAttribute("hidden");
+            $("#taula").show("slow");
+            // taula.removeAttribute("hidden");
         }
         // VALOR AMB CONTINGUT
         else{
-            // $("#taula").show("slow");
-            taula.setAttribute("hidden",true);
+            $("#taula").hide("slow");
+            // taula.setAttribute("hidden",true);
             hidden = "";
           
             novallista.forEach( (v,i,array) => {
