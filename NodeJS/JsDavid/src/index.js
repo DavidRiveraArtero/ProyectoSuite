@@ -1,6 +1,7 @@
 import { ListaBoards } from "./js/classes/boards-list-class";
 import {CrearFormularioHTML} from "./js/formulario";
 import "./style.css";
+import "jquery";
 let div = document.createElement("div")
 document.body.append(div);
 

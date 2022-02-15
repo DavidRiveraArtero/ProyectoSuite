@@ -171,7 +171,7 @@ export class ListaBoards{
     crearTabla(html,listaboards){
 
         html += `<div id="prueba">
-        <table hidden id="tabla" class="tareas">
+        <table id="tabla" class="tareas">
         
         
         <tr>
@@ -244,12 +244,15 @@ export class ListaBoards{
         return html
     }
 
+   
+
     async actualizarLista(){
         try{
             let listaBoards;
             listaBoards = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/board.json')
             listaBoards = await listaBoards.json()
-            console.log(listaBoards)
+            //const myArrClean = listaBoards.filter(Boolean)
+            //listaBoards = new this.ListaBoards(myArrClean);
             return listaBoards;
         }catch(error){
             console.log(error)

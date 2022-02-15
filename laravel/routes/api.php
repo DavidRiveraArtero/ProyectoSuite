@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,9 +26,7 @@ Route::get('/test', function (){
 
 Route::apiResource("task", TaskController::class);
 
-Route::apiResource("user", BoardController::class);
+Route::apiResource("users", UsersController::class);
 
-Route::apiResource("file", BoardController::class);
-
-Route::apiResource("board", BoardController::class);
+Route::apiResource('task/{id}/notes', TaskController::class);
 

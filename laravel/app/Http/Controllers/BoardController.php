@@ -13,7 +13,8 @@ class BoardController extends Controller
      */
     public function index()
     {
-        //
+        $board = Board::all();
+        return  \response($board);
     }
 
     /**
@@ -24,7 +25,11 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'date-to'=>'required|date',
+
+        ]);
     }
 
     /**
