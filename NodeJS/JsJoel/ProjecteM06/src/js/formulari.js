@@ -52,8 +52,8 @@ export function crearFormulariHtml(llistadetickets)
     `;
 
     // CREEM DIVS DINS DE BODY
-    var div = document.createElement("div");
-    document.body.appendChild(div);
+    // var div = document.createElement("div");
+    // document.body.appendChild(div);
 
     var div2 = document.createElement("div");
     document.body.appendChild(div2);
@@ -62,13 +62,14 @@ export function crearFormulariHtml(llistadetickets)
     html = llistadetickets.crearTaula(html,llistadetickets, llistadeassets);
 
     // INTRODUIM AL DIV L'HTML
-    div.innerHTML=html;
+    // div.innerHTML=html;
 
     // ALL IN
-    // var div = $("<div></div>",{
-    //     html: html
-    // });
-    // $("body").append(div)
+    var div = $("<div></div>",{
+        html: html
+    });
+
+    $("body").children().last().before(div);
 
     // SI FEM CLICK AL BOTÓ ENVIAR
     $('#enviar').on({
