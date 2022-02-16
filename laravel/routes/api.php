@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use \App\Http\Controllers\TicketsController;
 use \App\Http\Controllers\UsersController;
+use \App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::get('/test', function (){
 Route::apiResource("users",UsersController::class);
 
 Route::apiResource("tickets", TicketsController::class);
+
+Route::apiResource("comments", CommentsController::class);

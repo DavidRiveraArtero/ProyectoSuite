@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
-use App\Models\Ticket;
 
-class TicketsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        $ticket = Ticket::all();
-        return \response($ticket);
+        $comment = Comment::all();
+        return \response($comment);
     }
 
     /**
@@ -27,13 +27,11 @@ class TicketsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'desc' => 'required',
-            'asset_id' => 'required'
+            'msg' => 'required||max:255'
         ]);
 
-        $tickets = Ticket::create($request->all());
-        return \response($tickets);
+        $comments = Comment::create($request->all());
+        return \response($comments);
     }
 
     /**
@@ -44,8 +42,8 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::findOrFail($id);
-        return \response($ticket);
+        $comment = Comment::findOrFail($id);
+        return \response($comment);
     }
 
     /**
@@ -57,8 +55,8 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Ticket::findOrFail($id)->update($request->all());
-        return \response("Ticket actualizado");
+        Comment::findOrFail($id)->update($request->all());
+        return \response("Comentario actualizado");
     }
 
     /**
@@ -69,7 +67,7 @@ class TicketsController extends Controller
      */
     public function destroy($id)
     {
-        Ticket::destroy($id);
-        return \response("El ticket con id->${id}, ha sido destruido");
+        Comment::destroy($id);
+        return \response("El comentario con id->${id}, ha sido destruido");
     }
 }

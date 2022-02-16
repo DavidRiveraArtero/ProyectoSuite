@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'title',
-        'desc',
+        'ticket_id',
         'author_id',
-        'assigned_id',
-        'asset_id',
-        'status_id'
+        'msg'
     ];
 }
