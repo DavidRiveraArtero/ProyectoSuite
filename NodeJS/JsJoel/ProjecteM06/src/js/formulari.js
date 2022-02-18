@@ -64,12 +64,14 @@ export function crearFormulariHtml(llistadetickets)
     // INTRODUIM AL DIV L'HTML
     // div.innerHTML=html;
 
-    // ALL IN
+    // ALL IN DIVS DINS DE BODY
     var div = $("<div></div>",{
         html: html
     });
-
     $("body").children().last().before(div);
+
+    // var div2 = $("<div></div>");
+    // $("body").append(div2);
 
     // SI FEM CLICK AL BOTÓ ENVIAR
     $('#enviar').on({

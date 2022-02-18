@@ -32,4 +32,4 @@ Route::apiResource("users",UsersController::class);
 
 Route::apiResource("tickets", TicketsController::class);
 
-Route::apiResource("comments", CommentsController::class);
+Route::apiResource("tickets/{cid}/comments", CommentsController::class);

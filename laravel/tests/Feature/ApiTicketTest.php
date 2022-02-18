@@ -13,7 +13,7 @@ class ApiTicketTest extends TestCase
      *
      * @return void
      */
-    public function test_ApiGetTicket()
+    public function test_ApiListTicket()
     {
         $response = $this->get('/api/tickets');
         $response->assertStatus(200);
@@ -22,7 +22,6 @@ class ApiTicketTest extends TestCase
     public function test_ApiPostTicket()
     {
         $response = $this->post('/api/tickets',[
-            'id'=> 2,
             'title'=>'title',
             'desc'=>'desc',
             'author_id'=>1,
@@ -32,20 +31,42 @@ class ApiTicketTest extends TestCase
         ]);
 
         $response->assertStatus(200);
+
+        $content = $response->getContent();
+        $json = json_decode($content);
+        return $json->id;
     }
 
-    public function test_ApiPutTicket()
+    /**
+     * @return void
+     * @depends test_ApiPostTicket
+     */
+    public function test_ApiGetTicket($id)
     {
-        $response = $this->put('/api/tickets/2',[
+        $response = $this->get("/api/tickets/{$id}");
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     * @depends test_ApiPostTicket
+     */
+    public function test_ApiPutTicket($id)
+    {
+        $response = $this->put("/api/tickets/{$id}",[
             'title'=>'titulo'
         ]);
 
         $response->assertStatus(200);
     }
 
-    public function test_ApiDeleteTicket()
+    /**
+     * @return void
+     * @depends test_ApiPostTicket
+     */
+    public function test_ApiDeleteTicket($id)
     {
-        $response = $this->delete('/api/tickets/2');
+        $response = $this->delete("/api/tickets/{$id}");
         $response->assertStatus(200);
     }
 }

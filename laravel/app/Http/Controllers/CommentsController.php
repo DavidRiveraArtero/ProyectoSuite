@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -24,14 +25,24 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($cid, Request $request)
     {
-        $request->validate([
-            'msg' => 'required||max:255'
-        ]);
+        $ticket = Ticket::where('id',$cid)->first();
+        if($ticket!=null){
+            $request->validate([
+                'msg' => 'required||max:255'
+            ]);
 
-        $comments = Comment::create($request->all());
-        return \response($comments);
+            $comment = Comment::create([
+                'ticket_id' => $request->ticket_id,
+                'author_id' => $request->author_id,
+                'msg' => $request->msg
+            ]);
+            return \response($comment,201);
+        }
+        else {
+            return \response(["cid" => "no existe"], 404);
+        }
     }
 
     /**
