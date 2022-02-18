@@ -106,6 +106,7 @@ export function crearFormulariHtml(llistadetickets)
 
             // AFEGIR TAULA NOVA
             var html3 = llistadetickets.crearTaulaSenseHTML(llistadetickets,llistadeassets);
+            
             // agenda.innerHTML = html3;
             $("#agenda").html(html3);
         })
