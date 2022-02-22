@@ -133,6 +133,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
                     // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
                     anadir.actualizarTabla().then((value) => {
                         listamensaje.messages = value;
+                        console.log(value);
                         html3 = anadir.crearTablaSinHTML(listamensaje);
                         $('#divCabeza').html(html3);
                     });

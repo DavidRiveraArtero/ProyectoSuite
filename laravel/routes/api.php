@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\UsersController;
 
@@ -24,8 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test', function (){
     return "Hola Mundi";
 });
-
-Route::apiResource("messages", MessagesController::class);
+Route::apiResource("chats", ChatsController::class);
+Route::apiResource("chats/{id}/messages", MessagesController::class);
 
 Route::apiResource("users", UsersController::class);
 

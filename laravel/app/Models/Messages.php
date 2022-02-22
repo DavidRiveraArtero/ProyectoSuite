@@ -10,9 +10,10 @@ class Messages extends Model
     use HasFactory;
 
     protected $fillable = [
-        'author_id',
+        'id',
         'message',
-        'privpub',
-        'desti',
+        'chat_id',
+        'author_id',
+        'published',
     ];
 }

@@ -27,9 +27,9 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'message' => 'required',
-            'privpub'=> 'required',
-            'desti' => 'required'
+            'message' => 'required | max:255' ,
+            'chat_id'=> 'required',
+            'author_id' => 'required'
         ]);
 
         $messages = Messages::create($request->all());
