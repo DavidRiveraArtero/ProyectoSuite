@@ -4,8 +4,12 @@
         <!--LIBRERIA DE FONT AWESOME-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--LIBRERIA DE MAPAS-->
-        <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+              integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+              crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                crossorigin=""></script>
     </head>
     <body>
         <div class="parallax">
@@ -23,7 +27,11 @@
             <div class="prueba">
                 <h2>Ubicación</h2>
             </div>
-            <div id='map' style='width: 1904px; height: 700px;'></div>
+            <div id="map" style="height: 780px;"></div>
+            <style>
+                /* hue-rotate --> HACE QUE CAMBIE EL COLOR SEGUN EL NÚMERO (SU ORDEN ES EL TÍPICO, DEL AZUL AL VERDE) */
+                img.huechange { filter: hue-rotate(160deg); }
+            </style>
         </div>
         <footer>
             <h1 class="prueba color-blanco">Nuestras Redes Sociales</h1>
@@ -44,16 +52,46 @@
         </footer>
     </body>
     <script>
-        // TO MAKE THE MAP APPEAR YOU MUST
-        // ADD YOUR ACCESS TOKEN FROM
-        // https://account.mapbox.com
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZGFzZTIwMDAiLCJhIjoiY2t6aDYwODZ0MWFrejJvcGR3Ynk3cWExMyJ9.TvvvwUv_LBcxPOyH-IgRQw';
-        const map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            center: [-74.5, 40], // starting position [lng, lat]
-            zoom: 9 // starting zoom
-        });
+        // HACEMOS GEOLOCALIZACIÓN SI LE DAMOS A PERMITIR
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+        // MOSTRAR POSICIÓN LATITUDINAL Y LONGITUDINAL
+        function showPosition(position) {
+
+            // CREAMOS POSICIONES DE LATITUD Y LONGITUD
+            var l1 = position.coords.latitude
+            var l2 = position.coords.longitude;
+
+            // CREAMOS MARCADOR DEL CLIENTE
+            var marker2 = new L.marker([l1, l2]).addTo(map);
+
+            // AÑADIMOS ESTE MARCADOR AL ESTILO
+            marker2._icon.classList.add("huechange");
+            marker2.bindPopup("<b>PRISONER</b><br>I am a slave/prisoner.").openPopup();
+
+        }
+
+        // SITUAMOS EL MAPA EN UNAS CORDENADAS (LAS DEL INSTI EN ESTE CASO, CON 18 DE ZOOM)
+        var map = L.map('map').setView([41.23112, 1.72866], 18);
+
+        // CREAMOS MARCADOR CON LAS CORDENADAS DEL INSTI
+        var marker = new L.marker([41.23112, 1.72866]).addTo(map);
+
+        // AÑADIMOS POPUP
+        marker.bindPopup("<b>PRISIÓN DE VILANOVA</b><br>PRISION CON FALTA DE FUNCIONARIOS").openPopup();
+
+        // CREACIÓN DE MAPA (LA PARTE DE LA API)
+        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(map);
     </script>
+
 </html>
 

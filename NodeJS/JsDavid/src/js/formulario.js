@@ -102,6 +102,7 @@ export function CrearFormularioHTML(listaboards)
                     tabla_lista.remove();
                     let listaboards2 =  anyadir.actualizarLista().then((value) => {
                         lb.board = value;
+                        console.log("HOLA",value)
                         html3 = anyadir.crearTablaSinHTML(lb);
                         $('#prueba').html(html3)
                     });
@@ -250,8 +251,7 @@ export function CrearFormularioHTML(listaboards)
                     }
 
                     anyadir.setBoard(updates,id).then((value2)=>{
-                        
-                        
+                 
                     })
                     updates = [];
                     edit = true

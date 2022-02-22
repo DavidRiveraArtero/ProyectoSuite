@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\NotesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,5 +29,5 @@ Route::apiResource("task", TaskController::class);
 
 Route::apiResource("users", UsersController::class);
 
-Route::apiResource('task/{id}/notes', TaskController::class);
+Route::apiResource('task/{tid}/notes', NotesController::class);
 
