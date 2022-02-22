@@ -10,6 +10,7 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
                 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                 crossorigin=""></script>
+        <script src="{{asset('js/keypress.js')}}"></script>
     </head>
     <body>
         <div class="parallax">
@@ -19,7 +20,7 @@
             <div class="content">
                 <h1>Contactanos</h1>
                 <h3>Enviar Mensaje</h3>
-                <a href="#" class="btn">Formulario de contacto</a>
+                <a href="#" class="btn" accesskey="f">Formulario de contacto</a>
             </div>
         </div>
         <div class="Mapa">
@@ -56,13 +57,15 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         }
-
+        var l1
+        var l2
+        var mapaF = document.getElementById('map')
         // MOSTRAR POSICIÓN LATITUDINAL Y LONGITUDINAL
         function showPosition(position) {
 
             // CREAMOS POSICIONES DE LATITUD Y LONGITUD
-            var l1 = position.coords.latitude
-            var l2 = position.coords.longitude;
+            l1 = position.coords.latitude
+            l2 = position.coords.longitude;
 
             // CREAMOS MARCADOR DEL CLIENTE
             var marker2 = new L.marker([l1, l2]).addTo(map);
@@ -79,11 +82,14 @@
         // CREAMOS MARCADOR CON LAS CORDENADAS DEL INSTI
         var marker = new L.marker([41.23112, 1.72866]).addTo(map);
 
+        var tiles
+
         // AÑADIMOS POPUP
         marker.bindPopup("<b>PRISIÓN DE VILANOVA</b><br>PRISION CON FALTA DE FUNCIONARIOS").openPopup();
 
         // CREACIÓN DE MAPA (LA PARTE DE LA API)
-        var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+
+        tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -91,6 +97,21 @@
             tileSize: 512,
             zoomOffset: -1
         }).addTo(map);
+
+
+
+        // NUEVOS ATAJOS DE TECLADO
+        var listener = new window.keypress.Listener();
+        listener.simple_combo("control alt g", function() {
+            window.alert(" Longitud: " + l1 + "\n Latitud: " + l2)
+        });
+
+        listener.simple_combo("control alt c", function() {
+            map.panTo(new L.LatLng(41.23112, 1.72866, 18))
+
+
+        });
+
     </script>
 
 </html>
