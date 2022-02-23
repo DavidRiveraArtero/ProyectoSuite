@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use \App\Http\Controllers\TicketsController;
 use \App\Http\Controllers\UsersController;
 use \App\Http\Controllers\CommentsController;
+use \App\Http\Controllers\StatusesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,6 @@ Route::apiResource("users",UsersController::class);
 
 Route::apiResource("tickets", TicketsController::class);
 
-Route::apiResource("tickets/{cid}/comments", CommentsController::class);
+Route::apiResource("tickets/{tid}/comments", CommentsController::class);
+
+Route::apiResource("statuses",StatusesController::class);

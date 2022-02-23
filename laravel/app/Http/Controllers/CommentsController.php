@@ -16,7 +16,7 @@ class CommentsController extends Controller
     public function index()
     {
         $comment = Comment::all();
-        return \response($comment);
+        return \response($comment, 200);
     }
 
     /**
@@ -25,23 +25,23 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($cid, Request $request)
+    public function store($tid, Request $request)
     {
-        $ticket = Ticket::where('id',$cid)->first();
+        $ticket = Ticket::where('id',$tid)->first();
         if($ticket!=null){
             $request->validate([
                 'msg' => 'required||max:255'
             ]);
 
             $comment = Comment::create([
-                'ticket_id' => $request->ticket_id,
-                'author_id' => $request->author_id,
+                'ticket_id' => $tid,
+                'author_id' => 1,
                 'msg' => $request->msg
             ]);
             return \response($comment,201);
         }
         else {
-            return \response(["cid" => "no existe"], 404);
+            return \response(["tid" => "no existe"], 404);
         }
     }
 
@@ -51,7 +51,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tid, $id)
     {
         $comment = Comment::findOrFail($id);
         return \response($comment);
@@ -64,10 +64,10 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($tid, Request $request, $id)
     {
         Comment::findOrFail($id)->update($request->all());
-        return \response("Comentario actualizado");
+        return \response("Comentario actualizado", 200);
     }
 
     /**
@@ -76,7 +76,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($tid, $id)
     {
         Comment::destroy($id);
         return \response("El comentario con id->${id}, ha sido destruido");

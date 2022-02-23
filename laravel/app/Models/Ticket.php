@@ -10,7 +10,6 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'title',
         'desc',
         'author_id',

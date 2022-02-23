@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class ApiCommentTest extends TestCase
 {
+    const TICKET_ID = 5;
+
     /**
      * A basic feature test example.
      *
@@ -16,19 +18,20 @@ class ApiCommentTest extends TestCase
 
     public function test_ApiListComment()
     {
-        $response = $this->get('/api/tickets/5/comments');
+        $tid = self::TICKET_ID;
+        $response = $this->get("/api/tickets/{$tid}/comments");
         $response->assertStatus(200);
     }
 
     public function test_ApiPostComment()
     {
-        $response = $this->post('/api/tickets/5/comments',[
-            'ticket_id'=>2,
+        $tid = self::TICKET_ID;
+        $response = $this->post("/api/tickets/{$tid}/comments",[
             'author_id'=>1,
             'msg'=>'HOLA, ¿QUÉ TAL ESTÁS?'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
 
         $content = $response->getContent();
         $json = json_decode($content);
@@ -42,7 +45,8 @@ class ApiCommentTest extends TestCase
      */
     public function test_ApiGetComment($id)
     {
-        $response = $this->get("/api/tickets/5/comments/{$id}");
+        $tid = self::TICKET_ID;
+        $response = $this->get("/api/tickets/{$tid}/comments/{$id}");
         $response->assertStatus(200);
     }
 
@@ -52,8 +56,9 @@ class ApiCommentTest extends TestCase
      */
     public function test_ApiPutComment($id)
     {
-        $response = $this->put("/api/tickets/5/comments/{$id}",[
-            'msg'=>'MUY BIEN, ¿Y TÚ?'
+        $tid = self::TICKET_ID;
+        $response = $this->put("/api/tickets/{$tid}/comments/{$id}",[
+            'msg'=>'MUY BIEN, ¿Y TÚ2?'
         ]);
 
         $response->assertStatus(200);
@@ -63,9 +68,10 @@ class ApiCommentTest extends TestCase
      * @return void
      * @depends test_ApiPostComment
      */
-    public function test_ApiDeleteComment($id = 1)
+    public function test_ApiDeleteComment($id)
     {
-        $response = $this->delete("/api/tickets/5/comments/{$id}");
+        $tid = self::TICKET_ID;
+        $response = $this->delete("/api/tickets/{$tid}/comments/{$id}");
         $response->assertStatus(200);
     }
 }
