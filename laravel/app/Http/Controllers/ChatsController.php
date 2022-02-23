@@ -24,9 +24,17 @@ class ChatsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($cid ,Request $request)
+
+    public function store(Request $request)
     {
-        $idChats = Chats::where('id', $cid)->first();
+        $request->validate([
+            'name' => 'required | max:30' ,
+            'author_id' => 'required'
+        ]);
+        $chat = Chats::create($request->all());
+        return \response($chat);
+
+        /*        $idChats = Chats::where('id', $cid)->first();
 
         if($idChats!=null)
         {
@@ -38,16 +46,12 @@ class ChatsController extends Controller
                 'name' => $request ->body ,
                 'author_id' => $cid
             ]);
-
-            return \response(["cid" => "existe"], 201);
+            return \response($chats, 201);
         }
         else{
             return \response(["cid" => "no existe"], 404);
 
-        }
-
-        $chats = Chats::create($request->all());
-        return \response($chats);
+        }*/
     }
 
     /**

@@ -55,13 +55,12 @@ class ApiMessagesTest extends TestCase
      * A basic feature test example.
      *
      * @return void
-     * @depends  test_AgiMessagesPost
+     * @depends  test_ApiMessagesPost
      */
 
     public function test_ApiMessagesUpdate($id)
     {
         $response = $this->put("/api/chats/1/messages/{$id}", [
-            'id' => 3,
             'message' => "b",
             'chat_id' => 2,
             'author_id' => 1
@@ -74,7 +73,7 @@ class ApiMessagesTest extends TestCase
      * A basic feature test example.
      *
      * @return void
-     * @depends  test_AgiMessagesPost
+     * @depends  test_ApiMessagesPost
      */
     public function test_ApiMessagesDelete($id)
     {

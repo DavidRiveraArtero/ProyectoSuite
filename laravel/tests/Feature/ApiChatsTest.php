@@ -16,11 +16,10 @@ class ApiChatsTest extends TestCase
 
     public function test_ApiChatsPost()
     {
-        $response = $this->post('/api/chats',
+        $response = $this->post("/api/chats",
             [
-                'message' => "a",
-                'chat_id' => 2,
-                'author_id' => 1
+                'name' => "a",
+                'author_id' => 2,
             ]
         );
         $response->assertStatus(200);
@@ -34,7 +33,7 @@ class ApiChatsTest extends TestCase
      * A basic feature test example.
      *
      * @return void
-     * @depends  test_AgiMessagesPost
+     * @depends test_ApiChatsPost
      */
 
     public function test_ApiChatsGet($id)
@@ -47,13 +46,12 @@ class ApiChatsTest extends TestCase
      * A basic feature test example.
      *
      * @return void
-     * @depends  test_AgiMessagesPost
+     * @depends test_ApiChatsPost
      */
 
     public function test_ApiChatsUpdate($id)
     {
         $response = $this->put("/api/chats/{$id}", [
-            'id' => 3,
             'message' => "b",
             'chat_id' => 2,
             'author_id' => 1
@@ -66,7 +64,8 @@ class ApiChatsTest extends TestCase
      * A basic feature test example.
      *
      * @return void
-     * @depends  test_AgiMessagesPost
+     * @depends test_ApiChatsPost
+
      */
     public function test_ApiChatsDelete($id)
     {

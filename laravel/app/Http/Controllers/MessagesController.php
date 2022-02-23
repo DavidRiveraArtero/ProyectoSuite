@@ -56,7 +56,8 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Messages::findOrFail($id)->update($request->all());
+        return  \response("Mensaje actualizado");
     }
 
     /**
@@ -67,6 +68,7 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Messages::destroy($id);
+        return  \response("Ha sido borrado el mensaje: ${id}");
     }
 }

@@ -13,6 +13,5 @@ class Chats extends Model
         'id',
         'name',
         'author_id',
-        'created',
     ];
 }

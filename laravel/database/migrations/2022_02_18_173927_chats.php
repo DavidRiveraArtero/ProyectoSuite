@@ -18,7 +18,6 @@ class Chats extends Migration
             $table -> id();
             $table -> string('name');
             $table -> integer('author_id');
-            $table -> dateTime('created');
             $table -> timestamps();
         });
 
