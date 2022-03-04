@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chats;
+use App\Models\Messages;
 use Illuminate\Http\Request;
 
 class ChatsController extends Controller
@@ -33,25 +34,6 @@ class ChatsController extends Controller
         ]);
         $chat = Chats::create($request->all());
         return \response($chat);
-
-        /*        $idChats = Chats::where('id', $cid)->first();
-
-        if($idChats!=null)
-        {
-            $request->validate([
-                'name' => 'required | max:30' ,
-                'author_id' => 'required'
-            ]);
-            $chats = Chats::create([
-                'name' => $request ->body ,
-                'author_id' => $cid
-            ]);
-            return \response($chats, 201);
-        }
-        else{
-            return \response(["cid" => "no existe"], 404);
-
-        }*/
     }
 
     /**
@@ -62,7 +44,8 @@ class ChatsController extends Controller
      */
     public function show($id)
     {
-        //
+            $mensaje = Chats::findOrFail($id);
+            return  \response($mensaje, 200);
     }
 
     /**
@@ -74,7 +57,8 @@ class ChatsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $mensaje = Chats::findOrFail($id)->update($request->all());
+            return  \response($mensaje, 200);
     }
 
     /**
@@ -85,6 +69,7 @@ class ChatsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chats::destroy($id);
+        return  \response("Ha sido borrado el mensaje: ${id}", 200);
     }
 }

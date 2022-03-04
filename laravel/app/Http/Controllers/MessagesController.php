@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chats;
 use App\Models\Messages;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($cid)
     {
-        $messages = Messages::all();
+        $messages = Messages::all()->where("chat_id", $cid);
         return \response($messages);
     }
 
@@ -24,15 +25,19 @@ class MessagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($cid, Request $request)
     {
         $request->validate([
             'message' => 'required | max:255' ,
-            'chat_id'=> 'required',
             'author_id' => 'required'
         ]);
 
-        $messages = Messages::create($request->all());
+        $messages = Messages::create([
+            'message' => $request->message,
+            'chat_id' => $cid,
+            'author_id' => $request->author_id
+        ]);
+
         return \response($messages);
     }
 
@@ -42,9 +47,17 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cid, $id)
     {
-        //
+        $messages = Chats::where('id', $cid)->first();
+        if ($messages != null)
+        {
+            $mensaje = Messages::findOrFail($id);
+            return  \response($mensaje, 200);
+        }
+        else{
+            return  \response("Mensaje actualizado");
+        }
     }
 
     /**
@@ -54,10 +67,17 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($cid, Request $request, $id)
     {
-        Messages::findOrFail($id)->update($request->all());
-        return  \response("Mensaje actualizado");
+        $messages = Chats::where('id', $cid)->first();
+        if ($messages != null)
+        {
+            $mensaje = Messages::findOrFail($id)->where("chat_id", $cid)->update($request->all());
+            return  \response($mensaje, 200);
+        }
+        else{
+            return  \response("Mensaje actualizado");
+        }
     }
 
     /**

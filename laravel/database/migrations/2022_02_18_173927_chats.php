@@ -17,7 +17,7 @@ class Chats extends Migration
         {
             $table -> id();
             $table -> string('name');
-            $table -> integer('author_id');
+            $table -> foreignId('author_id')->references('id')->on('users');
             $table -> timestamps();
         });
 

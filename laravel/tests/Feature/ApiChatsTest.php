@@ -18,8 +18,8 @@ class ApiChatsTest extends TestCase
     {
         $response = $this->post("/api/chats",
             [
-                'name' => "a",
-                'author_id' => 2,
+                'name' => "Paco",
+                'author_id' => 1,
             ]
         );
         $response->assertStatus(200);
@@ -52,9 +52,8 @@ class ApiChatsTest extends TestCase
     public function test_ApiChatsUpdate($id)
     {
         $response = $this->put("/api/chats/{$id}", [
-            'message' => "b",
-            'chat_id' => 2,
-            'author_id' => 1
+            'message' => "Hola Paco",
+            'chat_id' => 1,
         ]);
 
         $response->assertStatus(200);

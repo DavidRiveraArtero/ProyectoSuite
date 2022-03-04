@@ -24,10 +24,10 @@ class ApiMessagesTest extends TestCase
 
     public function test_ApiMessagesPost()
     {
-        $response = $this->post('/api/chats/2/messages',
+        $response = $this->post('/api/chats/1/messages',
             [
-                'message' => "a",
-                'chat_id' => 2,
+                'message' => "Adios",
+                'chat_id' => 4,
                 'author_id' => 1
             ]
         );
@@ -60,10 +60,10 @@ class ApiMessagesTest extends TestCase
 
     public function test_ApiMessagesUpdate($id)
     {
-        $response = $this->put("/api/chats/1/messages/{$id}", [
-            'message' => "b",
-            'chat_id' => 2,
-            'author_id' => 1
+        $response = $this->put("/api/chats/2/messages/{$id}", [
+            'message' => "Hola",
+            'chat_id' => 1,
+            'author_id' => 1,
         ]);
 
         $response->assertStatus(200);

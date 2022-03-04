@@ -26,7 +26,7 @@ Route::get('/test', function (){
     return "Hola Mundi";
 });
 Route::apiResource("chats", ChatsController::class);
-Route::apiResource("chats/{id}/messages", MessagesController::class);
+Route::apiResource("chats/{cid}/messages", MessagesController::class);
 
 Route::apiResource("users", UsersController::class);
 

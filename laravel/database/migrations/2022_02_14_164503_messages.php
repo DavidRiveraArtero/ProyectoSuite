@@ -17,8 +17,8 @@ class Messages extends Migration
         {
             $table -> id();
             $table -> string('message');
-            $table -> integer('chat_id');
-            $table -> integer('author_id');
+            $table -> foreignId('chat_id')->references('id')->on('chats');
+            $table -> foreignId('author_id')->references('id')->on('users');
             $table -> dateTime('published')->nullable();
             $table -> timestamps();
         });
