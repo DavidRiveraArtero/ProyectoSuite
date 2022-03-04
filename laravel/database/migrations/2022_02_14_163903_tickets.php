@@ -17,11 +17,11 @@ class Tickets extends Migration
             $table->id();
             $table->string('title');
             $table->string('desc');
-            $table->integer('author_id');
-            $table->integer('assigned_id');
             $table->integer('asset_id');
-            $table->integer('status_id');
             $table->timestamps();
+            $table->foreignId('status_id')->references('id')->on('statuses');
+            $table->foreignId('author_id')->references('id')->on('users');
+            $table->foreignId('assigned_id')->references('id')->on('users');
         });
     }
 

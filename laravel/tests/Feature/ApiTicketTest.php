@@ -27,7 +27,7 @@ class ApiTicketTest extends TestCase
             'author_id'=>1,
             'assigned_id'=>1,
             'asset_id'=>1,
-            'status_id'=>200
+            'status_id'=>2
         ]);
 
         $response->assertStatus(200);

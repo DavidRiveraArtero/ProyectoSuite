@@ -13,9 +13,9 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tid)
     {
-        $comment = Comment::all();
+        $comment = Comment::all()->where('ticket_id',$tid);
         return \response($comment, 200);
     }
 
@@ -53,8 +53,14 @@ class CommentsController extends Controller
      */
     public function show($tid, $id)
     {
-        $comment = Comment::findOrFail($id);
-        return \response($comment);
+        $ticket = Ticket::where('id',$tid)->first();
+        if($ticket == null){
+            \response("No existe el comentario que quiere ver ni el ticket");
+        }
+        else{
+            $comment = Comment::findOrFail($id);
+            return \response($comment);
+        }
     }
 
     /**
@@ -66,7 +72,7 @@ class CommentsController extends Controller
      */
     public function update($tid, Request $request, $id)
     {
-        Comment::findOrFail($id)->update($request->all());
+        Comment::findOrFail($id)->where('ticket_id',$tid)->update($request->all());
         return \response("Comentario actualizado", 200);
     }
 
@@ -78,7 +84,13 @@ class CommentsController extends Controller
      */
     public function destroy($tid, $id)
     {
-        Comment::destroy($id);
-        return \response("El comentario con id->${id}, ha sido destruido");
+        $ticket = Ticket::where('id',$tid)->first();
+        if($ticket == null){
+            \response("No existe el comentario que quiere ver ni el ticket");
+        }
+        else{
+            Comment::destroy($id);
+            return \response(200);
+        }
     }
 }

@@ -68,7 +68,7 @@ class ApiCommentTest extends TestCase
      * @return void
      * @depends test_ApiPostComment
      */
-    public function test_ApiDeleteComment($id)
+    public function test_ApiDeleteComment( $id)
     {
         $tid = self::TICKET_ID;
         $response = $this->delete("/api/tickets/{$tid}/comments/{$id}");
