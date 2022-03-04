@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Mail\TestsMail;
+=======
+use App\Http\TestMail;
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,5 +24,8 @@ class SendEmailController extends Controller
             echo 'Error -'.$e;
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
 }

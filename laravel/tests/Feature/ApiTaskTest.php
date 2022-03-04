@@ -45,6 +45,12 @@ class ApiTaskTest extends TestCase
      * @depends test_ApiPostTask
      */
 
+    public function test_ApiGetTask($id){
+        $response = $this->get("/api/task/{$id}");
+
+        $response->assertStatus(200);
+    }
+
     /**
      * @return void
      * @depends test_ApiPostTask
@@ -70,5 +76,4 @@ class ApiTaskTest extends TestCase
 
         $response->assertStatus(200);
     }
-
 }

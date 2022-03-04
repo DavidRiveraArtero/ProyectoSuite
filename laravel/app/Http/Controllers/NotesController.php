@@ -13,9 +13,9 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tid)
     {
-        $notes = Notes::all();
+        $notes = Notes::where('task_id',$tid)->get();
         return \response($notes,200);
     }
 
@@ -38,7 +38,7 @@ class NotesController extends Controller
                 "body" => $request->body,
                 "task_id" => $tid
             ]);
-            return \response($nota,201);
+            return \response($nota,200);
         }else{
             return \response(["tid" => 'no existe'], 404);
         }
@@ -72,7 +72,7 @@ class NotesController extends Controller
     {
         $task = Task::where('id', $tid)->first();
         if($task!=null){
-            $notes = Notes::findOrFail($id)->update($request->all());
+            $notes = Notes::findOrFail($id)->where('task_id',$tid)->update($request->all());
             return \response($notes);
         }else{
             return \response(["tid" => 'no existe'], 404);

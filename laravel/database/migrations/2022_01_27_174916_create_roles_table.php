@@ -23,6 +23,12 @@ class CreateRolesTable extends Migration
             '--force' => true
         ]);
 
+        Schema::table('users', function (Blueprint $table) {
+            //$table->foreignId('role_id');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
+        });
+
     }
 
     /**
@@ -32,6 +38,10 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
+        Schema::table('users',function ($table){
+            $table->dropForeign(['role_id']);
+            $table->dropColumn('role_id');
+        });
         Schema::dropIfExists('roles');
     }
 }

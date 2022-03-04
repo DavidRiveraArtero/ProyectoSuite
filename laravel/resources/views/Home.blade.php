@@ -11,6 +11,7 @@
                 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                 crossorigin=""></script>
         <script src="{{asset('js/keypress.js')}}"></script>
+        <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js?a4098"></script>
     </head>
     <body>
         <div class="parallax">
@@ -98,18 +99,34 @@
             zoomOffset: -1
         }).addTo(map);
 
-
-
-        // NUEVOS ATAJOS DE TECLADO
-        var listener = new window.keypress.Listener();
-        listener.simple_combo("control alt g", function() {
-            window.alert(" Longitud: " + l1 + "\n Latitud: " + l2)
+        // AÑADIR SHORTCUTS
+        var a = Mousetrap.bind('ctrl+alt+g', function(e, combo) {
+            // console.log(combo); // logs 'ctrl+alt+g'
+            alert("COORDENADAS DEL USUARIO:\n\tLATITUDE: "+l1+"\n\tLONGITUD: "+l2);
+        });
+        var b = Mousetrap.bind('ctrl+alt+c', function(e, combo) {
+            // console.log(combo); // logs 'ctrl+alt+g'
+            map.panTo(new L.LatLng(41.23112, 1.72866, 18));
         });
 
-        listener.simple_combo("control alt c", function() {
-            map.panTo(new L.LatLng(41.23112, 1.72866, 18))
+        var estado = true;
+        Mousetrap.bind('ctrl+alt+j', function(e, combo) {
+            if(estado){
+                Mousetrap.unbind('ctrl+alt+c')
+                Mousetrap.unbind('ctrl+alt+g')
+            }
+            else{
+                Mousetrap.bind('ctrl+alt+g', function(e, combo) {
+                    // console.log(combo); // logs 'ctrl+alt+g'
+                    alert("COORDENADAS DEL USUARIO:\n\tLATITUDE: "+l1+"\n\tLONGITUD: "+l2);
+                });
 
-
+                Mousetrap.bind('ctrl+alt+c', function(e, combo) {
+                    // console.log(combo); // logs 'ctrl+alt+g'
+                    map.panTo(new L.LatLng(41.23112, 1.72866, 18));
+                });
+            }
+            estado=!estado;
         });
 
     </script>

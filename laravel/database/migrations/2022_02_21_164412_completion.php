@@ -14,7 +14,7 @@ class Completion extends Migration
     public function up()
     {
         Schema::create('completion', function (Blueprint $table){
-            $table->foreignId('id')->references('id')->on('ticket_id');
+            $table->id();
             $table->string('name');
         });
     }

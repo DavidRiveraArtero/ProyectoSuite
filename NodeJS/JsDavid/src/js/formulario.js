@@ -28,9 +28,21 @@ export function CrearFormularioHTML(listaboards)
             </select><br><br>
             <button class='btn btn-primary' id='guardar'>Guardar</button>
         </div>
+<<<<<<< HEAD
         <div class="prueba" id='apartado_filtrar'>
+=======
+        <div hidden class="prueba" id='apartado_filtrar'>
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <input placeholder='Titulo' id="buscador" type="text" >
+=======
+            <input placeholder='Titulo' class="buscador" id="inputBuscador" type="text" >
+>>>>>>> b1.1_David
+=======
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
             <input placeholder='Titulo' id="buscador" type="text" >
             
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
             <button class="btn btn-primary filtrar" id='filtrarBuscador'>Filtrar</button>
         </div>
         <h1 class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
@@ -45,7 +57,26 @@ export function CrearFormularioHTML(listaboards)
     document.body.appendChild(div);
     var html3 = ``
     
+<<<<<<< HEAD
+        html += `<tr>
+                    <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
+                    <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
+                    <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
+                    
+                    <th>${v.created}</th>
+                    <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
+                    <th hidden class="ocultos">${v.author_id}</th>
+                    <th hidden class="ocultos">${v.ticket_id}</th>
+                </tr>`
+    })
+    html += `<footer>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            </footer>`
+ 
+    div.innerHTML=html;
+=======
     div.innerHTML= anyadir.crearTabla(html,listaboards);
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
     var cont = 1;
     var titulos =$(".ocultoT")
@@ -63,9 +94,30 @@ export function CrearFormularioHTML(listaboards)
 
     //APARTADO FILTRAR
     var bool_filtrar = false
+<<<<<<< HEAD
     var inputBuscador = $("#buscador")
     
 
+=======
+    var filtrarBuscador = document.getElementById('filtrarBuscador');
+<<<<<<< HEAD
+<<<<<<< HEAD
+    var inputBuscador = document.getElementById("buscador")
+
+    //INPUTS A FILTRAR
+    var tituloFilt = document.getElementsByClassName('filtrarTitulo');
+=======
+    var inputBuscador = document.getElementById('inputBuscador');
+>>>>>>> b1.1_David
+=======
+    var inputBuscador = document.getElementById("buscador")
+    
+
+    //INPUTS A FILTRAR
+    var tituloFilt = document.getElementsByClassName('filtrarTitulo');
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
+
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
     //OTRAS COSAS
     var edit = true;
     var moreOptions = false;
@@ -165,7 +217,26 @@ export function CrearFormularioHTML(listaboards)
     })
     
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    // FILTRADO BUSCADOR
+    filtrarBuscador.addEventListener("click",event=>{
+        for(var x = 0;x<tituloFilt.length;x++){
+          
+            if(tituloFilt[x].filter(inputBuscador.value)){
+                console.log("si")
+            }
+            
+            
+        }
+    });
+=======
     // ====================NUEVA TABLA=================
+    filtrarBuscador.addEventListener('click',event=>{
+        var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
+=======
+    // ====================NUEVA TABLA=================
+<<<<<<< HEAD
     $('#filtrarBuscador').on({
         click:((event)=>{
             var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
@@ -180,6 +251,49 @@ export function CrearFormularioHTML(listaboards)
                     <td class="ocultoT" hidden>ticket_id</td>
                 <tr>`
             var tabla2 = $('#tabla2');
+=======
+    filtrarBuscador.addEventListener('click',event=>{
+        var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
+        var html2 = `<table id="tabla2" class="tareas">
+            <tr>
+                <td>id</td>
+                <td>title</td>
+                <td>description</td>
+                <td>created</td>
+                <td>Opcion</td>
+                <td class="ocultoT" hidden>author_id</td>
+                <td class="ocultoT" hidden>ticket_id</td>
+            <tr>`
+        var tabla2 = document.getElementById('tabla2');
+        
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
+        if(inputBuscador.value == "")
+        {
+            console.log("Input vacio")
+            tabla_lista.removeAttribute("hidden")
+<<<<<<< HEAD
+        }else
+        {
+            console.log(algo);
+            tabla_lista.setAttribute("hidden",true)
+            algo.forEach((v,i,array)=>{
+    
+                console.log("hola",v.author_id)
+                
+            })
+            div.innerHTML=html;
+
+        }
+    })
+>>>>>>> b1.1_David
+=======
+            tabla2.setAttribute("hidden",true)
+        }else
+        {
+            document.body.appendChild(div2);
+            tabla_lista.setAttribute("hidden",true)
+            //apartado_filtrar.removeAttribute('hidden')
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
             
             if(inputBuscador.value == "")
             {
@@ -211,8 +325,13 @@ export function CrearFormularioHTML(listaboards)
             }
         })
     })
+<<<<<<< HEAD
     
     // ====================BOTON ELIMINAR====================
+=======
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
+
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
     for(var x=0;x<borrar.length;x++){
         $(borrar[x]).on({
             click:((event)=>{
