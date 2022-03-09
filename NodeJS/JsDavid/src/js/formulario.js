@@ -1,6 +1,7 @@
 //import {UsuarisList} from "./classes/usuaris-list-class";
 import {Board} from "./classes/boards-class";
 import {ListaBoards} from "./classes/boards-list-class"
+import  { listaBoards as lb }  from "../index.js"
 
 let anyadir = new ListaBoards()
 //let listaboards = new ListaBoards()
@@ -15,7 +16,7 @@ export function CrearFormularioHTML(listaboards)
             <button class="btn btn-outline-primary filtrar" id='boton_filtrar'>Filtrar</button>
             <button class="btn btn-outline-danger filtrar" id="boton_añadir">Añadir</button>
         </div>
-        <div hidden id="añadir">
+        <div  id="añadir">
             <label>Title</label><input id='title' type="text"><br><br>
             <label>Description</label><br><textarea id='description' type="text"></textarea><br><br>
             <label>Incidencia</label>
@@ -27,6 +28,9 @@ export function CrearFormularioHTML(listaboards)
             </select><br><br>
             <button class='btn btn-primary' id='guardar'>Guardar</button>
         </div>
+<<<<<<< HEAD
+        <div class="prueba" id='apartado_filtrar'>
+=======
         <div hidden class="prueba" id='apartado_filtrar'>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,12 +39,13 @@ export function CrearFormularioHTML(listaboards)
             <input placeholder='Titulo' class="buscador" id="inputBuscador" type="text" >
 >>>>>>> b1.1_David
 =======
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
             <input placeholder='Titulo' id="buscador" type="text" >
             
 >>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
             <button class="btn btn-primary filtrar" id='filtrarBuscador'>Filtrar</button>
         </div>
-        <h1 hidden class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
+        <h1 class='TituloResult' id='titulo_listar'>MOSTRAR RESULTADOS</h1>
         
         
     `
@@ -51,7 +56,6 @@ export function CrearFormularioHTML(listaboards)
     var div2 = document.createElement("div");
     document.body.appendChild(div);
     var html3 = ``
-    document.body.appendChild(div);
     
 <<<<<<< HEAD
         html += `<tr>
@@ -74,26 +78,27 @@ export function CrearFormularioHTML(listaboards)
     div.innerHTML= anyadir.crearTabla(html,listaboards);
 >>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
-    var enviar = document.getElementById('guardar')
     var cont = 1;
-    var titulos = document.getElementsByClassName("ocultoT")
+    var titulos =$(".ocultoT")
 
-    var borrar = document.getElementsByClassName('delete')
-    var update = document.getElementsByClassName('update')
-    var mostrar = document.getElementsByClassName('mostrar')
+    var borrar = $('.delete')
+    var update = $('.update')
+    var mostrar = $('.mostrar')
     //APARTADO AÑADIR
-    var añadir = document.getElementById('añadir')
-    var botonAñadir = document.getElementById('boton_añadir')
     var boolAñadir = false;
+
     //APARTADO LISTAR
-    var tabla_lista = document.getElementById('tabla');
-    var boton_listar = document.getElementById('boton_listar')
-    var titulo_listar = document.getElementById('titulo_listar')
+    var tabla_lista = $('#tabla');
+   
     var bool_listar = false
+
     //APARTADO FILTRAR
-    var boton_filtrar = document.getElementById('boton_filtrar')
-    var apartado_filtrar = document.getElementById('apartado_filtrar')
     var bool_filtrar = false
+<<<<<<< HEAD
+    var inputBuscador = $("#buscador")
+    
+
+=======
     var filtrarBuscador = document.getElementById('filtrarBuscador');
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -112,96 +117,105 @@ export function CrearFormularioHTML(listaboards)
     var tituloFilt = document.getElementsByClassName('filtrarTitulo');
 >>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
     //OTRAS COSAS
     var edit = true;
     var moreOptions = false;
     var updates = [];
-    
-    // evento
-    enviar.addEventListener('click', event =>
-    {
 
-        var title = document.getElementById('title')
-        var description = document.getElementById('description')
-       
-        
-        var opcion = document.getElementById('incidencia')
+    // JQUERY
+    $('#añadir').hide()
+    $('#tabla').hide()
+    $('#titulo_listar').hide()
+    $('#apartado_filtrar').hide() 
 
-        if (title.value == '' || description.value=='')
-        {
-            window.alert("TODOS LOS CAMPOS SON OBLIGATORIOS")  
-        }
-        else
-        {
-        
-            var newIndex = parseInt(listaboards.lastIndex()) + 1
+    // ===============AÑADIR TAREAS==============
+    $('#guardar').on({
+        click:((event)=>{
+            var title = document.getElementById('title')
+            var description = document.getElementById('description')
            
-            console.log(newIndex)
-
-            var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
-            anyadir.setBoard(boards,newIndex).then
-            // ELIMINAR LA NUEVA
-            console.log("asasaasasa")
-            tabla_lista.remove();
-
-            var html3 = anyadir.crearTablaSinHTML(listaboards);
-            console.log(html3)
-            var div3 = document.getElementById('prueba')
             
-            div3.innerHTML=html3
-            
-            
-            //var alog = anyadir.postBlog(boards);
-            
-        
-        }
+            var opcion = document.getElementById('incidencia')
+    
+            if (title.value == '' || description.value=='')
+            {
+                window.alert("TODOS LOS CAMPOS SON OBLIGATORIOS")  
+            }
+            else
+            {
+                let html3;
+                var newIndex = parseInt(listaboards.lastIndex()) + 1
+               
+                console.log(newIndex)
+    
+                var boards = new Board(newIndex,title.value,description.value,"2000","2001",cont,opcion.value,"2000");
+                anyadir.setBoard(boards,newIndex).then((value2)=>{
+                    tabla_lista.remove();
+                    let listaboards2 =  anyadir.actualizarLista().then((value) => {
+                        lb.board = value;
+                        console.log("HOLA",value)
+                        html3 = anyadir.crearTablaSinHTML(lb);
+                        $('#prueba').html(html3)
+                    });
+                })
+            }
+        })
     })
-
-    // ============AÑADIR================
-    botonAñadir.addEventListener('click',event=>{
-        if(!boolAñadir)
-        {
-            añadir.removeAttribute('hidden')
-            boolAñadir=true
-        }else
-        {
-            añadir.setAttribute('hidden',true)
-            boolAñadir=false
-        }
-        
+   
+    // ===============AÑADIR===============
+    $('#boton_añadir').on({
+        click:((event)=>{
+            if(!boolAñadir)
+            {
+                $('#añadir').show('slow')
+                
+                boolAñadir=true
+            }else
+            {
+                $('#añadir').hide('slow')
+            
+                boolAñadir=false
+            }
+        })
     })
+   
     // ===============LISTAR==============
-    boton_listar.addEventListener('click',event=>{
-        if(!bool_listar)
-        {
-            tabla_lista.removeAttribute('hidden')
-            titulo_listar.removeAttribute('hidden')
-            bool_listar=true
-        }else
-        {
-            tabla_lista.setAttribute('hidden',true)
-            titulo_listar.setAttribute('hidden',true)
-            bool_listar=false
-        }
-        //console.log("dentro");
+    $('#boton_listar').on({
+        click:((event)=>{
+            if(!bool_listar)
+            {
+                $('#tabla').show('slow')
+                $('#titulo_listar').show('slow')
+                bool_listar=true
+            }else
+            {
+                $('#tabla').hide('slow')
+                $('#titulo_listar').hide('slow')
+                bool_listar=false
+            }
+        })
     })
-
+   
     // ==================FILTRAR===============
-    boton_filtrar.addEventListener('click',event=>{
-        if(!bool_filtrar)
-        {
-            apartado_filtrar.removeAttribute('hidden')
-            tabla_lista.removeAttribute('hidden')
-            titulo_listar.removeAttribute('hidden')
-            bool_filtrar=true
-        }else
-        {
-            apartado_filtrar.setAttribute('hidden',true)
-            tabla_lista.setAttribute('hidden',true)
-            titulo_listar.setAttribute('hidden',true)
-            bool_filtrar=false
-        }
+    $('#boton_filtrar').on({
+        click:((event)=>{
+            if(!bool_filtrar)
+            {
+                $('#apartado_filtrar').show('slow')
+                $('#tabla').show('slow')
+                $('#titulo_listar').show('slow')
+                bool_filtrar=true
+            }else
+            {
+                $('#apartado_filtrar').hide('slow')
+                $('#tabla').hide('slow')
+                $('#titulo_listar').hide('slow')
+                bool_filtrar=false
+            }
+        })
     })
+    
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -222,6 +236,22 @@ export function CrearFormularioHTML(listaboards)
         var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
 =======
     // ====================NUEVA TABLA=================
+<<<<<<< HEAD
+    $('#filtrarBuscador').on({
+        click:((event)=>{
+            var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
+            var html2 = `<table id="tabla2" class="tareas">
+                <tr>
+                    <td>id</td>
+                    <td>title</td>
+                    <td>description</td>
+                    <td>created</td>
+                    <td>Opcion</td>
+                    <td class="ocultoT" hidden>author_id</td>
+                    <td class="ocultoT" hidden>ticket_id</td>
+                <tr>`
+            var tabla2 = $('#tabla2');
+=======
     filtrarBuscador.addEventListener('click',event=>{
         var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
         var html2 = `<table id="tabla2" class="tareas">
@@ -263,92 +293,117 @@ export function CrearFormularioHTML(listaboards)
             document.body.appendChild(div2);
             tabla_lista.setAttribute("hidden",true)
             //apartado_filtrar.removeAttribute('hidden')
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
             
-            
-            nuevaLista.forEach((v,i,array)=>{
-               
-               html2 += `<tr>
-               <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
-               <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
-               <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
-               
-               <th>${v.created}</th>
-               <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
-               <th hidden class="ocultos">${v.author_id}</th>
-               <th hidden class="ocultos">${v.ticket_id}</th>
-           </tr>`
-                
-            div2.innerHTML=html2;
-            })
-            
-           
-            console.log(tabla_lista)
-        }
-    })
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
-
-    for(var x=0;x<borrar.length;x++){
-        borrar[x].addEventListener('click', event =>{
-            const id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
-            console.log(id);
-            const table = event.target.parentNode.parentNode.parentNode
-            anyadir.delBoard(id);
-            //listaboards.delete(id,table)
-            
-        })
-    }
-
-    for(var x = 0;x<update.length;x++){
-        update[x].addEventListener("click", event =>{
-            var inputs = event.target.parentNode.parentNode.parentNode.getElementsByTagName("input");
-            var id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
-            
-            console.log(inputs);
-            if(edit){
-                for (var y = 0;y<inputs.length;y++){
-                   
-                    
-                    inputs[y].removeAttribute("readonly") 
-                }
-                edit = false
-
-            }else{
-                for (var y = 0;y<inputs.length;y++){
-                    inputs[y].setAttribute("readonly", "true");
-                    console.log(inputs[y].value)
-                    updates.push(inputs[y].value)
-                }
-                listaboards.update(id,updates);
-                updates = [];
-                edit = true
-            }
-        })
-    }
-
-    for(var x = 0; x<mostrar.length;x++)
-    {
-        mostrar[x].addEventListener("click",event =>{
-            var prueba = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ocultos");
-            
-            if(!moreOptions)
+            if(inputBuscador.value == "")
             {
-                for(var y=0;y<prueba.length;y++)
-                {
-                    prueba[y].removeAttribute("hidden")
-                    titulos[y].removeAttribute("hidden")
-                    moreOptions=true
-                }
+                console.log("Input vacio")
+                tabla_lista.removeAttribute("hidden")
+                tabla2.setAttribute("hidden",true)
             }else
             {
-                for(var y=0;y<prueba.length;y++)
-                {
-                    prueba[y].setAttribute("hidden",true)
-                    titulos[y].setAttribute("hidden",true)
-                    moreOptions=false
-                }
+                document.body.appendChild(div2);
+                tabla_lista.setAttribute("hidden",true)
+                //apartado_filtrar.removeAttribute('hidden')
+                
+                
+                nuevaLista.forEach((v,i,array)=>{
+                   
+                   html2 += `<tr>
+                   <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
+                   <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
+                   <th><input class="ocultar_input" id="Description${listaboards.getId(i)}" type="text" readonly value=${v.description}></th>
+                   
+                   <th>${v.created}</th>
+                   <td><button class="delete"><img src="https://img.icons8.com/material-outlined/24/000000/trash--v2.png"/></button><button class="update"><img src="https://img.icons8.com/ios/24/000000/edit--v3.png"/></button><button class="mostrar"><img src="https://img.icons8.com/material-outlined/24/000000/closed-eye.png"/></button></td>
+                   <th hidden class="ocultos">${v.author_id}</th>
+                   <th hidden class="ocultos">${v.ticket_id}</th>
+               </tr>`
+                    
+                $(div2).html(html2);
+                })
             }
+        })
+    })
+<<<<<<< HEAD
+    
+    // ====================BOTON ELIMINAR====================
+=======
+>>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
+
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
+    for(var x=0;x<borrar.length;x++){
+        $(borrar[x]).on({
+            click:((event)=>{
+                const id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
+                const table = event.target.parentNode.parentNode.parentNode
+                anyadir.delBoard(id).then((value2)=>{
+                    tabla_lista.remove();
+                    let listaboards2 =  anyadir.actualizarLista().then((value) => {
+                        lb.board = value;
+                        html3 = anyadir.crearTablaSinHTML(lb);
+                        $('#prueba').html(html3)
+                    });
+                })
+            })
+        })
+    }
+
+    // ====================BOTON ACTUALIZAR====================
+    for(var x = 0;x<update.length;x++){
+        $(update[x]).on({
+            click:((event)=>{
+                var inputs = event.target.parentNode.parentNode.parentNode.getElementsByTagName("input");
+                var id = event.target.parentNode.parentNode.parentNode.getElementsByClassName('tdid')[0].innerHTML
+                
+                console.log(inputs);
+                if(edit){
+                    for (var y = 0;y<inputs.length;y++){
+                        inputs[y].removeAttribute("readonly") 
+                    }
+                    edit = false
+
+                }else{
+                    for (var y = 0;y<inputs.length;y++){
+                        inputs[y].setAttribute("readonly", "true");
+                        updates.push(inputs[y].value)
+                    }
+
+                    anyadir.setBoard(updates,id).then((value2)=>{
+                 
+                    })
+                    updates = [];
+                    edit = true
+                }
+            })
+        })
+    }
+
+    // ====================BOTON MOSTRAR MÁS INFORMACION====================
+    for(var x = 0; x<mostrar.length;x++)
+    {
+        $(mostrar[x]).on({
+            click:((event)=>{
+                var prueba = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ocultos");
             
-            
+                if(!moreOptions)
+                {
+                    for(var y=0;y<prueba.length;y++)
+                    {
+                        prueba[y].removeAttribute("hidden")
+                        titulos[y].removeAttribute("hidden")
+                        moreOptions=true
+                    }
+                }else
+                {
+                    for(var y=0;y<prueba.length;y++)
+                    {
+                        prueba[y].setAttribute("hidden",true)
+                        titulos[y].setAttribute("hidden",true)
+                        moreOptions=false
+                    }
+                }
+            })
         })
     }
     

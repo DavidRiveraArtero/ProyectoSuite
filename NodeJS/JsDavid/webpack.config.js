@@ -2,7 +2,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { loader } = require("mini-css-extract-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+var webpack = require('webpack');
 module.exports = {
+    
     mode: 'development',
     output:{
         clean:true
@@ -52,5 +54,12 @@ module.exports = {
                 {from: "src/assets", to: "./assets"},
             ]
         }),
+        new webpack.ProvidePlugin({
+
+            $: 'jquery',
+            JQuery: 'jquery'
+            
+        })
+    
     ]
 }
