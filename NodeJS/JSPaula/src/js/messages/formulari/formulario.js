@@ -2,7 +2,7 @@ import {MessagesList} from "../messegesList";
 import {MessagesList as ml} from "../messegesList";
 import {Messages} from "../messages";
 
-//let listamensaje = new MessagesList();
+// let listamensaje = new MessagesList();
 let anadir = new MessagesList();
 
 
@@ -16,76 +16,60 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             <input class="btn btn-outline-primary" type="button" id="listar" value="Listar">
             <input class="btn btn-outline-danger" type="button" id="filtrar" value="Filtrar">
             <br>
-            <label id="filtro">
+            <label id="filtro" hidden>
                 <input type="text" name="buscar" id="palabra" required>
                 <input class="btn btn-primary" type="button" id="buscar" value="Buscar">
             </label>
         </div>
-
-        <div id="afegir">
-            <label class="txt">Message: </label>
+        <div id="afegir" hidden>
+            <label class="txt">Libros: </label>
+            <br>
+            <br>
+            <input type="text" id="id_role" placeholder="id_role">
+            <input type="text" id="username" placeholder="username">
+            <input type="text" id="password" placeholder="password">
             <br>
             <br>
 
-            <textarea rows="2" cols="30" type="text" name="message" id="message" required></textarea></label>
-
-            <fieldset>
-                <label class="txt">Donde quieres enviar el mensage:</label>
-                <br>
-                <label><input type="radio" name="opciones" id="privado" required> Privado</label>
-                <label><input type="radio" name="opciones" id="publico"> Publico</label>
-            </fieldset>
-            <br>
-            <br>
-
-            <div id="elegir">
-            </div>
-            <p id="contacte"></p>
-            <p id="grupp"></p>
-            <input class="btn btn-primary" type="button" id="revisar" value="Revisar">
             <input class="btn btn-primary" type="submit" id="guardar" value="Guardar y aplicar">
-            <br>
 
+            <p>Elije:</p>
+            <select name="deporte" id="elegir">
+      
+            </select>
         </div>
-
         <br>
     </html>
     `
-    // var divGeneral = document.createElement("div");
-    // document.body.appendChild(divGeneral);
+    var divGeneral = document.createElement("div");
+    document.body.appendChild(divGeneral);
 
-    let divGeneral = $("<div>", {
-        id: "general",
-        html: html
-    });
+    var divTablaActualizada = document.createElement("div");
+    document.body.appendChild(divTablaActualizada);
 
-    $( "body" ).append( divGeneral );
-
-    // var divTabla2 = document.createElement("div");
-    // document.body.appendChild(divTabla2);
-
-
-    let divTabla2 = $("<div>", {
-        id: "dos",
-        html: "e"
-    });
-
-    $( "#general" ).append( divTabla2 );
-    
-    
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
-    var a =anadir.crearTabla(html, listamensaje);
-    $("#general").html(a);
+    divGeneral.innerHTML=anadir.crearTabla(html, listamensaje);
+
+    // var a = anadir.actuMenssage(id).then((o)=> {
+    //     console.log(o);
+    //     for (var x=0;x<o.length;x++ )
+    //     {
+    //         if(o[x].id_usuari == id)
+    //         {
+    //             o[x].username = cambios
+    //             listamensaje.update(id,o[x]);
+    //         }
+    //     }
+    // });
+
+    anadir.actualizarTabla().then((value1)=>
+    {
+        // --------- Crear la tabla con la información añadida ---------
+        document.getElementById("elegir").innerHTML=anadir.rellenarSelect(html, value1);
+    })
 
 
     // VARIABLES
-    var fecha = new Date();  
-    var mensa;
-    var privado;
-    var publico;
-    var privpub; // SI ES PRIVADO SERA True SI ES PUBLICO SERA False
-    var desti;
-
     var activarEd = true;
     var activarVer = true;
     var activarAfegir = true;
@@ -96,241 +80,226 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     var missatge="^[A-Z a-z 0-9]+";
 
     // VALIDAR FORMULARIO
-    $("#revisar").on ( {
-        click: ((event) => {
-        
-        (checkForm("#formulario"))
-        
-        })
-    });
+    document.querySelector("#guardar").addEventListener("click",() => {
 
-    // REVISAR FORMULARIO
-    $("#guardar").on ( {
-        click: ((event) => {
+        if (checkForm("#formulario"))
+        {    
+            // --------- Recoger los valores de configuracion ---------
+            var id_role = document.querySelector("#id_role").value;
+            var username = document.querySelector("#username").value;
+            var password = document.querySelector("#password").value;
 
-            if (checkForm("#formulario"))
-            {    
-                // --------- Recoger los valores de configuracion ---------
-                var Antid = 0;
-                var Antauthor_id = 0;
-    
-                mensa = $("#message").val();
-                desti = $("#desti").val();
+                var TablaGeneral = document.getElementById("tablaGeneral");
+                TablaGeneral.remove(); //  Eliminar
+                
+                let html3;
+                // Sirve para poder acceder a la base de datos
+                anadir.actualizarTabla().then((value) => {
+                    // --------- Conseguir el ultimo id ---------
+                    var lastIndex = 0;
 
-                Antid = parseInt(listamensaje.lastIndex()) +1;
-                Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
-    
-                var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
+                    for (var x=0; x<value.length; x++)
+                    {
+                        lastIndex = x;
+                    }
+                    lastIndex ++;
 
-                // ~~~~~~~~~~~~~~ AÑADIR MENSAJE AL FIREBASE ~~~~~~~~~~~~~~ 
-                var MensajeSubido = anadir.setMessage(tabla,Antid).then((value2) => {
-        
-                    var TablaInfo = document.getElementById("info");
-                    TablaInfo.remove(); //  Eliminar
-                    
-                    let html3;
-                    
-                    // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
-                    anadir.actualizarTabla().then((value) => {
-                        listamensaje.messages = value;
-                        console.log(value);
-                        html3 = anadir.crearTablaSinHTML(listamensaje);
-                        $('#divCabeza').html(html3);
-                    });
-
+                    var tabla = new Messages(id_role, lastIndex, username, password)
+                    anadir.setMessage(tabla,lastIndex).then(()=>{
+                        anadir.actualizarTabla().then((value2)=>
+                        {
+                            // --------- Crear la tabla con la información añadida ---------
+                            html3 = anadir.crearTablaSinHTML(value2);
+                            document.getElementById('divGeneral').innerHTML=html3;
+                            document.getElementById('tablaGeneral').removeAttribute("hidden");
+                        })
+                    })
                 });
-            }; 
-
-        })
+                anadir.crearLocalStorage()
+        };
     });
 
-    // ~~~~~~~~~~~~~~ OCULTAR BOTONES ~~~~~~~~~~~~~~ 
-    $("#afegir").hide();
-    $("#info").hide();
-    $("#filtro").hide();
+    // ---------------------------- BOTONES INFORMACIÓN LISTA ----------------------------
+    document.getElementById("botones").addEventListener("click", (event) => {
 
 
-    // ---------------------------- BOTONES INFORMACION LISTA
-    $("#botones").on ( {
-        click: ((event) => {
-
-            // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
-            if (event.target.id == "anadir")
+        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
+        if (event.target.id == "anadir")
+        {
+            var verAfegir=document.getElementById("afegir");
+            if (activarAfegir)
             {
-                if (activarAfegir)
-                {
-                    $("#afegir").show("slow")
-                    activarAfegir = false;
-                }
-
-                else{
-                    $("#afegir").hide("slow")
-                    activarAfegir = true;
-                }
+                verAfegir.removeAttribute("hidden");
+                activarAfegir = false;
             }
 
-            // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
-            if (event.target.id == "listar")
-            {
-                if (activarLista)
-                {
-                    $("#info").show("slow")
-                    activarLista = false;
-                }
+            else{
+                verAfegir.setAttribute("hidden", true);
+                activarAfegir = true;
+            }
+        }
 
-                else{
-                    $("#info").hide("slow")
-                    activarLista = true;
-                }
+        // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
+        if (event.target.id == "listar")
+        {
+            var verLista=document.getElementById("tablaGeneral");
+            if (activarLista)
+            {
+                verLista.removeAttribute("hidden");
+                activarLista = false;
             }
 
-            // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
-            if (event.target.id == "filtrar")
-            {
-                if (activarFiltro)
-                {
-                    $("#filtro").show("fast")
-                    activarFiltro = false;
-                }
-
-                else{
-                    $("#filtro").hide("fast")
-                    activarFiltro = true;
-                }
+            else{
+                verLista.setAttribute("hidden", true);
+                activarLista = true;
             }
-            // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
-            if (event.target.id == "buscar")
+        }
+
+        // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
+        if (event.target.id == "filtrar")
+        {
+            var verFiltro=document.getElementById("filtro");
+            if (activarFiltro)
             {
-                var buscar=document.getElementById("palabra").value;
-                var tabla=document.getElementById("info");
-                var tabla2=document.getElementById("tabla2");
+                verFiltro.removeAttribute("hidden");
+                activarFiltro = false;
+            }
 
-                if (buscar == "")
-                {
-                    $("#info").show("slow")
+            else{
+                verFiltro.setAttribute("hidden", true);
+                activarFiltro = true;
+            }
+        }
+        // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
+        if (event.target.id == "buscar")
+        {
+            var buscar=document.getElementById("palabra").value;
+            var tabla=document.getElementById("tablaGeneral");
+            var tabla2=document.getElementById("tablaRespuesta");
 
+            if (buscar == "")
+            {
+                tabla.removeAttribute("hidden");
+                tabla2.setAttribute("hidden", true);
 
+            }
 
-                    // tabla.removeAttribute("hidden");
-                    // tabla2.setAttribute("hidden", true);
+            else{
 
-                }
+                var respuesta = listamensaje.filtrar(buscar);            
+                console.log("Respuesta: " , respuesta);
+                tabla.setAttribute("hidden", true);
 
-                else{
-
-                    var respuesta = listamensaje.filtrar(buscar);            
-                    console.log("Respuesta: " , respuesta);                    
-                    // tabla.setAttribute("hidden", true);
-                    $("#info").hide(0)
-                    $("#tabla2").show("slow")
-
-
-                    // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
-                    var html = `
-                    <div>
-                    <table class="default" width="50%" id="tabla2">
-                    <caption>Información sobre cada mensaje</caption>
-                    <tr class="inf">
-                        <td>Id</td>
-                        <td>Author</td>
-                        <td>Mensaje</td>
-                        <td>Opciones</td>
-                        <td class="ver" hidden >Fecha</td>
-                        <td class="ver" hidden >Privado(true) o Publico(false)</td>
-                        <td class="ver" hidden >Destino</td>
+                // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
+                var html = `
+                <table class="default" id="tablaRespuesta">
+                <caption>Información sobre cada mensaje</caption>
+                <tr class="inf">
+                    <td>id_usuari</td>
+                    <td>id_role</td>
+                    <td>usuario</td>
+                    <td>botones</td>
+                    <td class="ver" hidden >password</td>
+                </tr>
+                `
+                respuesta.forEach((v) => {
+                    html += `
+                        <tr id="a">
+                        <td>${v.id_usuari}</td>
+                        <td>${v.id_role}</td>
+                        <td>
+                            <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.username}</textarea>
+                        </td>
+                        <td>
+                            <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                            <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                            <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                        </td>
+                        <td class="ver" hidden>${v.password}</td>
                     </tr>
                     `
-                    respuesta.forEach((v) => {
-                        html += `
-                            <tr id="a">
-                                <td>${v.id}</td>
-                                <td class="search" >${v.author_id}</td>
-                                <td>
-                                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
-                                </td>
-                                <td>
-                                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                                </td>
-                                <td class="ver" hidden>${v.created}</td=>
-                                <td class="ver" hidden>${v.privpub}</td>
-                                <td class="ver" hidden>${v.desti}</td>
-                            </tr>
-                        `
-                    });
-                    divTabla2.innerHTML=html;
-                    $('#divCabeza').html(html);
-
-
-                }            
-            }
-
-        })
+                });
+                divTablaActualizada.innerHTML=html;
+           
+            }            
+        }
     });
 
-    // ---------------------------- BOTONES INFORMACION LISTA
-    $("#info").on ( {
-        click: ((event) => {
 
-            var id = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
-            var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
+    // ---------------------------- BOTÓNES FUNCIONES ----------------------------
+    document.getElementById("divGeneral").addEventListener("click", (event) => {
+        var id = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
+        var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
 
-            if (event.target.id == "eliminar")
-            {
-                event.target.parentNode.parentNode.parentNode.remove();
-                console.log("ID" + id)
-                //listamensaje.delete(id);
-                listamensaje.delMenssage(id);
+        if (event.target.id == "eliminar")
+        {
+            event.target.parentNode.parentNode.parentNode.remove();
+            console.log("ID" + id)
+            //listamensaje.delete(id);
+            listamensaje.delMenssage(id);
+        }
+
+        if (event.target.id == "editar")
+        {
+            var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
+            if (activarEd)
+            {   
+                fila.removeAttribute("readonly");
+                activarEd = false;
             }
 
-            if (event.target.id == "editar")
-            {
-                var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
-                if (activarEd)
-                {   
-                    fila.removeAttribute("readonly");
-                    activarEd = false;
-                }
-
-                else{
-                    fila.setAttribute("readonly", true);
-                    activarEd = true;
-                    cambios = fila.value
-                    console.log(cambios);
-                    listamensaje.update(id,cambios);
-                }
+            else{
+                fila.setAttribute("readonly", true);
+                activarEd = true;
+                cambios = fila.value
+                console.log(cambios);
+                console.log("id: ",id);
+                var a = anadir.actuMenssage(id).then((o)=> {
+                    console.log(o);
+                    for (var x=0;x<o.length;x++ )
+                    {
+                        if(o[x].id_usuari == id)
+                        {
+                            o[x].username = cambios
+                            listamensaje.update(id,o[x]);
+                        }
+                    }
+                });
             }
+        }
 
-            if (event.target.id == "ver")
+        if (event.target.id == "ver")
+        {
+            var detalles = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ver");
+            var titulo = document.getElementsByClassName("ver");
+
+            if (activarVer)
             {
-                var detalles = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ver");
-                var titulo = document.getElementsByClassName("ver");
-
-                if (activarVer)
+                for (var x=0;x<detalles.length; x++)
                 {
-                    for (var x=0;x<detalles.length; x++)
-                    {
-                        titulo[x].removeAttribute("hidden");
-                        detalles[x].removeAttribute("hidden");
-                    }
-                    activarVer = false;
+                    titulo[x].removeAttribute("hidden");
+                    detalles[x].removeAttribute("hidden");
                 }
-
-                else{
-                    for (var x=0;x<detalles.length; x++)
-                    {
-                        titulo[x].setAttribute("hidden", true);;
-                        detalles[x].setAttribute("hidden", true);;
-                    }
-                    activarVer = true;
-                }
+                activarVer = false;
             }
 
-        })
-    });
+            else{
+                for (var x=0;x<detalles.length; x++)
+                {
+                    titulo[x].setAttribute("hidden", true);;
+                    detalles[x].setAttribute("hidden", true);;
+                }
+                activarVer = true;
+            }
+        }
+    })
 
-    // FUNCIONES
+
+
+
+    // ---------------------------- COMPROVAR DATOS ----------------------------
+    var missatge="^[A-Z a-z 0-9]+";
+
     function checkInput(idInput, patt)
     {
         return patt.test(document.querySelector(idInput).value) ? true : false;    
@@ -342,14 +311,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
         var pattM = new RegExp(missatge);
         var missatgeCorrecte = false;
 
-        privado = document.querySelector("#privado").checked
-        publico = document.querySelector("#publico").checked
-
-        
-        if (privado) { privpub=true; }
-        if (publico) { privpub=false; }
-
-        if (checkInput("#message",pattM) && ( privado || publico))
+        if (checkInput("#username",pattM))
         {
             console.log("Correcte")
             missatgeCorrecte=true;
@@ -358,57 +320,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             console.log("---ERROR---")
             missatgeCorrecte=false;
         }
-        if (missatgeCorrecte)
-        {
-            PrivadoPublico(privado)
-        }
 
         return missatgeCorrecte;
-    }
-
-    // QUE A ESCOGIDO PRIVADO O PUBLICO?
-    function PrivadoPublico(privado)
-    {
-        // COMPROVAR SI EXISTE YA UNA OPCIÓN CREADA
-        var comprovarDesti = document.getElementById("destino");
-        if (comprovarDesti != null)
-        {
-            comprovarDesti.remove();
-        }
-        if (privado)
-        {
-            console.log("Ha entrado");
-            // CREAR EL INTPUT PARA ELEGIR CONTACTO
-            // --------- CREAR OPCIONES DE CONTACTO ---------
-            var elegir = document.getElementById("elegir");
-            var parrafo = document.createElement("p");
-            var select = document.createElement("select");
-            var option = document.createElement("option");
-            parrafo.id="destino";
-            parrafo.innerHTML="Contacto:";
-            select.id="desinatario";
-            option.innerHTML="Contacto1";
-            select.appendChild(option);
-            parrafo.appendChild(select);
-            elegir.appendChild(parrafo);
-        }
-
-        // var comprovarGrupo = document.getElementById("grupo");
-        if (publico)
-        {
-            // CREAR EL INTPUT PARA ELEGIR GRUPO
-            var elegir = document.getElementById("elegir");
-            var parrafo = document.createElement("p");
-            var select = document.createElement("select");
-            var option = document.createElement("option");
-            parrafo.id="destino";
-            parrafo.innerHTML="Grupo:";
-            select.id="desinatario";
-            option.innerHTML="Grupo1";
-            select.appendChild(option);
-            parrafo.appendChild(select);
-            elegir.appendChild(parrafo);
-        }
-        return true;
     }
 }

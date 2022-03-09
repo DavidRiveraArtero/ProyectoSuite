@@ -12,7 +12,7 @@ document.body.append(div);
 
 export let listamensaje;
 
-fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
+fetch('https://proyecto-40ec5-default-rtdb.firebaseio.com/messages.json')
 .then(data => data.json())
 .then(todo => {
 
