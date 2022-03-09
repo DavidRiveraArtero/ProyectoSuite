@@ -1,11 +1,12 @@
 import {MessagesList} from "../messegesList";
+import {MessagesList as ml} from "../messegesList";
 import {Messages} from "../messages";
 
-let listamensaje = new MessagesList();
+//let listamensaje = new MessagesList();
 let anadir = new MessagesList();
 
 
-export function creaHTMLFormulariAfegir() {
+export function creaHTMLFormulariAfegir(listamensaje) {
    
     let html=`
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,13 +16,13 @@ export function creaHTMLFormulariAfegir() {
             <input class="btn btn-outline-primary" type="button" id="listar" value="Listar">
             <input class="btn btn-outline-danger" type="button" id="filtrar" value="Filtrar">
             <br>
-            <label id="filtro" hidden>
+            <label id="filtro">
                 <input type="text" name="buscar" id="palabra" required>
                 <input class="btn btn-primary" type="button" id="buscar" value="Buscar">
             </label>
         </div>
 
-        <div id="afegir" hidden>
+        <div id="afegir">
             <label class="txt">Message: </label>
             <br>
             <br>
@@ -48,48 +49,34 @@ export function creaHTMLFormulariAfegir() {
         </div>
 
         <br>
-
-
-        <table class="default" id="info" hidden>
-            <caption>Información sobre cada mensaje</caption>
-            <tr class="inf">
-                <td>Id</td>
-                <td>Author</td>
-                <td>Mensaje</td>
-                <td>Opciones</td>
-                <td class="ver" hidden >Fecha</td>
-                <td class="ver" hidden >Privado(true) o Publico(false)</td>
-                <td class="ver" hidden >Destino</td>
-            </tr>
-
     </html>
     `
-    var div = document.createElement("div");
-    document.body.appendChild(div);
+    // var divGeneral = document.createElement("div");
+    // document.body.appendChild(divGeneral);
 
-    // CREAR EL INTPUT MOSTRAR LA INFORMACION
-    listamensaje.messages.forEach((v, i, array) => {
-        html+= `
-            <tr id="a">
-                <td>${v.id}</td>
-                <td class="search" >${v.author_id}</td>
-                <td>
-                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
-                </td>
-                <td>
-                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                </td>
-                <td class="ver" hidden>${v.created}</td=>
-                <td class="ver" hidden>${v.privpub}</td>
-                <td class="ver" hidden>${v.desti}</td>
-
-            </tr>
-        `
+    let divGeneral = $("<div>", {
+        id: "general",
+        html: html
     });
 
-    div.innerHTML=html;
+    $( "body" ).append( divGeneral );
+
+    // var divTabla2 = document.createElement("div");
+    // document.body.appendChild(divTabla2);
+
+
+    let divTabla2 = $("<div>", {
+        id: "dos",
+        html: "e"
+    });
+
+    $( "#general" ).append( divTabla2 );
+    
+    
+    // CREAR EL INTPUT MOSTRAR LA INFORMACION
+    var a =anadir.crearTabla(html, listamensaje);
+    $("#general").html(a);
+
 
     // VARIABLES
     var fecha = new Date();  
@@ -109,194 +96,239 @@ export function creaHTMLFormulariAfegir() {
     var missatge="^[A-Z a-z 0-9]+";
 
     // VALIDAR FORMULARIO
-    document.querySelector("#revisar").addEventListener("click",() => {
+    $("#revisar").on ( {
+        click: ((event) => {
+        
         (checkForm("#formulario"))
+        
+        })
     });
 
-    document.querySelector("#guardar").addEventListener("click",() => {
+    // REVISAR FORMULARIO
+    $("#guardar").on ( {
+        click: ((event) => {
 
-        if (checkForm("#formulario"))
-        {    
-            // --------- Recoger los valores de configuracion ---------
-            var Antid = 0;
-            var Antauthor_id = 0;
+            if (checkForm("#formulario"))
+            {    
+                // --------- Recoger los valores de configuracion ---------
+                var Antid = 0;
+                var Antauthor_id = 0;
+    
+                mensa = $("#message").val();
+                desti = $("#desti").val();
 
-            mensa = document.querySelector("#message").value;
-            desti = document.querySelector("#desinatario").value;
-            Antid = parseInt(listamensaje.lastIndex()) +1;
-            Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
+                Antid = parseInt(listamensaje.lastIndex()) +1;
+                Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
+    
+                var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
 
-            var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
+                // ~~~~~~~~~~~~~~ AÑADIR MENSAJE AL FIREBASE ~~~~~~~~~~~~~~ 
+                var MensajeSubido = anadir.setMessage(tabla,Antid).then((value2) => {
+        
+                    var TablaInfo = document.getElementById("info");
+                    TablaInfo.remove(); //  Eliminar
+                    
+                    let html3;
+                    
+                    // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
+                    anadir.actualizarTabla().then((value) => {
+                        listamensaje.messages = value;
+                        console.log(value);
+                        html3 = anadir.crearTablaSinHTML(listamensaje);
+                        $('#divCabeza').html(html3);
+                    });
 
-            anadir.nouMessages(tabla);
-            location.reload(); // Recargar página
-        }
+                });
+            }; 
+
+        })
+    });
+
+    // ~~~~~~~~~~~~~~ OCULTAR BOTONES ~~~~~~~~~~~~~~ 
+    $("#afegir").hide();
+    $("#info").hide();
+    $("#filtro").hide();
+
+
+    // ---------------------------- BOTONES INFORMACION LISTA
+    $("#botones").on ( {
+        click: ((event) => {
+
+            // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
+            if (event.target.id == "anadir")
+            {
+                if (activarAfegir)
+                {
+                    $("#afegir").show("slow")
+                    activarAfegir = false;
+                }
+
+                else{
+                    $("#afegir").hide("slow")
+                    activarAfegir = true;
+                }
+            }
+
+            // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
+            if (event.target.id == "listar")
+            {
+                if (activarLista)
+                {
+                    $("#info").show("slow")
+                    activarLista = false;
+                }
+
+                else{
+                    $("#info").hide("slow")
+                    activarLista = true;
+                }
+            }
+
+            // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
+            if (event.target.id == "filtrar")
+            {
+                if (activarFiltro)
+                {
+                    $("#filtro").show("fast")
+                    activarFiltro = false;
+                }
+
+                else{
+                    $("#filtro").hide("fast")
+                    activarFiltro = true;
+                }
+            }
+            // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
+            if (event.target.id == "buscar")
+            {
+                var buscar=document.getElementById("palabra").value;
+                var tabla=document.getElementById("info");
+                var tabla2=document.getElementById("tabla2");
+
+                if (buscar == "")
+                {
+                    $("#info").show("slow")
+
+
+
+                    // tabla.removeAttribute("hidden");
+                    // tabla2.setAttribute("hidden", true);
+
+                }
+
+                else{
+
+                    var respuesta = listamensaje.filtrar(buscar);            
+                    console.log("Respuesta: " , respuesta);                    
+                    // tabla.setAttribute("hidden", true);
+                    $("#info").hide(0)
+                    $("#tabla2").show("slow")
+
+
+                    // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
+                    var html = `
+                    <div>
+                    <table class="default" width="50%" id="tabla2">
+                    <caption>Información sobre cada mensaje</caption>
+                    <tr class="inf">
+                        <td>Id</td>
+                        <td>Author</td>
+                        <td>Mensaje</td>
+                        <td>Opciones</td>
+                        <td class="ver" hidden >Fecha</td>
+                        <td class="ver" hidden >Privado(true) o Publico(false)</td>
+                        <td class="ver" hidden >Destino</td>
+                    </tr>
+                    `
+                    respuesta.forEach((v) => {
+                        html += `
+                            <tr id="a">
+                                <td>${v.id}</td>
+                                <td class="search" >${v.author_id}</td>
+                                <td>
+                                    <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                                </td>
+                                <td>
+                                    <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
+                                    <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
+                                    <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
+                                </td>
+                                <td class="ver" hidden>${v.created}</td=>
+                                <td class="ver" hidden>${v.privpub}</td>
+                                <td class="ver" hidden>${v.desti}</td>
+                            </tr>
+                        `
+                    });
+                    divTabla2.innerHTML=html;
+                    $('#divCabeza').html(html);
+
+
+                }            
+            }
+
+        })
     });
 
     // ---------------------------- BOTONES INFORMACION LISTA
-    document.getElementById("botones").addEventListener("click", (event) => {
+    $("#info").on ( {
+        click: ((event) => {
 
-<<<<<<< HEAD
-=======
+            var id = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
+            var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
 
-        // ~~~~~~~~~~~~~~ AÑADIR MENSAJE ~~~~~~~~~~~~~~ 
->>>>>>> b1.1_Paula
-        if (event.target.id == "anadir")
-        {
-            var verAfegir=document.getElementById("afegir");
-            if (activarAfegir)
+            if (event.target.id == "eliminar")
             {
-                verAfegir.removeAttribute("hidden");
-                activarAfegir = false;
+                event.target.parentNode.parentNode.parentNode.remove();
+                console.log("ID" + id)
+                //listamensaje.delete(id);
+                listamensaje.delMenssage(id);
             }
 
-            else{
-                verAfegir.setAttribute("hidden", true);
-                activarAfegir = true;
-            }
-        }
-
-        // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
-        if (event.target.id == "listar")
-        {
-            var verLista=document.getElementById("info");
-            if (activarLista)
+            if (event.target.id == "editar")
             {
-                verLista.removeAttribute("hidden");
-                activarLista = false;
-            }
+                var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
+                if (activarEd)
+                {   
+                    fila.removeAttribute("readonly");
+                    activarEd = false;
+                }
 
-            else{
-                verLista.setAttribute("hidden", true);
-                activarLista = true;
-            }
-        }
-
-        // ~~~~~~~~~~~~~~ FILTRAR LISTA ~~~~~~~~~~~~~~ 
-        if (event.target.id == "filtrar")
-        {
-            var verFiltro=document.getElementById("filtro");
-            if (activarFiltro)
-            {
-                verFiltro.removeAttribute("hidden");
-                activarFiltro = false;
-            }
-
-            else{
-                verFiltro.setAttribute("hidden", true);
-                activarFiltro = true;
-            }
-        }
-
-<<<<<<< HEAD
-        if (event.target.id == "buscar")
-        {
-            var palabra = document.getElementById("palabra").value;
-
-            var search = document.querySelectorAll(".search");
-
-            for (var i=0; i< search.length; i++)
-            {
-                var revisar = search[i].innerHTML;
-
-                console.log("La palabra es: ",palabra);// me cambia la palabra ERROR
-                console.log("Resultado: ", revisar);
-
-                for (palabra in revisar)
-                {
-
-                    console.log("Bien");
-
-                    document.querySelectorAll(".search")[i].style.backgroundColor = "#9ED5FD";
+                else{
+                    fila.setAttribute("readonly", true);
+                    activarEd = true;
+                    cambios = fila.value
+                    console.log(cambios);
+                    listamensaje.update(id,cambios);
                 }
             }
-        }
-=======
-        // ~~~~~~~~~~~~~~ FILTAR BUSCADOR ~~~~~~~~~~~~~~ 
-        if (event.target.id == "buscar")
-        {
-            var buscar=document.getElementById("palabra").value;
-            var tabla=document.getElementById("info");
 
-            if (buscar == "")
+            if (event.target.id == "ver")
             {
-                tabla.removeAttribute("hidden");
+                var detalles = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ver");
+                var titulo = document.getElementsByClassName("ver");
+
+                if (activarVer)
+                {
+                    for (var x=0;x<detalles.length; x++)
+                    {
+                        titulo[x].removeAttribute("hidden");
+                        detalles[x].removeAttribute("hidden");
+                    }
+                    activarVer = false;
+                }
+
+                else{
+                    for (var x=0;x<detalles.length; x++)
+                    {
+                        titulo[x].setAttribute("hidden", true);;
+                        detalles[x].setAttribute("hidden", true);;
+                    }
+                    activarVer = true;
+                }
             }
 
-            else{
-
-                var respuesta = listamensaje.filtrar(buscar);            
-                console.log(respuesta);
-
-                if (respuesta[0] == )
-                respuesta.setAttribute("hidden", true);
-            }
-            
-
-            
-        }
-
-
->>>>>>> b1.1_Paula
+        })
     });
-
-    // ---------------------------- BOTONES INFORMACION LISTA
-    document.getElementById("info").addEventListener("click", (event) => {
-        var id = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
-        var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
-
-        if (event.target.id == "eliminar")
-        {
-            event.target.parentNode.parentNode.parentNode.remove();
-            console.log("ID" + id)
-            listamensaje.delete(id);
-
-        }
-
-        if (event.target.id == "editar")
-        {
-            var fila = event.target.parentNode.parentNode.parentNode.querySelector("textarea");
-            if (activarEd)
-            {   
-                fila.removeAttribute("readonly");
-                activarEd = false;
-            }
-
-            else{
-                fila.setAttribute("readonly", true);
-                activarEd = true;
-                cambios = fila.value
-                console.log(cambios);
-                listamensaje.update(id,cambios);
-            }
-        }
-
-        if (event.target.id == "ver")
-        {
-            var detalles = event.target.parentNode.parentNode.parentNode.getElementsByClassName("ver");
-            var titulo = document.getElementsByClassName("ver");
-
-            if (activarVer)
-            {
-                for (var x=0;x<detalles.length; x++)
-                {
-                    titulo[x].removeAttribute("hidden");
-                    detalles[x].removeAttribute("hidden");
-                }
-                activarVer = false;
-            }
-
-            else{
-                for (var x=0;x<detalles.length; x++)
-                {
-                    titulo[x].setAttribute("hidden", true);;
-                    detalles[x].setAttribute("hidden", true);;
-                }
-                activarVer = true;
-            }
-        }
-    })
-
 
     // FUNCIONES
     function checkInput(idInput, patt)
@@ -312,6 +344,8 @@ export function creaHTMLFormulariAfegir() {
 
         privado = document.querySelector("#privado").checked
         publico = document.querySelector("#publico").checked
+
+        
         if (privado) { privpub=true; }
         if (publico) { privpub=false; }
 

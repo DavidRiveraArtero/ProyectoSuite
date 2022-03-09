@@ -24,6 +24,10 @@ Route::get('/', function (Request $request) {
     return view('welcome');
 });
 
+Route::get('/home', function(){
+    return view('Home');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

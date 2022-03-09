@@ -17,12 +17,12 @@ class TestMail extends Mailable
      * @return void
      */
 
-    
+
     public function __construct(array $content)
     {
         $this->content = $content;
     }
-  
+
     public function build()
     {
         // pass here your email template file

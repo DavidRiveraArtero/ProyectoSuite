@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\TestMail;
+use App\Mail\TestsMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,6 +10,7 @@ class SendEmailController extends Controller
 {
     public function ship(Request $request)
     {
+
         $valueArray = [
             'name' => 'John',
         ];
@@ -23,5 +24,4 @@ class SendEmailController extends Controller
         }
 
     }
-
 }

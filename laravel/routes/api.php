@@ -7,7 +7,8 @@ use \App\Http\Controllers\TicketsController;
 use \App\Http\Controllers\UsersController;
 use \App\Http\Controllers\CommentsController;
 use \App\Http\Controllers\StatusesController;
-
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\NotesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test', function (){
     return "Hola Mundi";
 });
+Route::apiResource("chats", ChatsController::class);
+Route::apiResource("chats/{id}/messages", MessagesController::class);
+
+Route::apiResource("users", UsersController::class);
+
 
 //Route::apiResource("task", TaskController::class);
 
@@ -36,3 +42,11 @@ Route::apiResource("tickets", TicketsController::class);
 Route::apiResource("tickets/{tid}/comments", CommentsController::class);
 
 Route::apiResource("statuses",StatusesController::class);
+Route::apiResource("task", TaskController::class);
+
+Route::apiResource("users", UsersController::class);
+Route::post("/register", UsersController::class, 'store');
+Route::post("/login", UsersController::class, 'login');
+
+Route::apiResource('task/{tid}/notes', NotesController::class);
+
