@@ -5,20 +5,187 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949f388b-0f39-439d-8f1a-40d646958244" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/dist/main.1e43cc25e898102ffec1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/AUTHORS.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.slim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/dist/jquery.slim.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/external/sizzle/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/external/sizzle/dist/sizzle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/external/sizzle/dist/sizzle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/external/sizzle/dist/sizzle.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/jsonp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/load.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/var/location.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/var/nonce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/var/rquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/ajax/xhr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes/attr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes/classes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes/prop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/attributes/val.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/callbacks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/DOMEval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/access.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/camelCase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/init.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/isAttached.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/nodeName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/parseHTML.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/parseXML.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/ready-no-deferred.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/ready.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/readyException.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/stripAndCollapse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/toType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/core/var/rsingleTag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/addGetHookIf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/adjustCSS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/curCSS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/finalPropName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/hiddenVisibleSelectors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/showHide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/cssExpand.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/getStyles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/isHiddenWithinTree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/rboxStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/rnumnonpx.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/css/var/swap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/data/Data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/data/var/acceptData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/data/var/dataPriv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/data/var/dataUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/deferred.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/deferred/exceptionHook.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/deprecated.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/deprecated/ajax-event-alias.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/deprecated/event.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/dimensions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/effects.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/effects/Tween.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/effects/animatedSelector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/event.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/event/focusin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/event/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/event/trigger.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/exports/amd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/exports/global.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/_evalUrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/buildFragment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/getAll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/setGlobalEval.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/var/rscriptType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/var/rtagName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/manipulation/wrapMap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/offset.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/queue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/queue/delay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/selector-native.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/selector-sizzle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/selector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/serialize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/traversing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/traversing/findFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/traversing/var/dir.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/traversing/var/rneedsContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/traversing/var/siblings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/ObjectFunctionString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/arr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/class2type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/document.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/documentElement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/flat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/fnToString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/getProto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/hasOwn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/indexOf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/isFunction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/isWindow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/pnum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/push.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/rcheckableType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/rcssNum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/rnothtmlwhite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/slice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/support.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/var/toString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NodeJS/JsDavid/node_modules/jquery/src/wrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React/jsuiteclient/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/BoardController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/NotesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Models/Notes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/public/css/parallax.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/public/img/div1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/public/js/keypress.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/public/video/Bosque_Cleaaaan.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/resources/views/Home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/Feature/ApiNotesTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/Feature/ApiTaskTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/Feature/ApiUserTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/src/js/classes/boards-list-class.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/src/js/classes/boards-list-class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/src/js/formulario.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/src/js/formulario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJS/JsDavid/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJS/JsDavid/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jsuiteclient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/jsuiteclient/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jsuiteclient/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/jsuiteclient/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ChatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ChatsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/MessagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/MessagesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/SendEmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/SendEmailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/TaskController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_01_27_174916_create_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_01_27_174916_create_roles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_03_153513_create_tasks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_02_03_153513_create_tasks_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_14_164503_messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_02_14_164503_messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_18_173927_chats.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_02_18_173927_chats.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_21_163530_user_chats.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_18_173636_notes.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_02_18_173636_notes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_18_173927_chats.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2022_02_21_164412_completion.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2022_02_21_164412_completion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/tests/Feature/ApiChatsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/tests/Feature/ApiChatsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/tests/Feature/ApiMessagesTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/tests/Feature/ApiMessagesTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/tests/Feature/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/tests/Feature/ExampleTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +366,7 @@
       <workItem from="1646244752518" duration="1857000" />
       <workItem from="1646321319857" duration="4356000" />
       <workItem from="1646415159796" duration="2730000" />
+      <workItem from="1646668783908" duration="1346000" />
     </task>
     <servers />
   </component>
@@ -221,7 +389,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/laravel/app/Http/Controllers/UsersController.php</url>
-          <line>18</line>
+          <line>23</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

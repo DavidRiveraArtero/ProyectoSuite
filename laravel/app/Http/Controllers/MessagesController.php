@@ -76,7 +76,7 @@ class MessagesController extends Controller
             return  \response($mensaje, 200);
         }
         else{
-            return  \response("Mensaje actualizado");
+            return  \response("Mensaje actualizado", 404);
         }
     }
 

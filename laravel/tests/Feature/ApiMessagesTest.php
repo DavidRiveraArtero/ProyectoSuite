@@ -61,9 +61,7 @@ class ApiMessagesTest extends TestCase
     public function test_ApiMessagesUpdate($id)
     {
         $response = $this->put("/api/chats/4/messages/{$id}", [
-            'message' => "Hola",
-            'chat_id' => 1,
-            'author_id' => 1,
+            'message' => "Hola"
         ]);
 
         $response->assertStatus(200);

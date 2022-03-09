@@ -6,6 +6,11 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\NotesController;
+
+use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\MessagesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
