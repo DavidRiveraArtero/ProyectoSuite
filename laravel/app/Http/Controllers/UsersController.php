@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -35,14 +36,15 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|max:255|unique:user',
+            'email' => 'required|max:255|unique:users',
             'password' => 'required'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -104,4 +106,11 @@ class UsersController extends Controller
             'user' => $user
         ]);
     }
+
+
+    public function infouser(Request $request){
+        return $request->user();
+    }
+
 }
+
