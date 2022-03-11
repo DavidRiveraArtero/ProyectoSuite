@@ -33,7 +33,7 @@ export class MessagesList{
     {
         html += `
                 <div id="divCabeza">
-                <table class="default" id="info">
+                <table class="default" id="info" hidden>
                 <caption>Información sobre cada mensaje</caption>
                 <tr class="inf">
                     <td>Id</td>
@@ -66,10 +66,11 @@ export class MessagesList{
             `
         });
         return html;
-    }
+        }
 
-         crearTablaSinHTML(listamensaje)
+        crearTablaSinHTML(listamensaje)
         {
+
             let html = `
                 <div id="divCabeza">
                     <table class="default" id="2">
@@ -84,26 +85,30 @@ export class MessagesList{
                         <td class="ver" hidden >Destino</td>
                     </tr>
             `
-            listamensaje.messages.forEach((v) => {
+            console.log(listamensaje)
+            for(var x=1; x<listamensaje.length ;x++) 
+            {
                 html+= `
                     <tr id="a">
-                        <td>${v.id}</td>
-                        <td class="search" >${v.author_id}</td>
+                        <td>${listamensaje[x].id}</td>
+                        <td class="search" >${listamensaje[x].author_id}</td>
                         <td>
-                            <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.message}</textarea>
+                            <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${listamensaje[x].message}</textarea>
                         </td>
                         <td>
                             <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
                             <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
                             <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
                         </td>
-                        <td class="ver" hidden>${v.created}</td=>
-                        <td class="ver" hidden>${v.privpub}</td>
-                        <td class="ver" hidden>${v.desti}</td>
+                        <td class="ver" hidden>${listamensaje[x].created}</td=>
+                        <td class="ver" hidden>${listamensaje[x].privpub}</td>
+                        <td class="ver" hidden>${listamensaje[x].desti}</td>
                     </tr>
                 </div>
                 `
-            });
+
+            }
+
             return html;
         }
 
@@ -112,17 +117,8 @@ export class MessagesList{
             let Lmensajes;
             try{
                 
-                Lmensajes = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages.json')
-                Lmensajes = await Lmensajes.json().then (todo => {
-                    const todoLimpio = todo.filter(Boolean);
-                    console.log("Lmensajes: ", Lmensajes);
-                    console.log("TODO: ", todoLimpio);
-
-                    Lmensajes = Lmensajes(todoLimpio);    
-                    console.log("Lmensajes: ", Lmensajes);
-
-                });
-
+                Lmensajes = await fetch('https://proyecto-40ec5-default-rtdb.firebaseio.com/messages.json')
+                Lmensajes = await Lmensajes.json();
             }
             catch(error){
                 console.log(error);
@@ -182,7 +178,7 @@ export class MessagesList{
     async setMessage(mensaje,id)
     {
         try {
-            const res = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+id+'.json',
+            const res = await fetch('https://proyecto-40ec5-default-rtdb.firebaseio.com/messages/'+id+'.json',
             {
                 method: 'PUT',
                 headers: 
@@ -207,7 +203,7 @@ export class MessagesList{
     async delMenssage(id)
     {
         try {
-            const res= await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+ id+'.json',
+            const res= await fetch('https://proyecto-40ec5-default-rtdb.firebaseio.com/messages/'+ id+'.json',
             {    
                 method: 'DELETE',
             })
@@ -222,7 +218,7 @@ export class MessagesList{
     async actuMenssage(id)
     {
         try {
-            const res = await fetch('https://proyectomir-c4255-default-rtdb.europe-west1.firebasedatabase.app/messages/'+id+'.json',
+            const res = await fetch('https://proyecto-40ec5-default-rtdb.firebaseio.com/messages/'+id+'.json',
             {
                 method: 'PUT',
                 headers: 
@@ -230,7 +226,7 @@ export class MessagesList{
                     'Content-Type': 'application/json'
                 },
                 
-                body: JSON.stringify(mensaje)
+                body: JSON.stringify(fila)
             })
             return res;
             
@@ -239,6 +235,6 @@ export class MessagesList{
         catch (error) 
         {
             body.console.log("Ha sucedido un ERROR.");
-        }   
+        }        
     }
 }

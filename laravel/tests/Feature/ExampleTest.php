@@ -21,4 +21,13 @@ class ExampleTest extends TestCase
             ->count();
         $this->assertEquals($count, 1);
     }
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
+>>>>>>> b2.0_Paula
 }
