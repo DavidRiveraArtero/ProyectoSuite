@@ -2,7 +2,7 @@ import {MessagesList} from "../messegesList";
 import {MessagesList as ml} from "../messegesList";
 import {Messages} from "../messages";
 
-// let listamensaje = new MessagesList();
+//let listamensaje = new MessagesList();
 let anadir = new MessagesList();
 
 
@@ -22,21 +22,25 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             </label>
         </div>
         <div id="afegir" hidden>
-            <label class="txt">Libros: </label>
+            <label class="txt">Message: </label>
             <br>
             <br>
-            <input type="text" id="id_role" placeholder="id_role">
-            <input type="text" id="username" placeholder="username">
-            <input type="text" id="password" placeholder="password">
+            <textarea rows="2" cols="30" type="text" name="message" id="message" required></textarea></label>
+            <fieldset>
+                <label class="txt">Donde quieres enviar el mensage:</label>
+                <br>
+                <label><input type="radio" name="opciones" id="privado" required> Privado</label>
+                <label><input type="radio" name="opciones" id="publico"> Publico</label>
+            </fieldset>
             <br>
             <br>
-
+            <div id="elegir">
+            </div>
+            <p id="contacte"></p>
+            <p id="grupp"></p>
+            <input class="btn btn-primary" type="button" id="revisar" value="Revisar">
             <input class="btn btn-primary" type="submit" id="guardar" value="Guardar y aplicar">
-
-            <p>Elije:</p>
-            <select name="deporte" id="elegir">
-      
-            </select>
+            <br>
         </div>
         <br>
     </html>
@@ -44,32 +48,21 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     var divGeneral = document.createElement("div");
     document.body.appendChild(divGeneral);
 
-    var divTablaActualizada = document.createElement("div");
-    document.body.appendChild(divTablaActualizada);
+    // var divTablaPrimera = document.createElement("div");
+    // document.body.appendChild(divTablaPrimera);
 
     // CREAR EL INTPUT MOSTRAR LA INFORMACION
     divGeneral.innerHTML=anadir.crearTabla(html, listamensaje);
 
-    // var a = anadir.actuMenssage(id).then((o)=> {
-    //     console.log(o);
-    //     for (var x=0;x<o.length;x++ )
-    //     {
-    //         if(o[x].id_usuari == id)
-    //         {
-    //             o[x].username = cambios
-    //             listamensaje.update(id,o[x]);
-    //         }
-    //     }
-    // });
-
-    anadir.actualizarTabla().then((value1)=>
-    {
-        // --------- Crear la tabla con la información añadida ---------
-        document.getElementById("elegir").innerHTML=anadir.rellenarSelect(html, value1);
-    })
-
 
     // VARIABLES
+    var fecha = new Date();  
+    var mensa;
+    var privado;
+    var publico;
+    var privpub; // SI ES PRIVADO SERA True SI ES PUBLICO SERA False
+    var desti;
+
     var activarEd = true;
     var activarVer = true;
     var activarAfegir = true;
@@ -80,46 +73,50 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     var missatge="^[A-Z a-z 0-9]+";
 
     // VALIDAR FORMULARIO
+    document.querySelector("#revisar").addEventListener("click",() => {
+        (checkForm("#formulario"))
+    });
+
     document.querySelector("#guardar").addEventListener("click",() => {
 
         if (checkForm("#formulario"))
         {    
             // --------- Recoger los valores de configuracion ---------
-            var id_role = document.querySelector("#id_role").value;
-            var username = document.querySelector("#username").value;
-            var password = document.querySelector("#password").value;
+            var Antid = 0;
+            var Antauthor_id = 0;
 
-                var TablaGeneral = document.getElementById("tablaGeneral");
-                TablaGeneral.remove(); //  Eliminar
-                
-                let html3;
-                // Sirve para poder acceder a la base de datos
-                anadir.actualizarTabla().then((value) => {
-                    // --------- Conseguir el ultimo id ---------
-                    var lastIndex = 0;
+            mensa = document.querySelector("#message").value;
+            desti = document.querySelector("#desinatario").value;
+            Antid = parseInt(listamensaje.lastIndex()) +1;
+            Antauthor_id = parseInt(listamensaje.lastIndex()) +1;
 
-                    for (var x=0; x<value.length; x++)
-                    {
-                        lastIndex = x;
-                    }
-                    lastIndex ++;
+            var tabla = new Messages(Antid,Antauthor_id, mensa, fecha, privpub, desti)
+            //anadir.nouMessages(tabla);
+            var MensajeSubido = anadir.setMessage(tabla,Antid).then((value2) => {
 
-                    var tabla = new Messages(id_role, lastIndex, username, password)
-                    anadir.setMessage(tabla,lastIndex).then(()=>{
-                        anadir.actualizarTabla().then((value2)=>
-                        {
-                            // --------- Crear la tabla con la información añadida ---------
-                            html3 = anadir.crearTablaSinHTML(value2);
-                            document.getElementById('divGeneral').innerHTML=html3;
-                            document.getElementById('tablaGeneral').removeAttribute("hidden");
-                        })
-                    })
+            var TablaInfo = document.getElementById("info");
+            TablaInfo.remove(); //  Eliminar
+            
+            let html3;
+            
+            // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
+            anadir.actualizarTabla().then((value) => {
+                    console.log("G ",value);
+                    
+                    listamensaje.messages = value;
+                    console.log(listamensaje.messages);
+                    html3 = anadir.crearTablaSinHTML(listamensaje.messages);
+                    document.getElementById('divCabeza').innerHTML=html3;
                 });
-                anadir.crearLocalStorage()
-        };
+            
+            });
+
+
+        }; // Añadir mensaje
+            console.log(tabla);
     });
 
-    // ---------------------------- BOTONES INFORMACIÓN LISTA ----------------------------
+    // ---------------------------- BOTONES INFORMACION LISTA
     document.getElementById("botones").addEventListener("click", (event) => {
 
 
@@ -142,7 +139,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
         // ~~~~~~~~~~~~~~ LISTAR MENSAJES ~~~~~~~~~~~~~~ 
         if (event.target.id == "listar")
         {
-            var verLista=document.getElementById("tablaGeneral");
+            var verLista=document.getElementById("info");
             if (activarLista)
             {
                 verLista.removeAttribute("hidden");
@@ -174,8 +171,8 @@ export function creaHTMLFormulariAfegir(listamensaje) {
         if (event.target.id == "buscar")
         {
             var buscar=document.getElementById("palabra").value;
-            var tabla=document.getElementById("tablaGeneral");
-            var tabla2=document.getElementById("tablaRespuesta");
+            var tabla=document.getElementById("info");
+            var tabla2=document.getElementById("tabla2");
 
             if (buscar == "")
             {
@@ -189,45 +186,14 @@ export function creaHTMLFormulariAfegir(listamensaje) {
                 var respuesta = listamensaje.filtrar(buscar);            
                 console.log("Respuesta: " , respuesta);
                 tabla.setAttribute("hidden", true);
-
-                // ~~~~~~~~~~~~~~ TABLA CON EL RESULTADO ~~~~~~~~~~~~~~ 
-                var html = `
-                <table class="default" id="tablaRespuesta">
-                <caption>Información sobre cada mensaje</caption>
-                <tr class="inf">
-                    <td>id_usuari</td>
-                    <td>id_role</td>
-                    <td>usuario</td>
-                    <td>botones</td>
-                    <td class="ver" hidden >password</td>
-                </tr>
-                `
-                respuesta.forEach((v) => {
-                    html += `
-                        <tr id="a">
-                        <td>${v.id_usuari}</td>
-                        <td>${v.id_role}</td>
-                        <td>
-                            <textarea class="search" rows="2" cols="20" type="text" id="msm" readonly >${v.username}</textarea>
-                        </td>
-                        <td>
-                            <button> <i id="eliminar" class="fa fa-trash" aria-hidden="true"></i> </button>
-                            <button> <i id="editar" class="fa fa-cog" aria-hidden="true"></i> </button>
-                            <button> <i id="ver" class="fa fa-eye" aria-hidden="true"></i> </button>
-                        </td>
-                        <td class="ver" hidden>${v.password}</td>
-                    </tr>
-                    `
-                });
-                divTablaActualizada.innerHTML=html;
-           
             }            
         }
+
+
     });
 
-
-    // ---------------------------- BOTÓNES FUNCIONES ----------------------------
-    document.getElementById("divGeneral").addEventListener("click", (event) => {
+    // ---------------------------- BOTONES INFORMACION LISTA
+    document.getElementById("info").addEventListener("click", (event) => {
         var id = event.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
         var fila = event.target.parentNode.parentNode.parentNode.querySelector("input");
 
@@ -253,18 +219,8 @@ export function creaHTMLFormulariAfegir(listamensaje) {
                 activarEd = true;
                 cambios = fila.value
                 console.log(cambios);
-                console.log("id: ",id);
-                var a = anadir.actuMenssage(id).then((o)=> {
-                    console.log(o);
-                    for (var x=0;x<o.length;x++ )
-                    {
-                        if(o[x].id_usuari == id)
-                        {
-                            o[x].username = cambios
-                            listamensaje.update(id,o[x]);
-                        }
-                    }
-                });
+                listamensaje.update(id,cambios);
+                anadir.actuMenssage(id);
             }
         }
 
@@ -295,11 +251,7 @@ export function creaHTMLFormulariAfegir(listamensaje) {
     })
 
 
-
-
-    // ---------------------------- COMPROVAR DATOS ----------------------------
-    var missatge="^[A-Z a-z 0-9]+";
-
+    // FUNCIONES
     function checkInput(idInput, patt)
     {
         return patt.test(document.querySelector(idInput).value) ? true : false;    
@@ -311,7 +263,12 @@ export function creaHTMLFormulariAfegir(listamensaje) {
         var pattM = new RegExp(missatge);
         var missatgeCorrecte = false;
 
-        if (checkInput("#username",pattM))
+        privado = document.querySelector("#privado").checked
+        publico = document.querySelector("#publico").checked
+        if (privado) { privpub=true; }
+        if (publico) { privpub=false; }
+
+        if (checkInput("#message",pattM) && ( privado || publico))
         {
             console.log("Correcte")
             missatgeCorrecte=true;
@@ -320,7 +277,57 @@ export function creaHTMLFormulariAfegir(listamensaje) {
             console.log("---ERROR---")
             missatgeCorrecte=false;
         }
+        if (missatgeCorrecte)
+        {
+            PrivadoPublico(privado)
+        }
 
         return missatgeCorrecte;
+    }
+
+    // QUE A ESCOGIDO PRIVADO O PUBLICO?
+    function PrivadoPublico(privado)
+    {
+        // COMPROVAR SI EXISTE YA UNA OPCIÓN CREADA
+        var comprovarDesti = document.getElementById("destino");
+        if (comprovarDesti != null)
+        {
+            comprovarDesti.remove();
+        }
+        if (privado)
+        {
+            console.log("Ha entrado");
+            // CREAR EL INTPUT PARA ELEGIR CONTACTO
+            // --------- CREAR OPCIONES DE CONTACTO ---------
+            var elegir = document.getElementById("elegir");
+            var parrafo = document.createElement("p");
+            var select = document.createElement("select");
+            var option = document.createElement("option");
+            parrafo.id="destino";
+            parrafo.innerHTML="Contacto:";
+            select.id="desinatario";
+            option.innerHTML="Contacto1";
+            select.appendChild(option);
+            parrafo.appendChild(select);
+            elegir.appendChild(parrafo);
+        }
+
+        // var comprovarGrupo = document.getElementById("grupo");
+        if (publico)
+        {
+            // CREAR EL INTPUT PARA ELEGIR GRUPO
+            var elegir = document.getElementById("elegir");
+            var parrafo = document.createElement("p");
+            var select = document.createElement("select");
+            var option = document.createElement("option");
+            parrafo.id="destino";
+            parrafo.innerHTML="Grupo:";
+            select.id="desinatario";
+            option.innerHTML="Grupo1";
+            select.appendChild(option);
+            parrafo.appendChild(select);
+            elegir.appendChild(parrafo);
+        }
+        return true;
     }
 }
