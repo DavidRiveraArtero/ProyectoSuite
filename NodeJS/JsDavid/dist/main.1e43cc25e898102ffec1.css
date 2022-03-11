@@ -1,0 +1,45 @@
+/*!*****************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
+  \*****************************************************************/
+table.tareas tr th, table.tareas tr td{
+    
+    border:1px solid black;
+    text-align: center;
+    font-weight: bold;
+}
+table.tareas{
+    border-collapse: collapse;
+    width: 90%;
+    background-color: whitesmoke;
+    margin:auto;
+    margin-bottom: 10px;
+    margin-top: 4%;
+}
+.TituloResult{
+    text-align: center;
+}
+tr:hover {
+    background-color: gray;
+}
+.ocultar_input{
+    border:none;
+   
+}
+.prueba
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 4%;
+    margin-top: 4%;
+}
+.filtrar
+{
+    float: left;
+    margin-left: 0.5%;
+}
+.buscador
+{
+    float: left;
+}

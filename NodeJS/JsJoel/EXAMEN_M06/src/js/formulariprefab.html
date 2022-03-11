@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+
+        <label for="title">TITOL: </label>
+        <input type="text" value="Títol a ficar" name="title" id="title" /><br><br>
+
+        <label for="desc">DESCRIPCIÓ: </label>
+        <input type="text" value="Descripció de ticket" name="desc" id="desc" /><br><br>
+
+        <label for="asset_id">ASSET: </label>
+        <select name="asset_id" id="asset_id">
+            ${option}
+        </select><br><br>
+
+        <button id="enviar">ENVIAR</button>
+
+        <div class="total">
+            <h1 class="titol">TICKETS</h1>
+            <div class="agenda">
+                <table id="taula">
+                    <tr class="fila">
+                        <th colspan="1">ID</th>
+                        <th colspan="1">TÍTOL</th>
+                        <th colspan="1">DESCRIPCIÓ</th>
+                        <th colspan="1">ID ASSIGNED</th>
+                        <th colspan="1">ID ASSET</th>
+                        <th colspan="1">DATA CREACIÓ</th>
+                        <th colspan="1">UPDATED</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <a href="./formularimostrar.js"><button id="mostrar">MOSTRAR</button></a>
+
+    </form>
+</body>
+</html>

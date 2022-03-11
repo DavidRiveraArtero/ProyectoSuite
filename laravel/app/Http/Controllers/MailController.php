@@ -25,5 +25,4 @@ class MailController extends Controller
             echo '<pre>Error - ' . $e .'</pre>';
         }
     }
-
 }

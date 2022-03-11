@@ -29,5 +29,5 @@ class TestMail extends Mailable
         return $this->markdown('mails.testmail')
             ->with('content', $this->content);
     }
-
+     
 }

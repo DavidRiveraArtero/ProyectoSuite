@@ -25,6 +25,5 @@ class AdminTest extends TestCase
             ->where('name', '=', 'admin')
             ->count();
         $this->assertEquals($count, 1);
-
     }
 }
