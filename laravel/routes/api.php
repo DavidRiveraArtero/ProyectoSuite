@@ -3,23 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
-<<<<<<< HEAD
 use \App\Http\Controllers\TicketsController;
 use \App\Http\Controllers\UsersController;
 use \App\Http\Controllers\CommentsController;
 use \App\Http\Controllers\StatusesController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\NotesController;
-=======
-use App\Http\Controllers\BoardController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\NotesController;
-
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\MessagesController;
-
-
->>>>>>> b2.0_Paula
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,7 +35,7 @@ Route::apiResource("chats/{cid}/messages", MessagesController::class);
 Route::apiResource("users", UsersController::class);
 
 
-<<<<<<< HEAD
+
 //Route::apiResource("task", TaskController::class);
 
 Route::apiResource("users",UsersController::class);
@@ -59,13 +50,12 @@ Route::apiResource("task", TaskController::class);
 Route::apiResource("users", UsersController::class);
 Route::post("/register", UsersController::class, 'store');
 Route::post("/login", UsersController::class, 'login');
-=======
+
 Route::apiResource("task", TaskController::class);
 
 Route::apiResource("users", UsersController::class);
 //Route::post("/register", UsersController::class, 'store');
 //Route::post("/login", UsersController::class, 'login');
->>>>>>> b2.0_Paula
 
 Route::apiResource('task/{tid}/notes', NotesController::class);
 
