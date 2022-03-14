@@ -107,7 +107,6 @@ class UsersController extends Controller
         ]);
     }
 
-
     public function infouser(Request $request){
         return $request->user();
     }
