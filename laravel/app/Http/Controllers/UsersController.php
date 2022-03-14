@@ -112,4 +112,3 @@ class UsersController extends Controller
     }
 
 }
-
