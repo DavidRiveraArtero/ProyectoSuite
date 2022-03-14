@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="949f388b-0f39-439d-8f1a-40d646958244" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/laravel/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/api.php" afterDir="false" />
+=======
+>>>>>>> 154854265e10b090bdf07ded6919eb639e6db8b0
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +191,11 @@
       <workItem from="1646321319857" duration="4356000" />
       <workItem from="1646415159796" duration="2730000" />
       <workItem from="1646668783908" duration="1346000" />
+<<<<<<< HEAD
       <workItem from="1647019878176" duration="2393000" />
+=======
+      <workItem from="1647020686524" duration="2247000" />
+>>>>>>> 154854265e10b090bdf07ded6919eb639e6db8b0
     </task>
     <servers />
   </component>
@@ -205,17 +212,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/laravel/app/Http/Controllers/UsersController.php</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

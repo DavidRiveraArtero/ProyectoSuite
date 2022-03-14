@@ -35,6 +35,10 @@ Route::get('/dashboard', function () {
 
 
 
-Route::get('mail/test',MailController::class,'test')->name('enviarcorreo')->middleware(['auth']);
+Route::get('mail/test',[MailController::class, 'test'])->name('enviarcorreo')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

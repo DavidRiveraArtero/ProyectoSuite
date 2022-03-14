@@ -57,7 +57,6 @@ export function CrearFormularioHTML(listaboards)
     document.body.appendChild(div);
     var html3 = ``
     
-<<<<<<< HEAD
         html += `<tr>
                     <td class='tdid' id='${listaboards.getId(i)}'>${v.id}</td>
                     <th><input class="ocultar_input filtrarTitulo" id="Titulo${listaboards.getId(i)}" type="text" readonly value=${v.title}></th>
@@ -74,9 +73,8 @@ export function CrearFormularioHTML(listaboards)
             </footer>`
  
     div.innerHTML=html;
-=======
+
     div.innerHTML= anyadir.crearTabla(html,listaboards);
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
 
     var cont = 1;
     var titulos =$(".ocultoT")
@@ -94,30 +92,20 @@ export function CrearFormularioHTML(listaboards)
 
     //APARTADO FILTRAR
     var bool_filtrar = false
-<<<<<<< HEAD
     var inputBuscador = $("#buscador")
     
 
-=======
     var filtrarBuscador = document.getElementById('filtrarBuscador');
-<<<<<<< HEAD
-<<<<<<< HEAD
     var inputBuscador = document.getElementById("buscador")
 
     //INPUTS A FILTRAR
     var tituloFilt = document.getElementsByClassName('filtrarTitulo');
-=======
     var inputBuscador = document.getElementById('inputBuscador');
->>>>>>> b1.1_David
-=======
     var inputBuscador = document.getElementById("buscador")
     
 
     //INPUTS A FILTRAR
     var tituloFilt = document.getElementsByClassName('filtrarTitulo');
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
-
->>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
     //OTRAS COSAS
     var edit = true;
     var moreOptions = false;
@@ -217,8 +205,6 @@ export function CrearFormularioHTML(listaboards)
     })
     
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     // FILTRADO BUSCADOR
     filtrarBuscador.addEventListener("click",event=>{
         for(var x = 0;x<tituloFilt.length;x++){
@@ -230,13 +216,10 @@ export function CrearFormularioHTML(listaboards)
             
         }
     });
-=======
     // ====================NUEVA TABLA=================
     filtrarBuscador.addEventListener('click',event=>{
         var algo = listaboards.filtraAutorsPerText(inputBuscador.value);
-=======
     // ====================NUEVA TABLA=================
-<<<<<<< HEAD
     $('#filtrarBuscador').on({
         click:((event)=>{
             var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
@@ -251,7 +234,6 @@ export function CrearFormularioHTML(listaboards)
                     <td class="ocultoT" hidden>ticket_id</td>
                 <tr>`
             var tabla2 = $('#tabla2');
-=======
     filtrarBuscador.addEventListener('click',event=>{
         var nuevaLista = listaboards.filtraAutorsPerText(inputBuscador.value);
         var html2 = `<table id="tabla2" class="tareas">
@@ -266,12 +248,10 @@ export function CrearFormularioHTML(listaboards)
             <tr>`
         var tabla2 = document.getElementById('tabla2');
         
->>>>>>> 0e9ee58fd8f7bae660b971352ce410a455256fea
         if(inputBuscador.value == "")
         {
             console.log("Input vacio")
             tabla_lista.removeAttribute("hidden")
-<<<<<<< HEAD
         }else
         {
             console.log(algo);
@@ -285,15 +265,12 @@ export function CrearFormularioHTML(listaboards)
 
         }
     })
->>>>>>> b1.1_David
-=======
             tabla2.setAttribute("hidden",true)
         }else
         {
             document.body.appendChild(div2);
             tabla_lista.setAttribute("hidden",true)
             //apartado_filtrar.removeAttribute('hidden')
->>>>>>> a5aa1c4e4cd1582753fd310901a1b61af4991f42
             
             if(inputBuscador.value == "")
             {
@@ -325,7 +302,6 @@ export function CrearFormularioHTML(listaboards)
             }
         })
     })
-<<<<<<< HEAD
     
     // ====================BOTON ELIMINAR====================
 =======

@@ -11,7 +11,10 @@ use App\Http\Controllers\BoardController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\MessagesController;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 154854265e10b090bdf07ded6919eb639e6db8b0
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +38,11 @@ Route::apiResource("chats/{cid}/messages", MessagesController::class);
 
 Route::apiResource("users", UsersController::class);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 154854265e10b090bdf07ded6919eb639e6db8b0
 //Route::apiResource("task", TaskController::class);
 Route::apiResource("users",UsersController::class);
 
@@ -45,8 +53,20 @@ Route::apiResource("statuses",StatusesController::class);
 Route::apiResource("task", TaskController::class);
 
 Route::apiResource("users", UsersController::class);
+<<<<<<< HEAD
 Route::post("/register", UsersController::class, 'store');
 Route::post("/login", UsersController::class, 'login');
+=======
+Route::post("/register", [UsersController::class, 'store']);
+Route::post("/login", [UsersController::class, 'login']);
+Route::post("/infouser",[UsersController::class,'infouser'])->middleware('auth:sanctum');
+
+Route::apiResource("task", TaskController::class);
+
+Route::apiResource("users", UsersController::class);
+//Route::post("/register", UsersController::class, 'store');
+//Route::post("/login", UsersController::class, 'login');
+>>>>>>> 154854265e10b090bdf07ded6919eb639e6db8b0
 
 Route::apiResource("task", TaskController::class);
 Route::apiResource('task/{tid}/notes', NotesController::class);
