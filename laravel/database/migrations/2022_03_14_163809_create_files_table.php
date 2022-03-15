@@ -1,12 +1,10 @@
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Notes extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +13,10 @@ class Notes extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table){
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
-            $table->foreignId('task_id')->references('id')->on('tasks');
+            $table->string('filepath');
+            $table->integer('filesize');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class Notes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('files');
     }
 }
