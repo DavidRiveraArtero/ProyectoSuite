@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\FileController;
 
 
 /*
@@ -19,13 +20,17 @@ use Illuminate\Support\Facades\Log;
 
 Route::get('/', function (Request $request) {
     $message = 'Loading welcome page';
-    Log::info($message);
+
     $request->session()->flash('info', $message);
     return view('welcome');
 });
 
-Route::get('/home', function(){
+Route::get('/home2', function(){
     return view('Home');
+});
+
+Route::get('/inicio', function(){
+    return view('inicio');
 });
 
 
@@ -42,3 +47,10 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// ROUTE FILE
+Route::resource('files',FileController::class)->middleware(['auth', 'role:2,3']);
+
+
+

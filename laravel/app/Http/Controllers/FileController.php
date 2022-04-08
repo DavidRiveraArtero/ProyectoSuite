@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class FileController extends Controller
 {
@@ -15,8 +18,10 @@ class FileController extends Controller
      */
     public function index()
     {
-        $file = File::all();
-        return  \response($file);
+        return view("files.index", [
+            "files" => File::all()
+        ]);
+
     }
 
     /**
@@ -26,7 +31,8 @@ class FileController extends Controller
      */
     public function create()
     {
-
+        Debugbar::debug("dentro de create");
+        return view("files.create");
     }
 
     /**
@@ -37,24 +43,58 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
+        Debugbar::debug("dentro");
+        Debugbar::debug($request->file);
+        // Validar fitxer binari
         $request->validate([
-            'filepath' => 'required|max:255',
-            'filesize' => 'required'
+            'file' => 'required| max:2024'
         ]);
-        $file = File::create($request->all());
-        return \response($file);
+        // Pujar fitxer binari al disc dur
+
+        $upload = $request->file('file');
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        Debugbar::debug("Storing file '{$fileName}' ($fileSize)...");
+
+        $uploadName = time() . '_' . $fileName;
+        $filePath = $upload->storeAs(
+            'uploads',
+            $uploadName,
+            'public'
+        );
+
+        if(\Storage::disk('public')->exists($filePath)){
+            Debugbar::debug("Existe la ruta");
+            $fullPath = \Storage::disk('public')->path($filePath);
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize
+            ]);
+
+            return redirect()->route('files.show',$file)->with('success',"File successfully saved");
+
+        }else{
+            Debugbar::debug("No existe la ruta");
+            return redirect()->route('files.create')->with('error', 'Error uploading file');
+        }
+
+        return view("files.create");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\File  $file
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(File $file)
     {
-        $file = File::findOrFail($id);
-        return \response($file);
+
+        return view("files.show", [
+            'file' => $file
+        ]);
+
     }
 
     /**
@@ -65,20 +105,51 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        //
+        return view("files.edit", [
+            'file' => $file
+        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \App\Models\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, File $file)
     {
-        File::findOrFail($id)->update($request->all());
-        return \response("Tarea Actualizada");
+        $request->validate([
+            'file' => 'required| max:2024'
+        ]);
+        Debugbar::debug("Tarea Actualizada");
+
+        Debugbar::debug($file);
+
+        $upload = $request->file('file');
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        $uploadName = time() . '_' . $fileName;
+
+        $filePath = $upload->storeAs(
+            'uploads',
+            $uploadName,
+            'public'
+        );
+
+        if(\Storage::disk('public')->exists($filePath)) {
+            $fullPath = \Storage::disk('public')->path($filePath);
+            $ok = $file->updateOrFail([
+                'filepath' => $filePath,
+                'filesize'=> $fileSize
+            ]);
+        }
+
+        Debugbar::debug($ok ? "Desat!" : "Not working! :(");
+        Debugbar::debug($file);
+
+        return redirect()->route('files.show',$file)->with('success','Success Upadre');
     }
 
     /**
@@ -89,6 +160,11 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        Debugbar::debug($file);
+        $ok = Storage::disk('public')->delete($file->filepath);
+        Debugbar::debug($ok);
+        $file->delete();
+        return redirect()->route('files.index')->with('success', 'File destroyed');
+
     }
 }

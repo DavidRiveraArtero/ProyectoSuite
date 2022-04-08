@@ -55,8 +55,6 @@ Route::post("/infouser",[UsersController::class,'infouser'])->middleware('auth:s
 Route::apiResource("task", TaskController::class);
 
 Route::apiResource("users", UsersController::class);
-//Route::post("/register", UsersController::class, 'store');
-//Route::post("/login", UsersController::class, 'login');
 
 Route::apiResource('task/{tid}/notes', NotesController::class);
 
