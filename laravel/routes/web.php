@@ -50,7 +50,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // ROUTE FILE
-Route::resource('files',FileController::class)->middleware(['auth', 'role:3,4']);
+Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
 
 
