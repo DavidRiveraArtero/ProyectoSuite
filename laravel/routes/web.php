@@ -5,6 +5,9 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ModelsController;
+use App\Http\Controllers\AssetsController;
+use App\Http\Controllers\CategoriesController;
 
 
 /*
@@ -52,5 +55,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ROUTE FILE
 Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
+Route::resource('models',ModelsController::class);
+Route::resource('assets',AssetsController::class);
+Route::resource('categories',CategoriesController::class);
 
 
