@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,12 +19,12 @@ class UsersController extends Controller
      */
     public function index()
     {
+
         $user = User::select('name','email')->get();
         return \response($user);
 
 
     }
-
 
 
     /**
@@ -44,7 +45,7 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role_id
+
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;

@@ -38,7 +38,6 @@ Route::apiResource("users", UsersController::class);
 
 //Route::apiResource("task", TaskController::class);
 
-Route::apiResource("users",UsersController::class);
 
 Route::apiResource("tickets", TicketsController::class);
 

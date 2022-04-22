@@ -5,7 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\FileController;
-
+use App\Http\Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +52,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ROUTE FILE
 Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
+// ROUTE USER
+Route::resource('users',UserAdminController::class);
 
 

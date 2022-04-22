@@ -31,7 +31,6 @@ class FileController extends Controller
      */
     public function create()
     {
-        Debugbar::debug("dentro de create");
         return view("files.create");
     }
 
