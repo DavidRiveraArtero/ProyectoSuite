@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Models\Companies;
+use Faker\Provider\Company;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Barryvdh\Debugbar\Facades\Debugbar;
-use App\Models\File;
 
-class CompanyController extends Controller
+class CompanyController1 extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class CompanyController extends Controller
     public function index()
     {
         return view("companies.index", [
-            "companies" => Company::all()
+            "companies" => Companies::all()
         ]);
     }
 
@@ -27,12 +26,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         Debugbar::debug("dentro de create");
-        return view("companies.create",[
-            'files' => File::all()
-        ]);
+        return view("companies.create");
     }
 
     /**
@@ -43,18 +40,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        //$request->validate([
+            //'name' => 'required',
+            //'phone' => 'required',
+            //'email' => 'required',
+          //  'logo_id' => 'required'
+        //]);
 
-
-
-
-
-
+        //$companies = Companies::create($request->all());
+        //return \response($companies);
 
         Debugbar::debug("dentro");
-        Debugbar::debug($request->file);
         // Validar fitxer binari
         $request->validate([
-            'file' => 'required| max:2024'
+            'logo_id' => 'required'
         ]);
         // Pujar fitxer binari al disc dur
 
@@ -78,11 +77,11 @@ class CompanyController extends Controller
                 'filesize' => $fileSize
             ]);
 
-            return redirect()->route('companies.show',$file)->with('success',"File successfully saved");
+            return redirect()->route('companies.show',$file)->with('success',"Company successfully saved");
 
         }else{
             Debugbar::debug("No existe la ruta");
-            return redirect()->route('companies.create')->with('error', 'Error uploading file');
+            return redirect()->route('companies.create')->with('error', 'Error uploading company');
         }
 
         return view("companies.create");
@@ -91,53 +90,54 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Companies $companies)
     {
+        //dd($companies);
+
         return view("companies.show", [
-            'company' => $company
+            'company' => $companies
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Companies $companies)
     {
-        return view("companies.edit", [
-            'company' => $company
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $id)
     {
-        //
+        Companies::findOrFail($id)->update($request->all());
+        return \response("Company actualizado");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Companies $companies)
     {
-        Debugbar::debug($company);
-        $ok = Storage::disk('public')->delete($company->filepath);
+        Debugbar::debug($companies);
+        $ok = Storage::disk('public')->delete($companies->filepath);
         Debugbar::debug($ok);
-        $company->delete();
-        return redirect()->route('companies.index')->with('success', 'Company destroyed');
+        $companies->delete();
+        return redirect()->route('companies.destroy')->with('success', 'Company destroyed');
     }
 }

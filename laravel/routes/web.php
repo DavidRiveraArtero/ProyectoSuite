@@ -5,7 +5,8 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\FileController;
-use \App\Http\Controllers\CompanyController;
+use \App\Http\Controllers\CompanyController1;
+use \App\Http\Controllers\DeliveryController;
 
 
 /*
@@ -54,5 +55,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
 // ROUTE COMPANY
-Route::resource('companies',CompanyController::class); // afegir middleware quan acabem de crear el controller i tot funcioni
+Route::resource('companies',CompanyController1::class); // afegir middleware quan acabem de crear el controller i tot funcioni
+
+Route::resource('deliveries',DeliveryController::class); // afegir middleware quan acabem de crear el controller i tot funcioni
 

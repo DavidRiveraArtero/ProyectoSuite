@@ -90,11 +90,9 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-
         return view("files.show", [
             'file' => $file
         ]);
-
     }
 
     /**
@@ -108,7 +106,6 @@ class FileController extends Controller
         return view("files.edit", [
             'file' => $file
         ]);
-
     }
 
     /**
@@ -165,6 +162,5 @@ class FileController extends Controller
         Debugbar::debug($ok);
         $file->delete();
         return redirect()->route('files.index')->with('success', 'File destroyed');
-
     }
 }
