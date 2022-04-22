@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\FileController;
+use \App\Http\Controllers\CompanyController;
 
 
 /*
@@ -52,5 +53,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ROUTE FILE
 Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
-
+// ROUTE COMPANY
+Route::resource('companies',CompanyController::class);
 

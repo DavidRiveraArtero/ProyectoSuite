@@ -10,6 +10,7 @@
         <h1 style="text-align: center; font-weight: bold;">Foto Actual</h1>
         <div style="width: 50%; margin: 0% auto">
             <img style="width: 100%; height: auto" alt="foto del fichero" class="img-fluid" src="{{asset("storage/$file->filepath")}}" title="image preview"/>
+
             <form method="post" action="{{route('files.destroy',$file)}}">
                 @csrf
                 @method('delete')
