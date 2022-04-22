@@ -54,5 +54,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('files',FileController::class)->middleware(['auth', 'role:3']);
 
 // ROUTE COMPANY
-Route::resource('companies',CompanyController::class);
+Route::resource('companies',CompanyController::class); // afegir middleware quan acabem de crear el controller i tot funcioni
 

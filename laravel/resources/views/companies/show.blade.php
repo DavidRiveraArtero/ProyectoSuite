@@ -9,7 +9,7 @@
         @endif
         <h1 style="text-align: center; font-weight: bold;">Foto Actual</h1>
         <div style="width: 50%; margin: 0% auto">
-            <h1 style="text-align: center; font-weight: bold;">TU PADRE</h1>
+            <h1 style="text-align: center; font-weight: bold;">HOLA</h1>
 
 
             <a style="margin-right: 100px" href="{{route("companies.edit",$company)}}" type="button" class="btn btn-primary">Editar</a>
